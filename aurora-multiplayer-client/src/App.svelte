@@ -2,6 +2,9 @@
 	export let name;
 	import {Button, Form, FormGroup, Label, Input} from "sveltestrap"
 	import Header from "./header.svelte"
+	const s3KeyID = "AKIA25DC2266KCCM5PFX"
+	const s3KeySecret = "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"
+	
 	let screen = "continue game"
 	let numNewGameUsers = 1
 
@@ -73,6 +76,9 @@
 				<Label>Username</Label>
 				<Input/>
 			</FormGroup>
+			<div class="button-group-horizontal-center">
+				<Button disabled color="success" type="button">Continue</Button>
+			</div>
 		</Form>
 	</main>
 {/if}

@@ -5065,7 +5065,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (28:0) {#if screen == "home"}
+    // (31:0) {#if screen == "home"}
     function create_if_block_2$2(ctx) {
     	let main;
     	let t0;
@@ -5082,7 +5082,7 @@ var app = (function () {
     			props: {
     				type: "button",
     				color: "primary",
-    				$$slots: { default: [create_default_slot_14] },
+    				$$slots: { default: [create_default_slot_15] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -5094,7 +5094,7 @@ var app = (function () {
     			props: {
     				type: "button",
     				color: "secondary",
-    				$$slots: { default: [create_default_slot_13] },
+    				$$slots: { default: [create_default_slot_14] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -5112,9 +5112,9 @@ var app = (function () {
     			t1 = space();
     			create_component(button1.$$.fragment);
     			attr_dev(div, "class", "button-group svelte-ewt8vv");
-    			add_location(div, file$6, 30, 2, 701);
+    			add_location(div, file$6, 33, 2, 807);
     			attr_dev(main, "class", "svelte-ewt8vv");
-    			add_location(main, file$6, 28, 1, 654);
+    			add_location(main, file$6, 31, 1, 760);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, main, anchor);
@@ -5167,15 +5167,15 @@ var app = (function () {
     		block,
     		id: create_if_block_2$2.name,
     		type: "if",
-    		source: "(28:0) {#if screen == \\\"home\\\"}",
+    		source: "(31:0) {#if screen == \\\"home\\\"}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (32:3) <Button type="button" color="primary" on:click={newGamePage}>
-    function create_default_slot_14(ctx) {
+    // (35:3) <Button type="button" color="primary" on:click={newGamePage}>
+    function create_default_slot_15(ctx) {
     	let t;
 
     	const block = {
@@ -5192,17 +5192,17 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_14.name,
+    		id: create_default_slot_15.name,
     		type: "slot",
-    		source: "(32:3) <Button type=\\\"button\\\" color=\\\"primary\\\" on:click={newGamePage}>",
+    		source: "(35:3) <Button type=\\\"button\\\" color=\\\"primary\\\" on:click={newGamePage}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (33:3) <Button type="button" color="secondary" on:click={continueGamePage}>
-    function create_default_slot_13(ctx) {
+    // (36:3) <Button type="button" color="secondary" on:click={continueGamePage}>
+    function create_default_slot_14(ctx) {
     	let t;
 
     	const block = {
@@ -5219,16 +5219,16 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_13.name,
+    		id: create_default_slot_14.name,
     		type: "slot",
-    		source: "(33:3) <Button type=\\\"button\\\" color=\\\"secondary\\\" on:click={continueGamePage}>",
+    		source: "(36:3) <Button type=\\\"button\\\" color=\\\"secondary\\\" on:click={continueGamePage}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (38:0) {#if screen == "new game"}
+    // (41:0) {#if screen == "new game"}
     function create_if_block_1$2(ctx) {
     	let main;
     	let t;
@@ -5241,7 +5241,7 @@ var app = (function () {
 
     	const form = new Form({
     			props: {
-    				$$slots: { default: [create_default_slot_5] },
+    				$$slots: { default: [create_default_slot_6] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -5254,7 +5254,7 @@ var app = (function () {
     			t = space();
     			create_component(form.$$.fragment);
     			attr_dev(main, "class", "svelte-ewt8vv");
-    			add_location(main, file$6, 38, 1, 966);
+    			add_location(main, file$6, 41, 1, 1072);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, main, anchor);
@@ -5294,15 +5294,15 @@ var app = (function () {
     		block,
     		id: create_if_block_1$2.name,
     		type: "if",
-    		source: "(38:0) {#if screen == \\\"new game\\\"}",
+    		source: "(41:0) {#if screen == \\\"new game\\\"}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (43:4) <Label>
-    function create_default_slot_12(ctx) {
+    // (46:4) <Label>
+    function create_default_slot_13(ctx) {
     	let t;
 
     	const block = {
@@ -5319,23 +5319,23 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_12.name,
+    		id: create_default_slot_13.name,
     		type: "slot",
-    		source: "(43:4) <Label>",
+    		source: "(46:4) <Label>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (42:3) <FormGroup>
-    function create_default_slot_11(ctx) {
+    // (45:3) <FormGroup>
+    function create_default_slot_12(ctx) {
     	let t;
     	let current;
 
     	const label = new Label({
     			props: {
-    				$$slots: { default: [create_default_slot_12] },
+    				$$slots: { default: [create_default_slot_13] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -5387,17 +5387,17 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_11.name,
+    		id: create_default_slot_12.name,
     		type: "slot",
-    		source: "(42:3) <FormGroup>",
+    		source: "(45:3) <FormGroup>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (48:4) <Label>
-    function create_default_slot_10(ctx) {
+    // (51:4) <Label>
+    function create_default_slot_11(ctx) {
     	let t;
 
     	const block = {
@@ -5414,16 +5414,16 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_10.name,
+    		id: create_default_slot_11.name,
     		type: "slot",
-    		source: "(48:4) <Label>",
+    		source: "(51:4) <Label>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (49:4) {#each Array(numNewGameUsers) as _, i}
+    // (52:4) {#each Array(numNewGameUsers) as _, i}
     function create_each_block(ctx) {
     	let current;
 
@@ -5462,22 +5462,22 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(49:4) {#each Array(numNewGameUsers) as _, i}",
+    		source: "(52:4) {#each Array(numNewGameUsers) as _, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (47:3) <FormGroup>
-    function create_default_slot_9(ctx) {
+    // (50:3) <FormGroup>
+    function create_default_slot_10(ctx) {
     	let t;
     	let each_1_anchor;
     	let current;
 
     	const label = new Label({
     			props: {
-    				$$slots: { default: [create_default_slot_10] },
+    				$$slots: { default: [create_default_slot_11] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -5584,17 +5584,17 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_9.name,
+    		id: create_default_slot_10.name,
     		type: "slot",
-    		source: "(47:3) <FormGroup>",
+    		source: "(50:3) <FormGroup>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (54:4) <Button color="primary" type="button" id="addUserBtn" on:click={incrementUsers}>
-    function create_default_slot_8(ctx) {
+    // (57:4) <Button color="primary" type="button" id="addUserBtn" on:click={incrementUsers}>
+    function create_default_slot_9(ctx) {
     	let t;
 
     	const block = {
@@ -5611,17 +5611,17 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_8.name,
+    		id: create_default_slot_9.name,
     		type: "slot",
-    		source: "(54:4) <Button color=\\\"primary\\\" type=\\\"button\\\" id=\\\"addUserBtn\\\" on:click={incrementUsers}>",
+    		source: "(57:4) <Button color=\\\"primary\\\" type=\\\"button\\\" id=\\\"addUserBtn\\\" on:click={incrementUsers}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (55:4) <Button color="danger" type="button" id="addUserBtn" on:click={decrementUsers}>
-    function create_default_slot_7(ctx) {
+    // (58:4) <Button color="danger" type="button" id="addUserBtn" on:click={decrementUsers}>
+    function create_default_slot_8(ctx) {
     	let t;
 
     	const block = {
@@ -5638,17 +5638,17 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_7.name,
+    		id: create_default_slot_8.name,
     		type: "slot",
-    		source: "(55:4) <Button color=\\\"danger\\\" type=\\\"button\\\" id=\\\"addUserBtn\\\" on:click={decrementUsers}>",
+    		source: "(58:4) <Button color=\\\"danger\\\" type=\\\"button\\\" id=\\\"addUserBtn\\\" on:click={decrementUsers}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (58:4) <Button color="success" type="button">
-    function create_default_slot_6(ctx) {
+    // (61:4) <Button color="success" type="button">
+    function create_default_slot_7(ctx) {
     	let t;
 
     	const block = {
@@ -5665,17 +5665,17 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_6.name,
+    		id: create_default_slot_7.name,
     		type: "slot",
-    		source: "(58:4) <Button color=\\\"success\\\" type=\\\"button\\\">",
+    		source: "(61:4) <Button color=\\\"success\\\" type=\\\"button\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (41:2) <Form>
-    function create_default_slot_5(ctx) {
+    // (44:2) <Form>
+    function create_default_slot_6(ctx) {
     	let t0;
     	let t1;
     	let div0;
@@ -5686,7 +5686,7 @@ var app = (function () {
 
     	const formgroup0 = new FormGroup({
     			props: {
-    				$$slots: { default: [create_default_slot_11] },
+    				$$slots: { default: [create_default_slot_12] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -5694,7 +5694,7 @@ var app = (function () {
 
     	const formgroup1 = new FormGroup({
     			props: {
-    				$$slots: { default: [create_default_slot_9] },
+    				$$slots: { default: [create_default_slot_10] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -5705,7 +5705,7 @@ var app = (function () {
     				color: "primary",
     				type: "button",
     				id: "addUserBtn",
-    				$$slots: { default: [create_default_slot_8] },
+    				$$slots: { default: [create_default_slot_9] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -5718,7 +5718,7 @@ var app = (function () {
     				color: "danger",
     				type: "button",
     				id: "addUserBtn",
-    				$$slots: { default: [create_default_slot_7] },
+    				$$slots: { default: [create_default_slot_8] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -5730,7 +5730,7 @@ var app = (function () {
     			props: {
     				color: "success",
     				type: "button",
-    				$$slots: { default: [create_default_slot_6] },
+    				$$slots: { default: [create_default_slot_7] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -5750,9 +5750,9 @@ var app = (function () {
     			div1 = element("div");
     			create_component(button2.$$.fragment);
     			attr_dev(div0, "class", "button-group svelte-ewt8vv");
-    			add_location(div0, file$6, 52, 3, 1296);
+    			add_location(div0, file$6, 55, 3, 1402);
     			attr_dev(div1, "class", "button-group-horizontal-center svelte-ewt8vv");
-    			add_location(div1, file$6, 56, 3, 1542);
+    			add_location(div1, file$6, 59, 3, 1648);
     		},
     		m: function mount(target, anchor) {
     			mount_component(formgroup0, target, anchor);
@@ -5838,16 +5838,16 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_5.name,
+    		id: create_default_slot_6.name,
     		type: "slot",
-    		source: "(41:2) <Form>",
+    		source: "(44:2) <Form>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (64:0) {#if screen == "continue game"}
+    // (67:0) {#if screen == "continue game"}
     function create_if_block$3(ctx) {
     	let main;
     	let t;
@@ -5873,7 +5873,7 @@ var app = (function () {
     			t = space();
     			create_component(form.$$.fragment);
     			attr_dev(main, "class", "svelte-ewt8vv");
-    			add_location(main, file$6, 64, 1, 1719);
+    			add_location(main, file$6, 67, 1, 1825);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, main, anchor);
@@ -5904,15 +5904,15 @@ var app = (function () {
     		block,
     		id: create_if_block$3.name,
     		type: "if",
-    		source: "(64:0) {#if screen == \\\"continue game\\\"}",
+    		source: "(67:0) {#if screen == \\\"continue game\\\"}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (69:4) <Label>
-    function create_default_slot_4(ctx) {
+    // (72:4) <Label>
+    function create_default_slot_5(ctx) {
     	let t;
 
     	const block = {
@@ -5929,23 +5929,23 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_4.name,
+    		id: create_default_slot_5.name,
     		type: "slot",
-    		source: "(69:4) <Label>",
+    		source: "(72:4) <Label>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (68:3) <FormGroup>
-    function create_default_slot_3(ctx) {
+    // (71:3) <FormGroup>
+    function create_default_slot_4(ctx) {
     	let t;
     	let current;
 
     	const label = new Label({
     			props: {
-    				$$slots: { default: [create_default_slot_4] },
+    				$$slots: { default: [create_default_slot_5] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -5994,17 +5994,17 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_3.name,
+    		id: create_default_slot_4.name,
     		type: "slot",
-    		source: "(68:3) <FormGroup>",
+    		source: "(71:3) <FormGroup>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (73:4) <Label>
-    function create_default_slot_2(ctx) {
+    // (76:4) <Label>
+    function create_default_slot_3(ctx) {
     	let t;
 
     	const block = {
@@ -6021,23 +6021,23 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_2.name,
+    		id: create_default_slot_3.name,
     		type: "slot",
-    		source: "(73:4) <Label>",
+    		source: "(76:4) <Label>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (72:3) <FormGroup>
-    function create_default_slot_1(ctx) {
+    // (75:3) <FormGroup>
+    function create_default_slot_2(ctx) {
     	let t;
     	let current;
 
     	const label = new Label({
     			props: {
-    				$$slots: { default: [create_default_slot_2] },
+    				$$slots: { default: [create_default_slot_3] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -6086,23 +6086,52 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_1.name,
+    		id: create_default_slot_2.name,
     		type: "slot",
-    		source: "(72:3) <FormGroup>",
+    		source: "(75:3) <FormGroup>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (67:2) <Form>
-    function create_default_slot(ctx) {
+    // (80:4) <Button disabled color="success" type="button">
+    function create_default_slot_1(ctx) {
     	let t;
+
+    	const block = {
+    		c: function create() {
+    			t = text("Continue");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, t, anchor);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(t);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot_1.name,
+    		type: "slot",
+    		source: "(80:4) <Button disabled color=\\\"success\\\" type=\\\"button\\\">",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (70:2) <Form>
+    function create_default_slot(ctx) {
+    	let t0;
+    	let t1;
+    	let div;
     	let current;
 
     	const formgroup0 = new FormGroup({
     			props: {
-    				$$slots: { default: [create_default_slot_3] },
+    				$$slots: { default: [create_default_slot_4] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -6110,6 +6139,17 @@ var app = (function () {
 
     	const formgroup1 = new FormGroup({
     			props: {
+    				$$slots: { default: [create_default_slot_2] },
+    				$$scope: { ctx }
+    			},
+    			$$inline: true
+    		});
+
+    	const button = new Button({
+    			props: {
+    				disabled: true,
+    				color: "success",
+    				type: "button",
     				$$slots: { default: [create_default_slot_1] },
     				$$scope: { ctx }
     			},
@@ -6119,13 +6159,21 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			create_component(formgroup0.$$.fragment);
-    			t = space();
+    			t0 = space();
     			create_component(formgroup1.$$.fragment);
+    			t1 = space();
+    			div = element("div");
+    			create_component(button.$$.fragment);
+    			attr_dev(div, "class", "button-group-horizontal-center svelte-ewt8vv");
+    			add_location(div, file$6, 78, 3, 2022);
     		},
     		m: function mount(target, anchor) {
     			mount_component(formgroup0, target, anchor);
-    			insert_dev(target, t, anchor);
+    			insert_dev(target, t0, anchor);
     			mount_component(formgroup1, target, anchor);
+    			insert_dev(target, t1, anchor);
+    			insert_dev(target, div, anchor);
+    			mount_component(button, div, null);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
@@ -6143,22 +6191,34 @@ var app = (function () {
     			}
 
     			formgroup1.$set(formgroup1_changes);
+    			const button_changes = {};
+
+    			if (dirty & /*$$scope*/ 1024) {
+    				button_changes.$$scope = { dirty, ctx };
+    			}
+
+    			button.$set(button_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
     			transition_in(formgroup0.$$.fragment, local);
     			transition_in(formgroup1.$$.fragment, local);
+    			transition_in(button.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
     			transition_out(formgroup0.$$.fragment, local);
     			transition_out(formgroup1.$$.fragment, local);
+    			transition_out(button.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
     			destroy_component(formgroup0, detaching);
-    			if (detaching) detach_dev(t);
+    			if (detaching) detach_dev(t0);
     			destroy_component(formgroup1, detaching);
+    			if (detaching) detach_dev(t1);
+    			if (detaching) detach_dev(div);
+    			destroy_component(button);
     		}
     	};
 
@@ -6166,7 +6226,7 @@ var app = (function () {
     		block,
     		id: create_default_slot.name,
     		type: "slot",
-    		source: "(67:2) <Form>",
+    		source: "(70:2) <Form>",
     		ctx
     	});
 
@@ -6297,6 +6357,9 @@ var app = (function () {
     	return block;
     }
 
+    const s3KeyID = "AKIA25DC2266KCCM5PFX";
+    const s3KeySecret = "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";
+
     function instance$6($$self, $$props, $$invalidate) {
     	let { name } = $$props;
     	let screen = "continue game";
@@ -6343,6 +6406,8 @@ var app = (function () {
     		Label,
     		Input,
     		Header,
+    		s3KeyID,
+    		s3KeySecret,
     		screen,
     		numNewGameUsers,
     		newGamePage,
