@@ -8,17 +8,21 @@
 	import Header from "./header.svelte"
 	import Loader from './Loader.svelte'
 
-	let screen = "play turn"
+	let screen = "home"
 	let numNewGameUsers = 1
 	let newGameUsers = []
 
-	let gameName = "test game"
+	let gameName = ""
+	let gameData
 	let loading = false
 	let spinnerText = ""
-	let currentUsername = "kkingsbe"
-	let currentTurn = "kkingsbe"
-	let shortestWarp = "1.5 months"
-
+	let currentUsername = ""
+	let currentTurn = ""
+	let shortestWarp = ""
+	let isUsersTurn = false
+	let warpType
+	let warpTypeNum
+	let warpLength
 	//Changes the page to the "New Game" page
 	function newGamePage() {
 		screen = "new game"
@@ -36,11 +40,6 @@
 	//Decrements the number of users while creating a new game
 	function decrementUsers() {
 		numNewGameUsers --
-	}
-
-	//Checks if it is the current users turn
-	function isUsersTurn() {
-		reuturn (currentUsername == currentTurn)
 	}
 
 	//Just flips isUsersTurn() so it can be used as a flag for disabling buttons
@@ -71,8 +70,8 @@
 	//Downloads the db and json file from S3 and makes sure that the user is in the game
 	async function pullGame() {
 		loading = true
-		spinnerText = "Authenticating..."
-		let success = await multiplayer.pullGame(gameName, currentUsername)
+		spinnerText = "Downloading db..."
+		gameData = await multiplayer.pullGame(gameName, currentUsername)
 		.catch(err => {
 			dialog.showMessageBox(null, {
 				type: "error",
@@ -81,8 +80,105 @@
 				message: err
 			})
 		})
-		console.log(success)
-		if(success) screen = "play turn"
+		loading = false
+		
+		console.log(gameData)
+		if(gameData) {
+			screen = "play turn"
+
+			
+
+			gameName = gameData.gameName
+			currentTurn = gameData.currentTurn
+
+			let shortestType = 10
+			let warpType = ""
+			let length = 0
+			for(let vote of gameData.warpVotes) {
+				if(vote.type < shortestType) {
+					shortestType = vote.type
+					length = vote.length
+				}
+				if(vote.type == shortestType && vote.length < length) {
+					length = vote.length
+				}
+			}
+			warpTypeNum = shortestType
+			switch(shortestType) {
+				case 1:
+					warpType = "Seconds"
+					break
+				case 2:
+					warpType = "Minutes"
+					break
+				case 3:
+					warpType = "Hours"
+					break
+				case 4:
+					warpType = "Days"
+					break
+				case 5:
+					warpType = "Weeks"
+					brea
+				case 6:
+					warpType = "Months"
+					break
+				case 7:
+					warpType = "Years"
+					break
+			}
+			console.log(shortestType)
+			shortestWarp = length + " " + warpType
+			isUsersTurn = (currentTurn === currentUsername)
+
+			//Check if it is the game creators turn
+			if(isUsersTurn && gameData.currentTurn == gameData.users[0]) {
+				dialog.showMessageBox(null, {
+					type: "info",
+					buttons: ["OK"],
+					title: "New round",
+					message: `New round, please warp forwards ${length} ${warpType} before making your turn`
+				})
+			}
+
+			console.log(isUsersTurn)
+		}
+	}
+
+	async function submitTurn() {
+		console.log(warpType)
+		switch(warpType) {
+			case "seconds":
+				warpTypeNum = 1
+				break
+			case "minutes":
+				warpTypeNum = 2
+				break
+			case "hours":
+				warpTypeNum = 3
+				break
+			case "days":
+				warpTypeNum = 4
+				break
+			case "weeks":
+				warpTypeNum = 5
+				brea
+			case "months":
+				warpTypeNum = 6
+				break
+			case "years":
+				warpTypeNum = 7
+				break
+		}
+		let nextPlayer = await multiplayer.submitTurn(gameData, currentUsername, {type: warpTypeNum, length: warpLength, madeBy: currentUsername})
+		
+		dialog.showMessageBox(null, {
+			type: "info",
+			buttons: ["OK"],
+			title: "Turn Complete",
+			message: `Turn complete! It is now ${nextPlayer}'s turn.`
+		})
+		screen = "home"
 	}
 	
 </script>
@@ -126,6 +222,7 @@
 
 {#if screen == "continue game"}
 	<main>
+		<Loader spinnerText={spinnerText} loading={loading}></Loader>
 		<Header text="Continue Game"/>
 		<Form>
 			<FormGroup>
@@ -145,6 +242,7 @@
 
 {#if screen == "play turn"}
 	<main>
+		<Loader spinnerText={spinnerText} loading={loading}></Loader>
 		<Header text="Play Turn"/>
 		<div class="horiz-table">
 			<div class="horiz-table-header">
@@ -158,8 +256,22 @@
 				<div class="table-cell">{shortestWarp}</div>
 			</div>
 		</div>
+		<Label style="margin-bottom:2px;margin-top:20px;">How long would you like to warp?</Label>
+		<div class="button-group-horizontal-center" style="width:300px;margin-top:0;">
+			<Input type="text" bind:value={warpLength}/>
+			<Input type="select" bind:value={warpType}>
+				<option default>type</option>
+				<option value="seconds">Seconds</option>
+				<option value="minutes">Minutes</option>
+				<option value="hours">Hours</option>
+				<option value="days">Days</option>
+				<option value="weeks">Weeks</option>
+				<option value="months">Months</option>
+				<option value="years">Years</option>
+			</Input>
+		</div>
 		<div class="button-group-horizontal-center">
-			<Button type="button" color="success" disabled={isNotAbleToSubmitTurn}>Submit Turn</Button>
+			<Button type="button" color="success" disabled={!isUsersTurn} on:click={submitTurn}>Submit Turn</Button>
 		</div>
 	</main>
 {/if}

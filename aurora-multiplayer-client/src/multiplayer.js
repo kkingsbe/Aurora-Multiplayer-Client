@@ -11,10 +11,20 @@ const s3 = new AWS.S3({
 })
 
 module.exports.uploadGame = async function(gameName, users) {
-  return new Promise((resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
     let gameData = {
+      gameName: gameName,
       users: users,
       currentTurn: users[0],
+      /*Warp types:
+        1: seconds
+        2: minutes
+        3: hours
+        4. weeks
+        5. days
+        6. months
+        7. years
+      */
       warpVotes: []
     }
     let configContent =  JSON.stringify(gameData)
@@ -25,21 +35,62 @@ module.exports.uploadGame = async function(gameName, users) {
       Key: `${gameName}/AuroraDB.db`,
       Body: dbContent
     }
-    s3.upload(params, (err, data) => {
+    await s3.upload(params, (err, data) => {
       if(err) reject(err)
-      console.log(`Successfully created game! ${data.Location}`)
+      //console.log(`Successfully created game! ${data.Location}`)
       resolve(true)
-    })
+    }).promise()
 
     params = {
       Bucket: BUCKET_NAME,
       Key: `${gameName}/multiplayer.config`,
       Body: configContent
     }
+    await s3.upload(params, (err, data) => {
+      if(err) reject(err)
+      //console.log(`Successfully created game! ${data.Location}`)
+      resolve(true)
+    }).promise()
+
+    resolve(true)
+  })
+}
+
+module.exports.submitTurn = async function(gameData, userName, warpVote) {
+  return new Promise((resolve, reject) => {
+    let alreadyVoted = false
+    for(let vote of gameData.warpVotes) {
+      if(vote.madeBy == userName) alreadyVoted = true
+    }
+    if(!alreadyVoted) {
+      gameData.warpVotes.push(warpVote)
+      if(gameData.currentTurn == gameData.users[gameData.users.length-1]) gameData.currentTurn = gameData.users[0]
+      else {
+        gameData.currentTurn = gameData.users[gameData.users.indexOf(gameData.currentTurn)+1]
+      }
+    }
+    let configContent =  JSON.stringify(gameData)
+    fs.writeFileSync(path.resolve(__dirname, "../../multiplayer.config"), configContent)
+    let dbContent = fs.readFileSync(path.resolve(__dirname, "../../AuroraDB.db"))
+    let params = {
+      Bucket: BUCKET_NAME,
+      Key: `${gameData.gameName}/AuroraDB.db`,
+      Body: dbContent
+    }
     s3.upload(params, (err, data) => {
       if(err) reject(err)
-      console.log(`Successfully created game! ${data.Location}`)
-      resolve(true)
+      //console.log(`Successfully created game! ${data.Location}`)
+    })
+
+    params = {
+      Bucket: BUCKET_NAME,
+      Key: `${gameData.gameName}/multiplayer.config`,
+      Body: configContent
+    }
+    s3.upload(params, (err, data) => {
+      if(err) reject(err)
+      //console.log(`Successfully created game! ${data.Location}`)
+      resolve(gameData.currentTurn)
     })
   })
 }
@@ -56,7 +107,7 @@ module.exports.inGame = async function(gameName, username) {
     s3.getObject(params, (err, data) => {
       if (err) reject(err)
       let users = JSON.parse(data.Body.toString()).users
-      console.log(users)
+      //console.log(users)
       if(users.includes(username)) resolve(true)
       else reject("user not in game")
     })
@@ -66,6 +117,7 @@ module.exports.inGame = async function(gameName, username) {
 module.exports.pullGame = async function(gameName, username) {
   return new Promise(async (resolve, reject) => {
     let success = true
+    let gameData = false
     await this.inGame(gameName, username).catch(err => {
       success = false
       reject(err)
@@ -74,27 +126,32 @@ module.exports.pullGame = async function(gameName, username) {
 
     if(success) {
       let filePath = path.resolve(__dirname, "../../")
+
+      //Get multiplayer.config file
       let params = {
         Bucket: BUCKET_NAME,
         Key: `${gameName}/multiplayer.config`
       }
       await s3.getObject(params, (err, data) => {
         if (err) reject(err)
-        console.log(data)
+        gameData = JSON.parse(data.Body.toString())
+        //console.log(gameData)
         fs.writeFileSync(`${filePath}/multiplayer.config`, data.Body.toString())
-      })
+      }).promise()
+
+      //Get AuroraDB.db file
       params = {
         Bucket: BUCKET_NAME,
         Key: `${gameName}/AuroraDB.db`
       }
-      console.log(params)
+      //console.log(params)
       await s3.getObject(params, (err, data) => {
         if (err) reject(err)
-        console.log(data)
-        console.log(err)
+        //console.log(data)
+        //console.log(err)
         fs.writeFileSync(`${filePath}/AuroraDB.db`, data.Body.toString())
-      })
-      resolve(true)
+      }).promise()
+      resolve(gameData)
     }
   })
 }
