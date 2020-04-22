@@ -1,0 +1,14 @@
+directories:
+  output: dist
+  buildResources: build
+appId: aurora-multiplayer-client
+linux:
+  target:
+    - AppImage
+    - deb
+win:
+  target:
+    - portable
+portable:
+  artifactName: Aurora_Multiplayer_Client.exe
+electronVersion: 8.2.3

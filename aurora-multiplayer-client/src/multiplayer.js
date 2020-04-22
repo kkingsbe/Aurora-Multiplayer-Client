@@ -28,8 +28,8 @@ module.exports.uploadGame = async function(gameName, users) {
       warpVotes: []
     }
     let configContent =  JSON.stringify(gameData)
-    fs.writeFileSync(path.resolve(__dirname, "../../multiplayer.config"), configContent)
-    let dbContent = fs.readFileSync(path.resolve(__dirname, "../../AuroraDB.db"))
+    fs.writeFileSync(path.resolve(process.env.PORTABLE_EXECUTABLE_DIR, "multiplayer.config"), configContent)
+    let dbContent = fs.readFileSync(path.resolve(process.env.PORTABLE_EXECUTABLE_DIR, "AuroraDB.db"))
     let params = {
       Bucket: BUCKET_NAME,
       Key: `${gameName}/AuroraDB.db`,
@@ -37,7 +37,7 @@ module.exports.uploadGame = async function(gameName, users) {
     }
     await s3.upload(params, (err, data) => {
       if(err) reject(err)
-      //console.log(`Successfully created game! ${data.Location}`)
+      console.log(`Successfully created game! ${data}`)
       resolve(true)
     }).promise()
 
@@ -48,7 +48,7 @@ module.exports.uploadGame = async function(gameName, users) {
     }
     await s3.upload(params, (err, data) => {
       if(err) reject(err)
-      //console.log(`Successfully created game! ${data.Location}`)
+      console.log(`Successfully created game! ${data}`)
       resolve(true)
     }).promise()
 
@@ -70,8 +70,8 @@ module.exports.submitTurn = async function(gameData, userName, warpVote) {
       }
     }
     let configContent =  JSON.stringify(gameData)
-    fs.writeFileSync(path.resolve(__dirname, "../../multiplayer.config"), configContent)
-    let dbContent = fs.readFileSync(path.resolve(__dirname, "../../AuroraDB.db"))
+    fs.writeFileSync(path.resolve(process.env.PORTABLE_EXECUTABLE_DIR, "multiplayer.config"), configContent)
+    let dbContent = fs.readFileSync(path.resolve(process.env.PORTABLE_EXECUTABLE_DIR, "AuroraDB.db"))
     let params = {
       Bucket: BUCKET_NAME,
       Key: `${gameData.gameName}/AuroraDB.db`,
@@ -98,7 +98,7 @@ module.exports.submitTurn = async function(gameData, userName, warpVote) {
 //Checks if the given user is in the given game
 module.exports.inGame = async function(gameName, username) {
   return new Promise((resolve, reject) => {
-    let filePath = path.resolve(__dirname, "../../")
+    let filePath = path.resolve(process.env.PORTABLE_EXECUTABLE_DIR, "")
     const params = {
       Bucket: BUCKET_NAME,
       Key: `${gameName}/multiplayer.config`
@@ -125,7 +125,7 @@ module.exports.pullGame = async function(gameName, username) {
     })
 
     if(success) {
-      let filePath = path.resolve(__dirname, "../../")
+      let filePath = path.resolve(process.env.PORTABLE_EXECUTABLE_DIR, "")
 
       //Get multiplayer.config file
       let params = {
