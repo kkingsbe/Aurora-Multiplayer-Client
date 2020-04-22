@@ -57,7 +57,7 @@ module.exports.uploadGame = async function(gameName, users) {
 }
 
 module.exports.submitTurn = async function(gameData, userName, warpVote) {
-  return new Promise((resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
     let alreadyVoted = false
     for(let vote of gameData.warpVotes) {
       if(vote.madeBy == userName) alreadyVoted = true
@@ -77,21 +77,22 @@ module.exports.submitTurn = async function(gameData, userName, warpVote) {
       Key: `${gameData.gameName}/AuroraDB.db`,
       Body: dbContent
     }
-    s3.upload(params, (err, data) => {
+    await s3.upload(params, (err, data) => {
       if(err) reject(err)
       //console.log(`Successfully created game! ${data.Location}`)
-    })
+    }).promise()
 
     params = {
       Bucket: BUCKET_NAME,
       Key: `${gameData.gameName}/multiplayer.config`,
       Body: configContent
     }
-    s3.upload(params, (err, data) => {
+    await s3.upload(params, (err, data) => {
       if(err) reject(err)
       //console.log(`Successfully created game! ${data.Location}`)
-      resolve(gameData.currentTurn)
-    })
+      //resolve(gameData.currentTurn)
+    }).promise()
+    resolve(gameData.currentTurn)
   })
 }
 
@@ -136,7 +137,7 @@ module.exports.pullGame = async function(gameName, username) {
         if (err) reject(err)
         gameData = JSON.parse(data.Body.toString())
         //console.log(gameData)
-        fs.writeFileSync(`${filePath}/multiplayer.config`, data.Body.toString())
+        fs.writeFileSync(`${filePath}/multiplayer.config`, data.Body)
       }).promise()
 
       //Get AuroraDB.db file
@@ -149,7 +150,7 @@ module.exports.pullGame = async function(gameName, username) {
         if (err) reject(err)
         //console.log(data)
         //console.log(err)
-        fs.writeFileSync(`${filePath}/AuroraDB.db`, data.Body.toString())
+        fs.writeFileSync(`${filePath}/AuroraDB.db`, data.Body)
       }).promise()
       resolve(gameData)
     }
