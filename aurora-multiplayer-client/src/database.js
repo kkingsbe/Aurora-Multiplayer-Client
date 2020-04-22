@@ -27,3 +27,13 @@ module.exports.getTime = async function(selectedGame) {
         });
     })
 }
+
+//Closes the database connection
+module.exports.close = function() {
+    database.close((err) => {
+        if (err) {
+            return console.log(err.message);
+        }
+        console.log("Closed the database connection");
+    });
+}
