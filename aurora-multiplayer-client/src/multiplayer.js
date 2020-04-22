@@ -28,18 +28,15 @@ module.exports.uploadGame = async function(gameName, users) {
       warpVotes: []
     }
     let configContent =  JSON.stringify(gameData)
-    fs.writeFileSync(path.resolve(process.env.PORTABLE_EXECUTABLE_DIR, "multiplayer.config"), configContent)
-    let dbContent = fs.readFileSync(path.resolve(process.env.PORTABLE_EXECUTABLE_DIR, "AuroraDB.db"))
+    //fs.writeFileSync(path.resolve(process.env.PORTABLE_EXECUTABLE_DIR, "multiplayer.config"), configContent)
+    //let dbContent = fs.readFileSync(path.resolve(process.env.PORTABLE_EXECUTABLE_DIR, "AuroraDB.db"))
+    let dbStream = fs.createReadStream(path.resolve(process.env.PORTABLE_EXECUTABLE_DIR, "AuroraDB.db"))
     let params = {
       Bucket: BUCKET_NAME,
       Key: `${gameName}/AuroraDB.db`,
-      Body: dbContent
+      Body: dbStream
     }
-    await s3.upload(params, (err, data) => {
-      if(err) reject(err)
-      console.log(`Successfully created game! ${data}`)
-      resolve(true)
-    }).promise()
+    await s3.putObject(params).promise()
 
     params = {
       Bucket: BUCKET_NAME,
@@ -71,12 +68,21 @@ module.exports.submitTurn = async function(gameData, userName, warpVote) {
     }
     let configContent =  JSON.stringify(gameData)
     fs.writeFileSync(path.resolve(process.env.PORTABLE_EXECUTABLE_DIR, "multiplayer.config"), configContent)
-    let dbContent = fs.readFileSync(path.resolve(process.env.PORTABLE_EXECUTABLE_DIR, "AuroraDB.db"))
+    //let dbContent = fs.readFileSync(path.resolve(process.env.PORTABLE_EXECUTABLE_DIR, "AuroraDB.db"))
+    let dbStream = fs.createReadStream(path.resolve(process.env.PORTABLE_EXECUTABLE_DIR, "AuroraDB.db"))
+    let params = {
+      Bucket: BUCKET_NAME,
+      Key: `${gameData.gameName}/AuroraDB.db`,
+      Body: dbStream
+    }
+    /*
+    await s3.putObject(params).promise()
     let params = {
       Bucket: BUCKET_NAME,
       Key: `${gameData.gameName}/AuroraDB.db`,
       Body: dbContent
     }
+    */
     await s3.upload(params, (err, data) => {
       if(err) reject(err)
       //console.log(`Successfully created game! ${data.Location}`)
@@ -145,14 +151,9 @@ module.exports.pullGame = async function(gameName, username) {
         Bucket: BUCKET_NAME,
         Key: `${gameName}/AuroraDB.db`
       }
-      //console.log(params)
-      await s3.getObject(params, (err, data) => {
-        if (err) reject(err)
-        //console.log(data)
-        //console.log(err)
-        fs.writeFileSync(`${filePath}/AuroraDB.db`, data.Body)
-      }).promise()
-      resolve(gameData)
+      let file = fs.createWriteStream(`${filePath}/AuroraDB.db`)
+      s3.getObject(params).createReadStream().pipe(file)
+      file.on("close", () => {resolve(gameData)})
     }
   })
 }
