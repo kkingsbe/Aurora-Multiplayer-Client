@@ -26,7 +26,9 @@
       ]
     },
     "win": {
-      "target": ["portable"]
+      "target": [
+        "portable"
+      ]
     },
     "portable": {
       "artifactName": "Aurora_Multiplayer_Client.exe"
@@ -69,6 +71,7 @@
     "aws-sdk": "^2.660.0",
     "bootstrap": "^4.4.1",
     "concurrently": "^5.1.0",
+    "electron-is-dev": "^1.2.0",
     "electron-reload": "^1.5.0",
     "electron-squirrel-startup": "^1.0.0",
     "fs": "0.0.1-security",

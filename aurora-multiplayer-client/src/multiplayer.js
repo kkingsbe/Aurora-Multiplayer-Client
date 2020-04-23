@@ -1,6 +1,11 @@
 const AWS = require('aws-sdk')
 const fs = require('fs')
+const isDev = require("electron-is-dev")
 var path = require('path')
+
+var gamePath = ""
+if(isDev) gamePath = "../"
+else gamePath = process.env.PORTABLE_EXECUTABLE_DIR + "/"
 
 const s3KeyID = "AKIA25DC2266KCCM5PFX"
 const s3KeySecret = "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"
@@ -30,7 +35,7 @@ module.exports.uploadGame = async function(gameName, users) {
     let configContent =  JSON.stringify(gameData)
     //fs.writeFileSync(path.resolve(process.env.PORTABLE_EXECUTABLE_DIR, "multiplayer.config"), configContent)
     //let dbContent = fs.readFileSync(path.resolve(process.env.PORTABLE_EXECUTABLE_DIR, "AuroraDB.db"))
-    let dbStream = fs.createReadStream(path.resolve(process.env.PORTABLE_EXECUTABLE_DIR, "AuroraDB.db"))
+    let dbStream = fs.createReadStream(path.resolve(gamePath + "AuroraDB.db"))
     let params = {
       Bucket: BUCKET_NAME,
       Key: `${gameName}/AuroraDB.db`,
@@ -67,9 +72,9 @@ module.exports.submitTurn = async function(gameData, userName, warpVote) {
       }
     }
     let configContent =  JSON.stringify(gameData)
-    fs.writeFileSync(path.resolve(process.env.PORTABLE_EXECUTABLE_DIR, "multiplayer.config"), configContent)
+    fs.writeFileSync(path.resolve(gamePath + "multiplayer.config"), configContent)
     //let dbContent = fs.readFileSync(path.resolve(process.env.PORTABLE_EXECUTABLE_DIR, "AuroraDB.db"))
-    let dbStream = fs.createReadStream(path.resolve(process.env.PORTABLE_EXECUTABLE_DIR, "AuroraDB.db"))
+    let dbStream = fs.createReadStream(path.resolve(gamePath + "AuroraDB.db"))
     let params = {
       Bucket: BUCKET_NAME,
       Key: `${gameData.gameName}/AuroraDB.db`,
@@ -105,7 +110,7 @@ module.exports.submitTurn = async function(gameData, userName, warpVote) {
 //Checks if the given user is in the given game
 module.exports.inGame = async function(gameName, username) {
   return new Promise((resolve, reject) => {
-    let filePath = path.resolve(process.env.PORTABLE_EXECUTABLE_DIR, "")
+    let filePath = path.resolve(gamePath, "")
     const params = {
       Bucket: BUCKET_NAME,
       Key: `${gameName}/multiplayer.config`
@@ -132,7 +137,7 @@ module.exports.pullGame = async function(gameName, username) {
     })
 
     if(success) {
-      let filePath = path.resolve(process.env.PORTABLE_EXECUTABLE_DIR, "")
+      let filePath = path.resolve(gamePath, "")
 
       //Get multiplayer.config file
       let params = {
@@ -155,43 +160,5 @@ module.exports.pullGame = async function(gameName, username) {
       s3.getObject(params).createReadStream().pipe(file)
       file.on("close", () => {resolve(gameData)})
     }
-  })
-}
-
-async function downloadTemplate() {
-  loading = true
-  spinnerText = "Downloading File..."
-  let filePath = path.join(process.env.HOME || process.env.USERPROFILE, 'Downloads/', selectedTemplate)
-  const params = {
-    Bucket: BUCKET_NAME,
-    Key: `${selectedProject}/${selectedTemplate}`
-  }
-  console.log(params)
-  s3.getObject(params, (err, data) => {
-    if (err) throw(err)
-    fs.writeFileSync(filePath, data.Body.toString())
-    console.log(`${filePath} has been created!`)
-    loading = false
-    dialog.showMessageBox(null, {
-      type: "info",
-      buttons: ["OK"],
-      title: "Success!",
-      message: "Successfully downloaded template to your downloads folder"
-    })
-  }).promise().catch(err => {
-    dialog.showErrorBox("AWS VCS Error", "Unable to find template file")
-    loading = false
-  })
-}
-async function getProjectFolders() {
-  let params = {
-    Bucket: BUCKET_NAME,
-    Delimiter: '/'
-  }
-  return new Promise((resolve, reject) => {
-    s3.listObjectsV2(params, (err, data) => {
-      if(err) reject(err)
-      resolve(data.CommonPrefixes)
-    })
   })
 }
