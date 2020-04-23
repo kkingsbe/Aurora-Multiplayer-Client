@@ -5417,7 +5417,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (188:0) {#if screen == "home"}
+    // (195:0) {#if screen == "home"}
     function create_if_block_3$2(ctx) {
     	let main;
     	let t0;
@@ -5464,9 +5464,9 @@ var app = (function () {
     			t1 = space();
     			create_component(button1.$$.fragment);
     			attr_dev(div, "class", "button-group svelte-1y60rsq");
-    			add_location(div, file$7, 190, 2, 4478);
+    			add_location(div, file$7, 197, 2, 4768);
     			attr_dev(main, "class", "svelte-1y60rsq");
-    			add_location(main, file$7, 188, 1, 4429);
+    			add_location(main, file$7, 195, 1, 4719);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, main, anchor);
@@ -5519,14 +5519,14 @@ var app = (function () {
     		block,
     		id: create_if_block_3$2.name,
     		type: "if",
-    		source: "(188:0) {#if screen == \\\"home\\\"}",
+    		source: "(195:0) {#if screen == \\\"home\\\"}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (192:3) <Button type="button" color="primary" on:click={newGamePage}>
+    // (199:3) <Button type="button" color="primary" on:click={newGamePage}>
     function create_default_slot_18(ctx) {
     	let t;
 
@@ -5546,14 +5546,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_18.name,
     		type: "slot",
-    		source: "(192:3) <Button type=\\\"button\\\" color=\\\"primary\\\" on:click={newGamePage}>",
+    		source: "(199:3) <Button type=\\\"button\\\" color=\\\"primary\\\" on:click={newGamePage}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (193:3) <Button type="button" color="secondary" on:click={continueGamePage}>
+    // (200:3) <Button type="button" color="secondary" on:click={continueGamePage}>
     function create_default_slot_17(ctx) {
     	let t;
 
@@ -5573,14 +5573,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_17.name,
     		type: "slot",
-    		source: "(193:3) <Button type=\\\"button\\\" color=\\\"secondary\\\" on:click={continueGamePage}>",
+    		source: "(200:3) <Button type=\\\"button\\\" color=\\\"secondary\\\" on:click={continueGamePage}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (198:0) {#if screen == "new game"}
+    // (205:0) {#if screen == "new game"}
     function create_if_block_2$2(ctx) {
     	let main;
     	let t0;
@@ -5617,7 +5617,7 @@ var app = (function () {
     			t1 = space();
     			create_component(form.$$.fragment);
     			attr_dev(main, "class", "svelte-1y60rsq");
-    			add_location(main, file$7, 198, 1, 4751);
+    			add_location(main, file$7, 205, 1, 5041);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, main, anchor);
@@ -5666,14 +5666,14 @@ var app = (function () {
     		block,
     		id: create_if_block_2$2.name,
     		type: "if",
-    		source: "(198:0) {#if screen == \\\"new game\\\"}",
+    		source: "(205:0) {#if screen == \\\"new game\\\"}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (204:4) <Label>
+    // (211:4) <Label>
     function create_default_slot_16(ctx) {
     	let t;
 
@@ -5693,14 +5693,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_16.name,
     		type: "slot",
-    		source: "(204:4) <Label>",
+    		source: "(211:4) <Label>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (203:3) <FormGroup>
+    // (210:3) <FormGroup>
     function create_default_slot_15(ctx) {
     	let t;
     	let updating_value;
@@ -5779,14 +5779,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_15.name,
     		type: "slot",
-    		source: "(203:3) <FormGroup>",
+    		source: "(210:3) <FormGroup>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (209:4) <Label>
+    // (216:4) <Label>
     function create_default_slot_14(ctx) {
     	let t;
 
@@ -5806,14 +5806,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_14.name,
     		type: "slot",
-    		source: "(209:4) <Label>",
+    		source: "(216:4) <Label>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (210:4) {#each Array(numNewGameUsers) as _, i}
+    // (217:4) {#each Array(numNewGameUsers) as _, i}
     function create_each_block(ctx) {
     	let updating_value;
     	let current;
@@ -5869,14 +5869,14 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(210:4) {#each Array(numNewGameUsers) as _, i}",
+    		source: "(217:4) {#each Array(numNewGameUsers) as _, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (208:3) <FormGroup>
+    // (215:3) <FormGroup>
     function create_default_slot_13(ctx) {
     	let t;
     	let each_1_anchor;
@@ -5993,14 +5993,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_13.name,
     		type: "slot",
-    		source: "(208:3) <FormGroup>",
+    		source: "(215:3) <FormGroup>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (215:4) <Button color="primary" type="button" id="addUserBtn" on:click={incrementUsers}>
+    // (222:4) <Button color="primary" type="button" id="addUserBtn" on:click={incrementUsers}>
     function create_default_slot_12(ctx) {
     	let t;
 
@@ -6020,14 +6020,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_12.name,
     		type: "slot",
-    		source: "(215:4) <Button color=\\\"primary\\\" type=\\\"button\\\" id=\\\"addUserBtn\\\" on:click={incrementUsers}>",
+    		source: "(222:4) <Button color=\\\"primary\\\" type=\\\"button\\\" id=\\\"addUserBtn\\\" on:click={incrementUsers}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (216:4) <Button color="danger" type="button" id="addUserBtn" on:click={decrementUsers}>
+    // (223:4) <Button color="danger" type="button" id="addUserBtn" on:click={decrementUsers}>
     function create_default_slot_11(ctx) {
     	let t;
 
@@ -6047,14 +6047,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_11.name,
     		type: "slot",
-    		source: "(216:4) <Button color=\\\"danger\\\" type=\\\"button\\\" id=\\\"addUserBtn\\\" on:click={decrementUsers}>",
+    		source: "(223:4) <Button color=\\\"danger\\\" type=\\\"button\\\" id=\\\"addUserBtn\\\" on:click={decrementUsers}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (219:4) <Button color="success" type="button" on:click={uploadGame}>
+    // (226:4) <Button color="success" type="button" on:click={uploadGame}>
     function create_default_slot_10(ctx) {
     	let t;
 
@@ -6074,14 +6074,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_10.name,
     		type: "slot",
-    		source: "(219:4) <Button color=\\\"success\\\" type=\\\"button\\\" on:click={uploadGame}>",
+    		source: "(226:4) <Button color=\\\"success\\\" type=\\\"button\\\" on:click={uploadGame}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (202:2) <Form>
+    // (209:2) <Form>
     function create_default_slot_9(ctx) {
     	let t0;
     	let t1;
@@ -6159,9 +6159,9 @@ var app = (function () {
     			div1 = element("div");
     			create_component(button2.$$.fragment);
     			attr_dev(div0, "class", "button-group svelte-1y60rsq");
-    			add_location(div0, file$7, 213, 3, 5194);
+    			add_location(div0, file$7, 220, 3, 5484);
     			attr_dev(div1, "class", "button-group-horizontal-center svelte-1y60rsq");
-    			add_location(div1, file$7, 217, 3, 5444);
+    			add_location(div1, file$7, 224, 3, 5734);
     		},
     		m: function mount(target, anchor) {
     			mount_component(formgroup0, target, anchor);
@@ -6249,14 +6249,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_9.name,
     		type: "slot",
-    		source: "(202:2) <Form>",
+    		source: "(209:2) <Form>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (225:0) {#if screen == "continue game"}
+    // (232:0) {#if screen == "continue game"}
     function create_if_block_1$2(ctx) {
     	let main;
     	let t0;
@@ -6293,7 +6293,7 @@ var app = (function () {
     			t1 = space();
     			create_component(form.$$.fragment);
     			attr_dev(main, "class", "svelte-1y60rsq");
-    			add_location(main, file$7, 225, 1, 5651);
+    			add_location(main, file$7, 232, 1, 5941);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, main, anchor);
@@ -6342,14 +6342,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1$2.name,
     		type: "if",
-    		source: "(225:0) {#if screen == \\\"continue game\\\"}",
+    		source: "(232:0) {#if screen == \\\"continue game\\\"}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (231:4) <Label>
+    // (238:4) <Label>
     function create_default_slot_8(ctx) {
     	let t;
 
@@ -6369,14 +6369,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_8.name,
     		type: "slot",
-    		source: "(231:4) <Label>",
+    		source: "(238:4) <Label>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (230:3) <FormGroup>
+    // (237:3) <FormGroup>
     function create_default_slot_7(ctx) {
     	let t;
     	let updating_value;
@@ -6455,14 +6455,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_7.name,
     		type: "slot",
-    		source: "(230:3) <FormGroup>",
+    		source: "(237:3) <FormGroup>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (235:4) <Label>
+    // (242:4) <Label>
     function create_default_slot_6(ctx) {
     	let t;
 
@@ -6482,14 +6482,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_6.name,
     		type: "slot",
-    		source: "(235:4) <Label>",
+    		source: "(242:4) <Label>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (234:3) <FormGroup>
+    // (241:3) <FormGroup>
     function create_default_slot_5(ctx) {
     	let t;
     	let updating_value;
@@ -6568,14 +6568,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_5.name,
     		type: "slot",
-    		source: "(234:3) <FormGroup>",
+    		source: "(241:3) <FormGroup>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (239:4) <Button color="success" type="button" on:click={pullGame}>
+    // (246:4) <Button color="success" type="button" on:click={pullGame}>
     function create_default_slot_4(ctx) {
     	let t;
 
@@ -6595,14 +6595,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_4.name,
     		type: "slot",
-    		source: "(239:4) <Button color=\\\"success\\\" type=\\\"button\\\" on:click={pullGame}>",
+    		source: "(246:4) <Button color=\\\"success\\\" type=\\\"button\\\" on:click={pullGame}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (229:2) <Form>
+    // (236:2) <Form>
     function create_default_slot_3(ctx) {
     	let t0;
     	let t1;
@@ -6646,7 +6646,7 @@ var app = (function () {
     			div = element("div");
     			create_component(button.$$.fragment);
     			attr_dev(div, "class", "button-group-horizontal-center svelte-1y60rsq");
-    			add_location(div, file$7, 237, 3, 5975);
+    			add_location(div, file$7, 244, 3, 6265);
     		},
     		m: function mount(target, anchor) {
     			mount_component(formgroup0, target, anchor);
@@ -6707,14 +6707,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_3.name,
     		type: "slot",
-    		source: "(229:2) <Form>",
+    		source: "(236:2) <Form>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (245:0) {#if screen == "play turn"}
+    // (252:0) {#if screen == "play turn"}
     function create_if_block$4(ctx) {
     	let main;
     	let t0;
@@ -6849,31 +6849,31 @@ var app = (function () {
     			div10 = element("div");
     			create_component(button.$$.fragment);
     			attr_dev(div0, "class", "table-header-cell svelte-1y60rsq");
-    			add_location(div0, file$7, 250, 4, 6346);
+    			add_location(div0, file$7, 257, 4, 6636);
     			attr_dev(div1, "class", "table-header-cell svelte-1y60rsq");
-    			add_location(div1, file$7, 251, 4, 6398);
+    			add_location(div1, file$7, 258, 4, 6688);
     			attr_dev(div2, "class", "table-header-cell svelte-1y60rsq");
-    			add_location(div2, file$7, 252, 4, 6453);
+    			add_location(div2, file$7, 259, 4, 6743);
     			attr_dev(div3, "class", "horiz-table-header svelte-1y60rsq");
-    			add_location(div3, file$7, 249, 3, 6308);
+    			add_location(div3, file$7, 256, 3, 6598);
     			attr_dev(div4, "class", "table-cell svelte-1y60rsq");
-    			add_location(div4, file$7, 255, 4, 6557);
+    			add_location(div4, file$7, 262, 4, 6847);
     			attr_dev(div5, "class", "table-cell svelte-1y60rsq");
-    			add_location(div5, file$7, 256, 4, 6603);
+    			add_location(div5, file$7, 263, 4, 6893);
     			attr_dev(div6, "class", "table-cell svelte-1y60rsq");
-    			add_location(div6, file$7, 257, 4, 6652);
+    			add_location(div6, file$7, 264, 4, 6942);
     			attr_dev(div7, "class", "horiz-table-col svelte-1y60rsq");
-    			add_location(div7, file$7, 254, 3, 6522);
+    			add_location(div7, file$7, 261, 3, 6812);
     			attr_dev(div8, "class", "horiz-table svelte-1y60rsq");
-    			add_location(div8, file$7, 248, 2, 6278);
+    			add_location(div8, file$7, 255, 2, 6568);
     			attr_dev(div9, "class", "button-group-horizontal-center svelte-1y60rsq");
     			set_style(div9, "width", "300px");
     			set_style(div9, "margin-top", "0");
-    			add_location(div9, file$7, 261, 2, 6815);
+    			add_location(div9, file$7, 268, 2, 7105);
     			attr_dev(div10, "class", "button-group-horizontal-center svelte-1y60rsq");
-    			add_location(div10, file$7, 274, 2, 7354);
+    			add_location(div10, file$7, 281, 2, 7644);
     			attr_dev(main, "class", "svelte-1y60rsq");
-    			add_location(main, file$7, 245, 1, 6173);
+    			add_location(main, file$7, 252, 1, 6463);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, main, anchor);
@@ -6990,14 +6990,14 @@ var app = (function () {
     		block,
     		id: create_if_block$4.name,
     		type: "if",
-    		source: "(245:0) {#if screen == \\\"play turn\\\"}",
+    		source: "(252:0) {#if screen == \\\"play turn\\\"}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (261:2) <Label style="margin-bottom:2px;margin-top:20px;">
+    // (268:2) <Label style="margin-bottom:2px;margin-top:20px;">
     function create_default_slot_2(ctx) {
     	let t;
 
@@ -7017,14 +7017,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_2.name,
     		type: "slot",
-    		source: "(261:2) <Label style=\\\"margin-bottom:2px;margin-top:20px;\\\">",
+    		source: "(268:2) <Label style=\\\"margin-bottom:2px;margin-top:20px;\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (264:3) <Input type="select" bind:value={warpType}>
+    // (271:3) <Input type="select" bind:value={warpType}>
     function create_default_slot_1(ctx) {
     	let option0;
     	let t1;
@@ -7070,28 +7070,28 @@ var app = (function () {
     			attr_dev(option0, "default", "");
     			option0.__value = "type";
     			option0.value = option0.__value;
-    			add_location(option0, file$7, 264, 4, 6996);
+    			add_location(option0, file$7, 271, 4, 7286);
     			option1.__value = "seconds";
     			option1.value = option1.__value;
-    			add_location(option1, file$7, 265, 4, 7031);
+    			add_location(option1, file$7, 272, 4, 7321);
     			option2.__value = "minutes";
     			option2.value = option2.__value;
-    			add_location(option2, file$7, 266, 4, 7077);
+    			add_location(option2, file$7, 273, 4, 7367);
     			option3.__value = "hours";
     			option3.value = option3.__value;
-    			add_location(option3, file$7, 267, 4, 7123);
+    			add_location(option3, file$7, 274, 4, 7413);
     			option4.__value = "days";
     			option4.value = option4.__value;
-    			add_location(option4, file$7, 268, 4, 7165);
+    			add_location(option4, file$7, 275, 4, 7455);
     			option5.__value = "weeks";
     			option5.value = option5.__value;
-    			add_location(option5, file$7, 269, 4, 7205);
+    			add_location(option5, file$7, 276, 4, 7495);
     			option6.__value = "months";
     			option6.value = option6.__value;
-    			add_location(option6, file$7, 270, 4, 7247);
+    			add_location(option6, file$7, 277, 4, 7537);
     			option7.__value = "years";
     			option7.value = option7.__value;
-    			add_location(option7, file$7, 271, 4, 7291);
+    			add_location(option7, file$7, 278, 4, 7581);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, option0, anchor);
@@ -7133,14 +7133,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_1.name,
     		type: "slot",
-    		source: "(264:3) <Input type=\\\"select\\\" bind:value={warpType}>",
+    		source: "(271:3) <Input type=\\\"select\\\" bind:value={warpType}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (276:3) <Button type="button" color="success" disabled={!isUsersTurn} on:click={submitTurn}>
+    // (283:3) <Button type="button" color="success" disabled={!isUsersTurn} on:click={submitTurn}>
     function create_default_slot(ctx) {
     	let t;
 
@@ -7160,7 +7160,7 @@ var app = (function () {
     		block,
     		id: create_default_slot.name,
     		type: "slot",
-    		source: "(276:3) <Button type=\\\"button\\\" color=\\\"success\\\" disabled={!isUsersTurn} on:click={submitTurn}>",
+    		source: "(283:3) <Button type=\\\"button\\\" color=\\\"success\\\" disabled={!isUsersTurn} on:click={submitTurn}>",
     		ctx
     	});
 
@@ -7392,28 +7392,40 @@ var app = (function () {
 
     	//Downloads the db and json file from S3 and makes sure that the user is in the game
     	async function pullGame() {
+    		let inGame = true;
+    		$$invalidate(9, isUsersTurn = true);
     		$$invalidate(4, loading = true);
     		$$invalidate(5, spinnerText = "Downloading db...");
+    		let gameData = await multiplayer.getConfig(gameName);
 
-    		gameData = await multiplayer.pullGame(gameName, currentUsername).catch(err => {
-    			dialog.showMessageBox(null, {
-    				type: "error",
-    				buttons: ["OK"],
-    				title: "Error",
-    				message: err
-    			});
+    		await multiplayer.pullGame(gameName, currentUsername).catch(err => {
+    			//We don't need to error out here if the user is in the game, but it is not their turn
+    			if (err != "Not your turn") {
+    				dialog.showMessageBox(null, {
+    					type: "error",
+    					buttons: ["OK"],
+    					title: "Error",
+    					message: err
+    				});
+
+    				inGame = false;
+    			} else {
+    				$$invalidate(9, isUsersTurn = false);
+    			}
     		});
 
     		$$invalidate(4, loading = false);
     		console.log(gameData);
+    		console.log(inGame);
 
-    		if (gameData) {
+    		if (gameData && inGame) {
     			$$invalidate(0, screen = "play turn");
     			$$invalidate(3, gameName = gameData.gameName);
     			$$invalidate(7, currentTurn = gameData.currentTurn);
     			let shortestType = 10;
     			let warpType = "";
     			let length = 0;
+    			console.log(gameData.warpVotes);
 
     			for (let vote of gameData.warpVotes) {
     				if (vote.type < shortestType) {
@@ -7454,7 +7466,6 @@ var app = (function () {
 
     			console.log(shortestType);
     			$$invalidate(8, shortestWarp = length + " " + warpType);
-    			$$invalidate(9, isUsersTurn = currentTurn === currentUsername);
 
     			//Check if it is the game creators turn
     			if (isUsersTurn && gameData.currentTurn == gameData.users[0]) {
@@ -7641,11 +7652,11 @@ var app = (function () {
     		pullGame,
     		submitTurn,
     		name,
-    		gameData,
     		warpTypeNum,
     		path,
     		multiplayer,
     		dialog,
+    		gameData,
     		isNotAbleToSubmitTurn,
     		input_value_binding,
     		input_value_binding_1,

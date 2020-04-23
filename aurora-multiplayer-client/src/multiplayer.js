@@ -107,58 +107,62 @@ module.exports.submitTurn = async function(gameData, userName, warpVote) {
   })
 }
 
-//Checks if the given user is in the given game
-module.exports.inGame = async function(gameName, username) {
+//Returns the config file stored in S3
+module.exports.getConfig = async function(gameName) {
   return new Promise((resolve, reject) => {
     let filePath = path.resolve(gamePath, "")
     const params = {
       Bucket: BUCKET_NAME,
       Key: `${gameName}/multiplayer.config`
     }
-    //console.log(params)
     s3.getObject(params, (err, data) => {
       if (err) reject(err)
-      let users = JSON.parse(data.Body.toString()).users
-      //console.log(users)
-      if(users.includes(username)) resolve(true)
-      else reject("user not in game")
+      resolve(JSON.parse(data.Body.toString()))
     })
   })
 }
 
+//Checks if the given user is in the given config file
+module.exports.inGame = function(config, username) {
+  let users = config.users
+  if(users.includes(username)) return true
+  else return false
+}
+
+//Checks if it is the given users turn
+module.exports.isCurrentUsersTurn = function(config, username) {
+  let currentTurn = config.currentTurn
+  if(currentTurn == username) return true
+  else return false
+}
+
 module.exports.pullGame = async function(gameName, username) {
   return new Promise(async (resolve, reject) => {
-    let success = true
     let gameData = false
-    await this.inGame(gameName, username).catch(err => {
-      success = false
-      reject(err)
+    let config = await this.getConfig(gameName)
+    let inGame = this.inGame(config, username)
+    let currentTurn = this.isCurrentUsersTurn(config, username)
+    if(!inGame) {
+      reject("User not in game")
       return
-    })
-
-    if(success) {
-      let filePath = path.resolve(gamePath, "")
-
-      //Get multiplayer.config file
-      let params = {
-        Bucket: BUCKET_NAME,
-        Key: `${gameName}/multiplayer.config`
-      }
-      await s3.getObject(params, (err, data) => {
-        if (err) reject(err)
-        gameData = JSON.parse(data.Body.toString())
-        //console.log(gameData)
-        fs.writeFileSync(`${filePath}/multiplayer.config`, data.Body)
-      }).promise()
-
-      //Get AuroraDB.db file
-      params = {
-        Bucket: BUCKET_NAME,
-        Key: `${gameName}/AuroraDB.db`
-      }
-      let file = fs.createWriteStream(`${filePath}/AuroraDB.db`)
-      s3.getObject(params).createReadStream().pipe(file)
-      file.on("close", () => {resolve(gameData)})
     }
+
+    let filePath = path.resolve(gamePath, "")
+    //Write multiplayer.config to disk
+    fs.writeFileSync(`${filePath}/multiplayer.config`, JSON.stringify(config))
+
+    if(!currentTurn) {
+      reject("Not your turn")
+      return
+    }
+
+    //Get AuroraDB.db file
+    params = {
+      Bucket: BUCKET_NAME,
+      Key: `${gameName}/AuroraDB.db`
+    }
+    let file = fs.createWriteStream(`${filePath}/AuroraDB.db`)
+    s3.getObject(params).createReadStream().pipe(file)
+    file.on("close", () => {resolve(gameData)})
   })
 }

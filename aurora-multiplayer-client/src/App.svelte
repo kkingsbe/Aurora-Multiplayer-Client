@@ -69,31 +69,39 @@
 
 	//Downloads the db and json file from S3 and makes sure that the user is in the game
 	async function pullGame() {
+		let inGame = true
+		isUsersTurn = true
 		loading = true
 		spinnerText = "Downloading db..."
-		gameData = await multiplayer.pullGame(gameName, currentUsername)
+		let gameData = await multiplayer.getConfig(gameName)
+		await multiplayer.pullGame(gameName, currentUsername)
 		.catch(err => {
-			dialog.showMessageBox(null, {
-				type: "error",
-				buttons: ["OK"],
-				title: "Error",
-				message: err
-			})
+			//We don't need to error out here if the user is in the game, but it is not their turn
+			if(err != "Not your turn") {
+				dialog.showMessageBox(null, {
+					type: "error",
+					buttons: ["OK"],
+					title: "Error",
+					message: err
+				})
+				inGame = false
+			} else {
+				isUsersTurn = false
+			}
 		})
 		loading = false
 		
 		console.log(gameData)
-		if(gameData) {
+		console.log(inGame)
+		if(gameData && inGame) {
 			screen = "play turn"
-
-			
-
 			gameName = gameData.gameName
 			currentTurn = gameData.currentTurn
 
 			let shortestType = 10
 			let warpType = ""
 			let length = 0
+			console.log(gameData.warpVotes)
 			for(let vote of gameData.warpVotes) {
 				if(vote.type < shortestType) {
 					shortestType = vote.type
@@ -129,7 +137,6 @@
 			}
 			console.log(shortestType)
 			shortestWarp = length + " " + warpType
-			isUsersTurn = (currentTurn === currentUsername)
 
 			//Check if it is the game creators turn
 			if(isUsersTurn && gameData.currentTurn == gameData.users[0]) {
