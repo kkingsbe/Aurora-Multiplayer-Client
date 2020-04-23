@@ -146,6 +146,8 @@
 	}
 
 	async function submitTurn() {
+		loading = true
+		spinnerText = "Uploading db..."
 		console.log(warpType)
 		switch(warpType) {
 			case "seconds":
@@ -171,7 +173,7 @@
 				break
 		}
 		let nextPlayer = await multiplayer.submitTurn(gameData, currentUsername, {type: warpTypeNum, length: warpLength, madeBy: currentUsername})
-		
+		loading = false
 		dialog.showMessageBox(null, {
 			type: "info",
 			buttons: ["OK"],
