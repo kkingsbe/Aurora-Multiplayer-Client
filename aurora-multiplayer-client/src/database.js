@@ -1,7 +1,9 @@
 const sqlite3 = require("sqlite3");
 const path = require("path");
+const isDev = require("electron-is-dev")
 
-const databasePath = path.join(__dirname, "../../AuroraDB.db");
+const gamePath = (isDev) ? "../" :  process.env.PORTABLE_EXECUTABLE_DIR + "/";
+const databasePath = path.resolve(gamePath, "AuroraDB.db");
 
 let database = new sqlite3.Database(databasePath,sqlite3.OPEN_READONLY,(err) => {
     if (err) {
