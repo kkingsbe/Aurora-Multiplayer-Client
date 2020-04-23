@@ -66,6 +66,10 @@ module.exports.submitTurn = async function(gameName, userName, warpVote) {
     for(let vote of gameData.warpVotes) {
       if(vote.madeBy == userName) alreadyVoted = true
     }
+    //Reset the votes if everyone has voted and it is now the game creators turn
+    if(gameData.warpVotes.length >= gameData.users.length && userName == gameData.users[0]) {
+      gameData.warpVotes = [warpVote]
+    }
     if(!alreadyVoted) {
       gameData.warpVotes.push(warpVote)
       if(gameData.currentTurn == gameData.users[gameData.users.length-1]) gameData.currentTurn = gameData.users[0]
