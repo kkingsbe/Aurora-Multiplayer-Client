@@ -7,12 +7,14 @@ var gamePath = ""
 if(isDev) gamePath = "../"
 else gamePath = process.env.PORTABLE_EXECUTABLE_DIR + "/"
 
-const s3KeyID = "AKIA25DC2266KCCM5PFX"
-const s3KeySecret = "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"
+AWS.config.region = 'us-east-1'; // Region
+AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+    IdentityPoolId: 'us-east-1:c4733679-8bcb-4b4e-931d-6794a9e28293',
+});
 const BUCKET_NAME = 'aurora-multiplayer-saves'
 const s3 = new AWS.S3({
-  accessKeyId: s3KeyID,
-  secretAccessKey: s3KeySecret
+  apiVersion: "2006-03-01",
+  params: {Bucket: BUCKET_NAME}
 })
 
 module.exports.uploadGame = async function(gameName, users) {
@@ -37,14 +39,12 @@ module.exports.uploadGame = async function(gameName, users) {
     //let dbContent = fs.readFileSync(path.resolve(process.env.PORTABLE_EXECUTABLE_DIR, "AuroraDB.db"))
     let dbStream = fs.createReadStream(path.resolve(gamePath + "AuroraDB.db"))
     let params = {
-      Bucket: BUCKET_NAME,
       Key: `${gameName}/AuroraDB.db`,
       Body: dbStream
     }
     await s3.putObject(params).promise()
 
     params = {
-      Bucket: BUCKET_NAME,
       Key: `${gameName}/multiplayer.config`,
       Body: configContent
     }
@@ -58,8 +58,10 @@ module.exports.uploadGame = async function(gameName, users) {
   })
 }
 
-module.exports.submitTurn = async function(gameData, userName, warpVote) {
+module.exports.submitTurn = async function(gameName, userName, warpVote) {
   return new Promise(async (resolve, reject) => {
+    let gameData = await this.getConfig(gameName)
+    console.log(gameData)
     let alreadyVoted = false
     for(let vote of gameData.warpVotes) {
       if(vote.madeBy == userName) alreadyVoted = true
@@ -76,25 +78,15 @@ module.exports.submitTurn = async function(gameData, userName, warpVote) {
     //let dbContent = fs.readFileSync(path.resolve(process.env.PORTABLE_EXECUTABLE_DIR, "AuroraDB.db"))
     let dbStream = fs.createReadStream(path.resolve(gamePath + "AuroraDB.db"))
     let params = {
-      Bucket: BUCKET_NAME,
       Key: `${gameData.gameName}/AuroraDB.db`,
       Body: dbStream
     }
-    /*
-    await s3.putObject(params).promise()
-    let params = {
-      Bucket: BUCKET_NAME,
-      Key: `${gameData.gameName}/AuroraDB.db`,
-      Body: dbContent
-    }
-    */
     await s3.upload(params, (err, data) => {
       if(err) reject(err)
       //console.log(`Successfully created game! ${data.Location}`)
     }).promise()
 
     params = {
-      Bucket: BUCKET_NAME,
       Key: `${gameData.gameName}/multiplayer.config`,
       Body: configContent
     }
@@ -110,13 +102,14 @@ module.exports.submitTurn = async function(gameData, userName, warpVote) {
 //Returns the config file stored in S3
 module.exports.getConfig = async function(gameName) {
   return new Promise((resolve, reject) => {
-    let filePath = path.resolve(gamePath, "")
     const params = {
-      Bucket: BUCKET_NAME,
       Key: `${gameName}/multiplayer.config`
     }
     s3.getObject(params, (err, data) => {
-      if (err) reject(err)
+      if (err) {
+        reject(err)
+        return
+      }
       resolve(JSON.parse(data.Body.toString()))
     })
   })
@@ -158,7 +151,6 @@ module.exports.pullGame = async function(gameName, username) {
 
     //Get AuroraDB.db file
     params = {
-      Bucket: BUCKET_NAME,
       Key: `${gameName}/AuroraDB.db`
     }
     let file = fs.createWriteStream(`${filePath}/AuroraDB.db`)
