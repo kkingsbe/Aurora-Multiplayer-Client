@@ -90,9 +90,6 @@
 			}
 		})
 		loading = false
-		
-		console.log(gameData)
-		console.log(inGame)
 		if(gameData && inGame) {
 			screen = "play turn"
 			gameName = gameData.gameName
@@ -135,7 +132,6 @@
 					warpType = "Years"
 					break
 			}
-			console.log(shortestType)
 			shortestWarp = length + " " + warpType
 
 			//Check if it is the game creators turn
@@ -147,8 +143,6 @@
 					message: `New round, please warp forwards ${length} ${warpType} before making your turn`
 				})
 			}
-
-			console.log(isUsersTurn)
 		}
 	}
 
@@ -179,7 +173,7 @@
 				warpTypeNum = 7
 				break
 		}
-		let nextPlayer = await multiplayer.submitTurn(gameData, currentUsername, {type: warpTypeNum, length: warpLength, madeBy: currentUsername})
+		let nextPlayer = await multiplayer.submitTurn(gameName, currentUsername, {type: warpTypeNum, length: warpLength, madeBy: currentUsername})
 		loading = false
 		dialog.showMessageBox(null, {
 			type: "info",
