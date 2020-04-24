@@ -348,6 +348,8 @@
 	.horiz-table {
 		display: flex;
 		flex-direction: row;
+		border-radius: 10px;
+		box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.6);
 	}
 
 	.horiz-table-header {
@@ -356,14 +358,22 @@
 	}
 
 	.table-header-cell {
-		background: #262D49;
+		background: #37a2c2;
 		font-size: 1.5em;
 		text-align: right;
 		padding: 7px;
 	}
 
-	.horiz-table-header:nth-child(odd) {
-		background: #181E3C;
+	.table-header-cell:nth-child(odd) {
+		background: #48acca !important;
+	}
+
+	.table-header-cell:first-child {
+		border-top-left-radius: 10px;
+	}
+
+	.table-header-cell:last-child {
+		border-bottom-left-radius: 10px;
 	}
 
 	.horiz-table-col {
@@ -372,11 +382,23 @@
 	}
 
 	.table-cell {
-		background: whitesmoke;
+		background: rgb(235, 235, 235);
 		color: rgb(68, 68, 68);
 		font-size: 1.5em;
 		text-align: left;
 		padding: 7px;
+	}
+
+	.table-cell:nth-child(odd) {
+		background: whitesmoke;
+	}
+
+	.table-cell:first-child {
+		border-top-right-radius: 10px;
+	}
+
+	.table-cell:last-child {
+		border-bottom-right-radius: 10px;
 	}
 
 	@media (min-width: 640px) {
