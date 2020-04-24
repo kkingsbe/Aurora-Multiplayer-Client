@@ -35,6 +35,11 @@ To start the application run:
 npm start
 ```
 
+To build the application (currently only to a portable exe) run:
+```
+npm run dist
+```
+
 ## Built With
 
 * [Svelte](https://svelte.dev/docs) - Web app framework used
