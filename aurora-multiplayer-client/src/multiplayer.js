@@ -27,8 +27,8 @@ module.exports.uploadGame = async function(gameName, users) {
         1: seconds
         2: minutes
         3: hours
-        4. weeks
-        5. days
+        4. days
+        5. weeks
         6. months
         7. years
       */
@@ -65,15 +65,11 @@ module.exports.submitTurn = async function(gameName, userName, warpVote) {
     let alreadyVoted = false
     //Reset the votes if everyone has voted and it is now the game creators turn
     if(gameData.warpVotes.length >= gameData.users.length && userName == gameData.users[0]) {
-      gameData.warpVotes = [warpVote]
+      gameData.warpVotes = []
     }
     
     for(let vote of gameData.warpVotes) {
       if(vote.madeBy == userName) alreadyVoted = true
-    }
-    //Reset the votes if everyone has voted and it is now the game creators turn
-    if(gameData.warpVotes.length >= gameData.users.length && userName == gameData.users[0]) {
-      gameData.warpVotes = [warpVote]
     }
     if(!alreadyVoted) {
       gameData.warpVotes.push(warpVote)

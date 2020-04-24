@@ -96,18 +96,49 @@
 			currentTurn = gameData.currentTurn
 
 			let shortestType = 10
+
+			//Gotta make sure that each vote is smaller than the starting value
+			let shortestWarpSecs = Number.MAX_VALUE
 			let warpType = ""
 			let length = 0
+
 			console.log(gameData.warpVotes)
 			for(let vote of gameData.warpVotes) {
-				if(vote.type < shortestType) {
-					shortestType = vote.type
-					length = vote.length
+				let warpSeconds = 0
+
+				//Convert the vote into seconds so it can be compared
+				switch(vote.type) {
+					case 1:
+						warpSeconds = vote.length
+						break
+					case 2:
+						warpSeconds = vote.length * 60
+						break
+					case 3:
+						warpSeconds = vote.length * 3600
+						break
+					case 4:
+						warpSeconds = vote.length * 86400
+						break
+					case 5:
+						warpSeconds = vote.length * 604800
+						break
+					case 6:
+						warpSeconds = vote.length * 2592000
+						break
+					case 7:
+						warpSeconds = vote.length * 31556926
+						break
 				}
-				if(vote.type == shortestType && vote.length < length) {
+
+				if(warpSeconds < shortestWarpSecs) {
+					console.log(warpSeconds)
+					shortestWarpSecs = warpSeconds
 					length = vote.length
+					shortestType = vote.type
 				}
 			}
+
 			warpTypeNum = shortestType
 			switch(shortestType) {
 				case 1:
@@ -165,7 +196,7 @@
 				break
 			case "weeks":
 				warpTypeNum = 5
-				brea
+				break
 			case "months":
 				warpTypeNum = 6
 				break
