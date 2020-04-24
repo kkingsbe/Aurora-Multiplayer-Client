@@ -356,11 +356,14 @@
 	}
 
 	.table-header-cell {
-		border: 1px solid black;
-		background: #00177e;
+		background: #262D49;
 		font-size: 1.5em;
 		text-align: right;
 		padding: 7px;
+	}
+
+	.horiz-table-header:nth-child(odd) {
+		background: #181E3C;
 	}
 
 	.horiz-table-col {
@@ -369,11 +372,10 @@
 	}
 
 	.table-cell {
-		border: 1px solid black;
 		background: whitesmoke;
 		color: rgb(68, 68, 68);
 		font-size: 1.5em;
-		text-align: right;
+		text-align: left;
 		padding: 7px;
 	}
 
