@@ -96,18 +96,49 @@
 			currentTurn = gameData.currentTurn
 
 			let shortestType = 10
+
+			//Gotta make sure that each vote is smaller than the starting value
+			let shortestWarpSecs = Number.MAX_VALUE
 			let warpType = ""
 			let length = 0
+
 			console.log(gameData.warpVotes)
 			for(let vote of gameData.warpVotes) {
-				if(vote.type < shortestType) {
-					shortestType = vote.type
-					length = vote.length
+				let warpSeconds = 0
+
+				//Convert the vote into seconds so it can be compared
+				switch(vote.type) {
+					case 1:
+						warpSeconds = vote.length
+						break
+					case 2:
+						warpSeconds = vote.length * 60
+						break
+					case 3:
+						warpSeconds = vote.length * 3600
+						break
+					case 4:
+						warpSeconds = vote.length * 86400
+						break
+					case 5:
+						warpSeconds = vote.length * 604800
+						break
+					case 6:
+						warpSeconds = vote.length * 2592000
+						break
+					case 7:
+						warpSeconds = vote.length * 31556926
+						break
 				}
-				if(vote.type == shortestType && vote.length < length) {
+
+				if(warpSeconds < shortestWarpSecs) {
+					console.log(warpSeconds)
+					shortestWarpSecs = warpSeconds
 					length = vote.length
+					shortestType = vote.type
 				}
 			}
+
 			warpTypeNum = shortestType
 			switch(shortestType) {
 				case 1:
@@ -165,7 +196,7 @@
 				break
 			case "weeks":
 				warpTypeNum = 5
-				brea
+				break
 			case "months":
 				warpTypeNum = 6
 				break
@@ -317,6 +348,8 @@
 	.horiz-table {
 		display: flex;
 		flex-direction: row;
+		border-radius: 10px;
+		box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.6);
 	}
 
 	.horiz-table-header {
@@ -325,11 +358,22 @@
 	}
 
 	.table-header-cell {
-		border: 1px solid black;
-		background: #00177e;
+		background: #37a2c2;
 		font-size: 1.5em;
 		text-align: right;
 		padding: 7px;
+	}
+
+	.table-header-cell:nth-child(odd) {
+		background: #48acca !important;
+	}
+
+	.table-header-cell:first-child {
+		border-top-left-radius: 10px;
+	}
+
+	.table-header-cell:last-child {
+		border-bottom-left-radius: 10px;
 	}
 
 	.horiz-table-col {
@@ -338,12 +382,23 @@
 	}
 
 	.table-cell {
-		border: 1px solid black;
-		background: whitesmoke;
+		background: rgb(235, 235, 235);
 		color: rgb(68, 68, 68);
 		font-size: 1.5em;
-		text-align: right;
+		text-align: left;
 		padding: 7px;
+	}
+
+	.table-cell:nth-child(odd) {
+		background: whitesmoke;
+	}
+
+	.table-cell:first-child {
+		border-top-right-radius: 10px;
+	}
+
+	.table-cell:last-child {
+		border-bottom-right-radius: 10px;
 	}
 
 	@media (min-width: 640px) {

@@ -38,7 +38,7 @@ app.on('window-all-closed', () => {
   // On OS X it is common for applications and their menu bar
   // to stay active until the user quits explicitly with Cmd + Q
   if (process.platform !== 'darwin') {
-    database.close();
+    //database.close();
     app.quit();
   }
 });
@@ -54,6 +54,7 @@ app.on('activate', () => {
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and import them here.
 
+/*
 // Example usage of database.js
 const database = require("./database");
 database.getTime("Federated Nations").then((message) => {
@@ -61,3 +62,4 @@ database.getTime("Federated Nations").then((message) => {
 }).catch((message) => {
   console.error(message);
 });
+*/
