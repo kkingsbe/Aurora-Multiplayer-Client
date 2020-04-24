@@ -25,7 +25,7 @@ const createWindow = () => {
   mainWindow.loadFile(path.join(__dirname, '../public/index.html'));
 
   // Open the DevTools.
-  //mainWindow.webContents.openDevTools();
+  // mainWindow.webContents.openDevTools();
 };
 
 // This method will be called when Electron has finished
@@ -38,7 +38,6 @@ app.on('window-all-closed', () => {
   // On OS X it is common for applications and their menu bar
   // to stay active until the user quits explicitly with Cmd + Q
   if (process.platform !== 'darwin') {
-    database.close();
     app.quit();
   }
 });
@@ -55,9 +54,9 @@ app.on('activate', () => {
 // code. You can also put them in separate files and import them here.
 
 // Example usage of database.js
-const database = require("./database");
-database.getTime("Federated Nations").then((message) => {
-  console.log("current time in database : " + message);
-}).catch((message) => {
-  console.error(message);
-});
+// const database = require("./database");
+// database.getTime("Federated Nations").then((message) => {
+//   console.log("current time in database : " + message);
+// }).catch((message) => {
+//   console.error(message);
+// });

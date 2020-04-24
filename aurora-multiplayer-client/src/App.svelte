@@ -1,5 +1,4 @@
 <script>
-	export let name;
 	var path = require('path')
 	var multiplayer = require(path.resolve(__dirname, "../src/multiplayer"))
 	const { dialog } = require('electron').remote
