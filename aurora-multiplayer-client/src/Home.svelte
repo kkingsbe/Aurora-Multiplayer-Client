@@ -2,8 +2,16 @@
   import Header from "./header.svelte"
   import {Button} from "sveltestrap"
 
-  export let newGamePage
-  export let continueGamePage
+  export let screen
+
+  //Changes the page to the "New Game" page
+	function newGamePage() {
+		screen = "new game"
+	}
+	//Changes the page to the "Continue Game" page
+	function continueGamePage() {
+		screen = "continue game"
+	}
 </script>
 
 <main>

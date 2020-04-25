@@ -7,6 +7,7 @@
   export let gameData
   export let currentTurn
   export let shortestWarp
+  export let isUsersTurn
 
 	var path = require('path')
 	var multiplayer = require(path.resolve(__dirname, "../src/multiplayer"))
@@ -18,7 +19,7 @@
 
 	currentTurn = ""
 	shortestWarp = ""
-	let isUsersTurn = false
+	isUsersTurn = false
 	let warpType
 	let warpTypeNum
 	let warpLength
@@ -124,6 +125,7 @@
 
 			//Check if it is the game creators turn
 			if(isUsersTurn && gameData.currentTurn == gameData.users[0]) {
+        console.log(isUsersTurn)
 				dialog.showMessageBox(null, {
 					type: "info",
 					buttons: ["OK"],
