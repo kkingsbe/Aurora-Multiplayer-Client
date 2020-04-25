@@ -32,6 +32,11 @@
 		screen = "continue game"
 	}
 
+	//Changes the page to the "Download Game" page
+	function downloadGamePage() {
+		screen = "download game"
+	}
+
 	//Increments the number of users while creating a new game
 	function incrementUsers() {
 		numNewGameUsers ++
@@ -177,6 +182,21 @@
 		}
 	}
 
+	//Downloads the db and json file from S3 and makes sure that the user is in the game
+	async function downloadGame() {
+		loading = true
+		spinnerText = "Downloading db..."
+		//let gameData = await multiplayer.getConfig(gameName)
+		await multiplayer.downloadGame(gameName)
+		loading = false
+		dialog.showMessageBox(null, {
+			type: "info",
+			buttons: ["OK"],
+			title: "Download complete",
+			message: `Successfully downloaded the save: \"${gameName}\"`
+		})
+	}
+
 	async function submitTurn() {
 		loading = true
 		spinnerText = "Uploading db..."
@@ -268,6 +288,7 @@
 				<Input bind:value={currentUsername}/>
 			</FormGroup>
 			<div class="button-group-horizontal-center">
+				<Button type="button" color="warning" on:click={downloadGame}>Download Game Save</Button>
 				<Button color="success" type="button" on:click={pullGame}>Continue</Button>
 			</div>
 		</Form>
