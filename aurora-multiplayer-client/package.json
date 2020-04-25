@@ -28,7 +28,8 @@
     "win": {
       "target": [
         "portable"
-      ]
+      ],
+      "icon": "public/build/icon.ico"
     },
     "portable": {
       "artifactName": "Aurora_Multiplayer_Client.exe"
