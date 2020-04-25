@@ -88,5 +88,5 @@ typings/
 # Electron-Forge
 out/
 
-# dist
+# Dist folder
 dist/

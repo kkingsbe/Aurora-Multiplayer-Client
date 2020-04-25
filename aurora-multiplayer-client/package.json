@@ -26,7 +26,9 @@
       ]
     },
     "win": {
-      "target": ["portable"],
+      "target": [
+        "portable"
+      ],
       "icon": "public/build/icon.ico"
     },
     "portable": {
@@ -76,6 +78,7 @@
     "fs": "0.0.1-security",
     "path": "^0.12.7",
     "sirv-cli": "^0.4.4",
+    "sqlite3": "^4.1.1",
     "svelte-spinner": "^2.0.2",
     "sveltestrap": "^3.3.3"
   },
