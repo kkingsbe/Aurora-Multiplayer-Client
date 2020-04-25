@@ -200,6 +200,8 @@ module.exports.currentTime = async function (gameName) {
       console.log(time)
       db.close();
       resolve(time)
+  })
+}
 module.exports.downloadGame = async function(gameName) {
   return new Promise(async (resolve, reject) => {
     let gameData = false
