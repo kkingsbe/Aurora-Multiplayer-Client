@@ -8,16 +8,17 @@
   import Loader from './Loader.svelte'
   
   export let screen
-  export let spinnerText
-  export let loading
   export let gameName
   export let currentTurn
   export let currentUsername
   export let shortestWarp
-  export let warpLength
-  export let warpType
   export let isUsersTurn
-  export let warpTypeNum
+	
+	let spinnerText = ""
+	let loading = false
+	let warpTypeNum
+	let warpType
+	let warpLength
 
   async function submitTurn() {
     console.log(currentUsername)

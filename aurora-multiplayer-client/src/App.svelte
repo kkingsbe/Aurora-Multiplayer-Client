@@ -10,18 +10,14 @@
 
 	let gameName = ""
 	let gameData
-	let loading = false
-	let spinnerText = ""
+	
 	//The current username of the player using the MP client
 	let currentUsername = ""
+
 	//The current turn inside of the game
 	let currentTurn = ""
 	let shortestWarp = ""
 	let isUsersTurn = false
-	let warpType
-	let warpTypeNum
-	let warpLength
-	
 </script>
 
 {#if screen == "home"}
@@ -29,13 +25,13 @@
 {/if}
 
 {#if screen == "new game"}
-	<NewGame gameName={gameName} spinnerText={spinnerText} loading={loading} numNewGameUsers={numNewGameUsers} newGameUsers={newGameUsers} bind:screen={screen}></NewGame>
+	<NewGame gameName={gameName} numNewGameUsers={numNewGameUsers} newGameUsers={newGameUsers} bind:screen={screen}></NewGame>
 {/if}
 
 {#if screen == "continue game"}
-	<ContinueGame loading={loading} spinnerText={spinnerText} bind:gameData={gameData} bind:gameName={gameName} bind:currentUsername={currentUsername} bind:screen={screen} bind:currentTurn={currentTurn} bind:shortestWarp={shortestWarp} bind:isUsersTurn={isUsersTurn}></ContinueGame>
+	<ContinueGame bind:gameData={gameData} bind:gameName={gameName} bind:currentUsername={currentUsername} bind:screen={screen} bind:currentTurn={currentTurn} bind:shortestWarp={shortestWarp} bind:isUsersTurn={isUsersTurn}></ContinueGame>
 {/if}
 
 {#if screen == "play turn"}
-	<PlayTurn bind:screen={screen} spinnerText={spinnerText} loading={loading} gameName={gameName} bind:currentTurn={currentTurn} bind:currentUsername={currentUsername} bind:shortestWarp={shortestWarp} bind:warpLength={warpLength} bind:isUsersTurn={isUsersTurn} bind:warpTypeNum={warpTypeNum}></PlayTurn>
+	<PlayTurn bind:screen={screen} gameName={gameName} bind:currentTurn={currentTurn} bind:currentUsername={currentUsername} bind:shortestWarp={shortestWarp} bind:isUsersTurn={isUsersTurn}></PlayTurn>
 {/if}

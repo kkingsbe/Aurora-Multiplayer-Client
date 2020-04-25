@@ -1,6 +1,4 @@
 <script>
-  export let loading
-  export let spinnerText
   export let gameName
   export let currentUsername
   export let screen
@@ -23,6 +21,8 @@
 	let warpType
 	let warpTypeNum
 	let warpLength
+	let spinnerText = ""
+  let loading = false
   
   //Downloads the db and json file from S3 and makes sure that the user is in the game
 	async function pullGame() {

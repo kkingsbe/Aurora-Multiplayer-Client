@@ -1,7 +1,5 @@
 <script>
   export let gameName
-  export let spinnerText
-  export let loading
   export let numNewGameUsers
   export let newGameUsers
   export let screen
@@ -13,6 +11,9 @@
   import Header from "./header.svelte"
   import Loader from './Loader.svelte'
   import {Button, Form, FormGroup, Label, Input} from "sveltestrap"
+
+  let spinnerText = ""
+  let loading = false
 
   //Increments the number of users while creating a new game
 	function incrementUsers() {
