@@ -80,7 +80,7 @@
   <div class="button-group-horizontal-center" style="width:300px;margin-top:0;">
     <Input type="text" bind:value={warpLength}/>
     <Input type="select" bind:value={warpType}>
-      <option default>type</option>
+     <!--><option default>type</option><-->
       <option value="seconds">Seconds</option>
       <option value="minutes">Minutes</option>
       <option value="hours">Hours</option>
