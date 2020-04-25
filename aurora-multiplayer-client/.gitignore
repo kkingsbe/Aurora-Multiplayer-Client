@@ -88,5 +88,8 @@ typings/
 # Electron-Forge
 out/
 
+# bundle.* files in public/build
+public/build/bundle.*
+
 # Dist folder
 dist/
