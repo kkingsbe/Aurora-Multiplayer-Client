@@ -30,7 +30,7 @@
 		loading = true
 		spinnerText = "Creating Game..."
 		console.log(`Users: ${newGameUsers}`)
-		let success = await multiplayer.uploadGame(gameName, newGameUsers)
+    let success = await multiplayer.uploadGame(gameName, newGameUsers)
 		console.log(success)
 		if(success) {
 			loading = false
@@ -38,7 +38,7 @@
         type: "info",
         buttons: ["OK"],
         title: "Success!",
-        message: "Successfully uploaded db file"
+        message: `Successfully uploaded db file`
 			})
       screen = "home"
 		}
