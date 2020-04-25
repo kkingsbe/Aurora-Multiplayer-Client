@@ -169,7 +169,6 @@ module.exports.currentlyIsTime = async function (gameName, expectedTime) {
   return new Promise(async (resolve, reject) => {
       const db = require("./database");
       const time = await db.getTime(gameName).catch((message) => {
-        console.log(message);
         reject("Failed");
       });
       db.close();
