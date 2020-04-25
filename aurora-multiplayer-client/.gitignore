@@ -89,4 +89,7 @@ typings/
 out/
 
 # bundle.* files in public/build
-public/build/
+public/build/bundle.*
+
+# Dist folder
+dist/
