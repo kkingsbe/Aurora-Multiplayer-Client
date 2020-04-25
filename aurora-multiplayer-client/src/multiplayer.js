@@ -200,5 +200,21 @@ module.exports.currentTime = async function (gameName) {
       console.log(time)
       db.close();
       resolve(time)
+module.exports.downloadGame = async function(gameName) {
+  return new Promise(async (resolve, reject) => {
+    let gameData = false
+    let config = await this.getConfig(gameName)
+
+    let filePath = path.resolve(gamePath, "")
+    //Write multiplayer.config to disk
+    fs.writeFileSync(`${filePath}/multiplayer.config`, JSON.stringify(config))
+
+    //Get AuroraDB.db file
+    params = {
+      Key: `${gameName}/AuroraDB.db`
+    }
+    let file = fs.createWriteStream(`${filePath}/AuroraDB.db`)
+    s3.getObject(params).createReadStream().pipe(file)
+    file.on("close", () => {resolve(gameData)})
   })
 }
