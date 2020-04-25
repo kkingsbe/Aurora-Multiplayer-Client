@@ -1,6 +1,4 @@
 <script>
-	export let name;
-
 	import Home from './Home.svelte'
 	import NewGame from './NewGame.svelte'
 	import ContinueGame from './ContinueGame.svelte'

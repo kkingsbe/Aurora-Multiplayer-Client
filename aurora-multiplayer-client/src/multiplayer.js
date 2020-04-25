@@ -34,7 +34,7 @@ module.exports.uploadGame = async function(gameName, users) {
       */
       warpVotes: []
     }
-    let configContent =  JSON.stringify(gameData)
+    let configContent = JSON.stringify(gameData)
     //fs.writeFileSync(path.resolve(process.env.PORTABLE_EXECUTABLE_DIR, "multiplayer.config"), configContent)
     //let dbContent = fs.readFileSync(path.resolve(process.env.PORTABLE_EXECUTABLE_DIR, "AuroraDB.db"))
     let dbStream = fs.createReadStream(path.resolve(gamePath + "AuroraDB.db"))
@@ -78,7 +78,7 @@ module.exports.submitTurn = async function(gameName, userName, warpVote) {
         gameData.currentTurn = gameData.users[gameData.users.indexOf(gameData.currentTurn)+1]
       }
     }
-    let configContent =  JSON.stringify(gameData)
+    let configContent = JSON.stringify(gameData)
     fs.writeFileSync(path.resolve(gamePath + "multiplayer.config"), configContent)
     //let dbContent = fs.readFileSync(path.resolve(process.env.PORTABLE_EXECUTABLE_DIR, "AuroraDB.db"))
     let dbStream = fs.createReadStream(path.resolve(gamePath + "AuroraDB.db"))
@@ -161,5 +161,21 @@ module.exports.pullGame = async function(gameName, username) {
     let file = fs.createWriteStream(`${filePath}/AuroraDB.db`)
     s3.getObject(params).createReadStream().pipe(file)
     file.on("close", () => {resolve(gameData)})
+  })
+}
+
+//Checks in the database if GameTime is the same as provided argument
+module.exports.currentlyIsTime = async function (gameName, expectedTime) {
+  return new Promise(async (resolve, reject) => {
+      const db = require("./database");
+      const time = await db.getTime(gameName).catch((message) => {
+        reject("Failed");
+      });
+      db.close();
+      if (time == expectedTime) {
+        resolve(true);
+      } else {
+        resolve(false);
+      }
   })
 }

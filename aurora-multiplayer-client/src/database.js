@@ -15,17 +15,16 @@ let database = new sqlite3.Database(databasePath,sqlite3.OPEN_READONLY,(err) => 
 //Returns a promise for the GameTime property of the specified game
 module.exports.getTime = async function(selectedGame) {
     return new Promise((resolve, reject) => {
-        const sql = "SELECT GameName, GameTime FROM FCT_Game";
-        database.all(sql,(err,rows) => {
+        const sql = `SELECT GameName, GameTime FROM FCT_Game WHERE GameName = '${selectedGame}'`;
+        database.get(sql,(err,row) => {
             if (err) {
                 reject(err);
             }
-            rows.forEach((row)=>{
-                if (row.GameName == selectedGame) {
-                    resolve(row.GameTime);
-                }
-            });
-            reject("Failed");
+            if (row === undefined) {
+                reject("No game with specified name");
+            } else {
+                resolve(row.GameTime);
+            }
         });
     })
 }
