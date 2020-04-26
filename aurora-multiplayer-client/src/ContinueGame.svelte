@@ -24,7 +24,7 @@
 	let spinnerText = ""
   let loading = false
   
-  	async function downloadGame() {
+  async function downloadGame() {
 		console.log("Pulling game")
 		let inGame = true
 		isUsersTurn = true
@@ -36,7 +36,7 @@
 			type: "info",
 			buttons: ["OK"],
 			title: "Download complete",
-			message: "Download of \"${gameName}\" complete."
+			message: `Download of ${gameName} complete.`
 		})
 	}
 		

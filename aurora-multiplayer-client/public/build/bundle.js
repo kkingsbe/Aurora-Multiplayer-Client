@@ -6536,8 +6536,8 @@ var app = (function () {
     const { console: console_1$2 } = globals;
     const file$9 = "src\\ContinueGame.svelte";
 
-    // (146:6) <Label>
-    function create_default_slot_5$1(ctx) {
+    // (162:6) <Label>
+    function create_default_slot_6$1(ctx) {
     	let t;
 
     	const block = {
@@ -6554,31 +6554,31 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_5$1.name,
+    		id: create_default_slot_6$1.name,
     		type: "slot",
-    		source: "(146:6) <Label>",
+    		source: "(162:6) <Label>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (145:4) <FormGroup>
-    function create_default_slot_4$1(ctx) {
+    // (161:4) <FormGroup>
+    function create_default_slot_5$1(ctx) {
     	let t;
     	let updating_value;
     	let current;
 
     	const label = new Label({
     			props: {
-    				$$slots: { default: [create_default_slot_5$1] },
+    				$$slots: { default: [create_default_slot_6$1] },
     				$$scope: { ctx }
     			},
     			$$inline: true
     		});
 
     	function input_value_binding(value) {
-    		/*input_value_binding*/ ctx[16].call(null, value);
+    		/*input_value_binding*/ ctx[17].call(null, value);
     	}
 
     	let input_props = {};
@@ -6605,7 +6605,7 @@ var app = (function () {
     		p: function update(ctx, dirty) {
     			const label_changes = {};
 
-    			if (dirty & /*$$scope*/ 262144) {
+    			if (dirty & /*$$scope*/ 524288) {
     				label_changes.$$scope = { dirty, ctx };
     			}
 
@@ -6640,17 +6640,17 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_4$1.name,
+    		id: create_default_slot_5$1.name,
     		type: "slot",
-    		source: "(145:4) <FormGroup>",
+    		source: "(161:4) <FormGroup>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (150:6) <Label>
-    function create_default_slot_3$1(ctx) {
+    // (166:6) <Label>
+    function create_default_slot_4$1(ctx) {
     	let t;
 
     	const block = {
@@ -6667,31 +6667,31 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_3$1.name,
+    		id: create_default_slot_4$1.name,
     		type: "slot",
-    		source: "(150:6) <Label>",
+    		source: "(166:6) <Label>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (149:4) <FormGroup>
-    function create_default_slot_2$1(ctx) {
+    // (165:4) <FormGroup>
+    function create_default_slot_3$1(ctx) {
     	let t;
     	let updating_value;
     	let current;
 
     	const label = new Label({
     			props: {
-    				$$slots: { default: [create_default_slot_3$1] },
+    				$$slots: { default: [create_default_slot_4$1] },
     				$$scope: { ctx }
     			},
     			$$inline: true
     		});
 
     	function input_value_binding_1(value) {
-    		/*input_value_binding_1*/ ctx[17].call(null, value);
+    		/*input_value_binding_1*/ ctx[18].call(null, value);
     	}
 
     	let input_props = {};
@@ -6718,7 +6718,7 @@ var app = (function () {
     		p: function update(ctx, dirty) {
     			const label_changes = {};
 
-    			if (dirty & /*$$scope*/ 262144) {
+    			if (dirty & /*$$scope*/ 524288) {
     				label_changes.$$scope = { dirty, ctx };
     			}
 
@@ -6753,17 +6753,17 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_2$1.name,
+    		id: create_default_slot_3$1.name,
     		type: "slot",
-    		source: "(149:4) <FormGroup>",
+    		source: "(165:4) <FormGroup>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (154:6) <Button color="success" type="button" on:click={pullGame}>
-    function create_default_slot_1$2(ctx) {
+    // (170:6) <Button color="success" type="button" on:click={pullGame}>
+    function create_default_slot_2$1(ctx) {
     	let t;
 
     	const block = {
@@ -6780,25 +6780,53 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_1$2.name,
+    		id: create_default_slot_2$1.name,
     		type: "slot",
-    		source: "(154:6) <Button color=\\\"success\\\" type=\\\"button\\\" on:click={pullGame}>",
+    		source: "(170:6) <Button color=\\\"success\\\" type=\\\"button\\\" on:click={pullGame}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (144:2) <Form>
+    // (171:6) <Button color="warning" type="button" on:click={downloadGame}>
+    function create_default_slot_1$2(ctx) {
+    	let t;
+
+    	const block = {
+    		c: function create() {
+    			t = text("Download Game");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, t, anchor);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(t);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot_1$2.name,
+    		type: "slot",
+    		source: "(171:6) <Button color=\\\"warning\\\" type=\\\"button\\\" on:click={downloadGame}>",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (160:2) <Form>
     function create_default_slot$2(ctx) {
     	let t0;
     	let t1;
     	let div;
+    	let t2;
     	let current;
 
     	const formgroup0 = new FormGroup({
     			props: {
-    				$$slots: { default: [create_default_slot_4$1] },
+    				$$slots: { default: [create_default_slot_5$1] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -6806,15 +6834,27 @@ var app = (function () {
 
     	const formgroup1 = new FormGroup({
     			props: {
+    				$$slots: { default: [create_default_slot_3$1] },
+    				$$scope: { ctx }
+    			},
+    			$$inline: true
+    		});
+
+    	const button0 = new Button({
+    			props: {
+    				color: "success",
+    				type: "button",
     				$$slots: { default: [create_default_slot_2$1] },
     				$$scope: { ctx }
     			},
     			$$inline: true
     		});
 
-    	const button = new Button({
+    	button0.$on("click", /*pullGame*/ ctx[5]);
+
+    	const button1 = new Button({
     			props: {
-    				color: "success",
+    				color: "warning",
     				type: "button",
     				$$slots: { default: [create_default_slot_1$2] },
     				$$scope: { ctx }
@@ -6822,7 +6862,7 @@ var app = (function () {
     			$$inline: true
     		});
 
-    	button.$on("click", /*pullGame*/ ctx[4]);
+    	button1.$on("click", /*downloadGame*/ ctx[4]);
 
     	const block = {
     		c: function create() {
@@ -6831,9 +6871,11 @@ var app = (function () {
     			create_component(formgroup1.$$.fragment);
     			t1 = space();
     			div = element("div");
-    			create_component(button.$$.fragment);
+    			create_component(button0.$$.fragment);
+    			t2 = space();
+    			create_component(button1.$$.fragment);
     			attr_dev(div, "class", "button-group-horizontal-center svelte-1ziaqb");
-    			add_location(div, file$9, 152, 4, 3748);
+    			add_location(div, file$9, 168, 4, 4142);
     		},
     		m: function mount(target, anchor) {
     			mount_component(formgroup0, target, anchor);
@@ -6841,43 +6883,54 @@ var app = (function () {
     			mount_component(formgroup1, target, anchor);
     			insert_dev(target, t1, anchor);
     			insert_dev(target, div, anchor);
-    			mount_component(button, div, null);
+    			mount_component(button0, div, null);
+    			append_dev(div, t2);
+    			mount_component(button1, div, null);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
     			const formgroup0_changes = {};
 
-    			if (dirty & /*$$scope, gameName*/ 262145) {
+    			if (dirty & /*$$scope, gameName*/ 524289) {
     				formgroup0_changes.$$scope = { dirty, ctx };
     			}
 
     			formgroup0.$set(formgroup0_changes);
     			const formgroup1_changes = {};
 
-    			if (dirty & /*$$scope, currentUsername*/ 262146) {
+    			if (dirty & /*$$scope, currentUsername*/ 524290) {
     				formgroup1_changes.$$scope = { dirty, ctx };
     			}
 
     			formgroup1.$set(formgroup1_changes);
-    			const button_changes = {};
+    			const button0_changes = {};
 
-    			if (dirty & /*$$scope*/ 262144) {
-    				button_changes.$$scope = { dirty, ctx };
+    			if (dirty & /*$$scope*/ 524288) {
+    				button0_changes.$$scope = { dirty, ctx };
     			}
 
-    			button.$set(button_changes);
+    			button0.$set(button0_changes);
+    			const button1_changes = {};
+
+    			if (dirty & /*$$scope*/ 524288) {
+    				button1_changes.$$scope = { dirty, ctx };
+    			}
+
+    			button1.$set(button1_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
     			transition_in(formgroup0.$$.fragment, local);
     			transition_in(formgroup1.$$.fragment, local);
-    			transition_in(button.$$.fragment, local);
+    			transition_in(button0.$$.fragment, local);
+    			transition_in(button1.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
     			transition_out(formgroup0.$$.fragment, local);
     			transition_out(formgroup1.$$.fragment, local);
-    			transition_out(button.$$.fragment, local);
+    			transition_out(button0.$$.fragment, local);
+    			transition_out(button1.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
@@ -6886,7 +6939,8 @@ var app = (function () {
     			destroy_component(formgroup1, detaching);
     			if (detaching) detach_dev(t1);
     			if (detaching) detach_dev(div);
-    			destroy_component(button);
+    			destroy_component(button0);
+    			destroy_component(button1);
     		}
     	};
 
@@ -6894,7 +6948,7 @@ var app = (function () {
     		block,
     		id: create_default_slot$2.name,
     		type: "slot",
-    		source: "(144:2) <Form>",
+    		source: "(160:2) <Form>",
     		ctx
     	});
 
@@ -6937,7 +6991,7 @@ var app = (function () {
     			t1 = space();
     			create_component(form.$$.fragment);
     			attr_dev(main, "class", "svelte-1ziaqb");
-    			add_location(main, file$9, 140, 0, 3411);
+    			add_location(main, file$9, 156, 0, 3805);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -6958,7 +7012,7 @@ var app = (function () {
     			loader.$set(loader_changes);
     			const form_changes = {};
 
-    			if (dirty & /*$$scope, currentUsername, gameName*/ 262147) {
+    			if (dirty & /*$$scope, currentUsername, gameName*/ 524291) {
     				form_changes.$$scope = { dirty, ctx };
     			}
 
@@ -7016,14 +7070,30 @@ var app = (function () {
     	let spinnerText = "";
     	let loading = false;
 
+    	async function downloadGame() {
+    		console.log("Pulling game");
+    		$$invalidate(10, isUsersTurn = true);
+    		$$invalidate(3, loading = true);
+    		$$invalidate(2, spinnerText = "Downloading db...");
+    		await multiplayer.downloadGame(gameName);
+    		$$invalidate(3, loading = false);
+
+    		dialog.showMessageBox(null, {
+    			type: "info",
+    			buttons: ["OK"],
+    			title: "Download complete",
+    			message: `Download of ${gameName} complete.`
+    		});
+    	}
+
     	//Downloads the db and json file from S3 and makes sure that the user is in the game
     	async function pullGame() {
     		console.log("Pulling game");
     		let inGame = true;
-    		$$invalidate(9, isUsersTurn = true);
+    		$$invalidate(10, isUsersTurn = true);
     		$$invalidate(3, loading = true);
     		$$invalidate(2, spinnerText = "Downloading db...");
-    		$$invalidate(6, gameData = await multiplayer.getConfig(gameName));
+    		$$invalidate(7, gameData = await multiplayer.getConfig(gameName));
 
     		await multiplayer.pullGame(gameName, currentUsername).catch(err => {
     			//We don't need to error out here if the user is in the game, but it is not their turn
@@ -7037,17 +7107,17 @@ var app = (function () {
 
     				inGame = false;
     			} else {
-    				$$invalidate(9, isUsersTurn = false);
+    				$$invalidate(10, isUsersTurn = false);
     			}
     		});
 
     		$$invalidate(3, loading = false);
 
     		if (gameData && inGame) {
-    			$$invalidate(5, screen = "play turn");
+    			$$invalidate(6, screen = "play turn");
     			console.log(screen);
     			$$invalidate(0, gameName = gameData.gameName);
-    			$$invalidate(7, currentTurn = gameData.currentTurn);
+    			$$invalidate(8, currentTurn = gameData.currentTurn);
     			let shortestType = 10;
 
     			//Gotta make sure that each vote is smaller than the starting value
@@ -7119,7 +7189,7 @@ var app = (function () {
     					break;
     			}
 
-    			$$invalidate(8, shortestWarp = length + " " + warpType);
+    			$$invalidate(9, shortestWarp = length + " " + warpType);
 
     			//Check if it is the game creators turn
     			if (isUsersTurn && gameData.currentTurn == gameData.users[0]) {
@@ -7165,11 +7235,11 @@ var app = (function () {
     	$$self.$set = $$props => {
     		if ("gameName" in $$props) $$invalidate(0, gameName = $$props.gameName);
     		if ("currentUsername" in $$props) $$invalidate(1, currentUsername = $$props.currentUsername);
-    		if ("screen" in $$props) $$invalidate(5, screen = $$props.screen);
-    		if ("gameData" in $$props) $$invalidate(6, gameData = $$props.gameData);
-    		if ("currentTurn" in $$props) $$invalidate(7, currentTurn = $$props.currentTurn);
-    		if ("shortestWarp" in $$props) $$invalidate(8, shortestWarp = $$props.shortestWarp);
-    		if ("isUsersTurn" in $$props) $$invalidate(9, isUsersTurn = $$props.isUsersTurn);
+    		if ("screen" in $$props) $$invalidate(6, screen = $$props.screen);
+    		if ("gameData" in $$props) $$invalidate(7, gameData = $$props.gameData);
+    		if ("currentTurn" in $$props) $$invalidate(8, currentTurn = $$props.currentTurn);
+    		if ("shortestWarp" in $$props) $$invalidate(9, shortestWarp = $$props.shortestWarp);
+    		if ("isUsersTurn" in $$props) $$invalidate(10, isUsersTurn = $$props.isUsersTurn);
     	};
 
     	$$self.$capture_state = () => ({
@@ -7195,17 +7265,18 @@ var app = (function () {
     		warpLength,
     		spinnerText,
     		loading,
+    		downloadGame,
     		pullGame
     	});
 
     	$$self.$inject_state = $$props => {
     		if ("gameName" in $$props) $$invalidate(0, gameName = $$props.gameName);
     		if ("currentUsername" in $$props) $$invalidate(1, currentUsername = $$props.currentUsername);
-    		if ("screen" in $$props) $$invalidate(5, screen = $$props.screen);
-    		if ("gameData" in $$props) $$invalidate(6, gameData = $$props.gameData);
-    		if ("currentTurn" in $$props) $$invalidate(7, currentTurn = $$props.currentTurn);
-    		if ("shortestWarp" in $$props) $$invalidate(8, shortestWarp = $$props.shortestWarp);
-    		if ("isUsersTurn" in $$props) $$invalidate(9, isUsersTurn = $$props.isUsersTurn);
+    		if ("screen" in $$props) $$invalidate(6, screen = $$props.screen);
+    		if ("gameData" in $$props) $$invalidate(7, gameData = $$props.gameData);
+    		if ("currentTurn" in $$props) $$invalidate(8, currentTurn = $$props.currentTurn);
+    		if ("shortestWarp" in $$props) $$invalidate(9, shortestWarp = $$props.shortestWarp);
+    		if ("isUsersTurn" in $$props) $$invalidate(10, isUsersTurn = $$props.isUsersTurn);
     		if ("path" in $$props) path = $$props.path;
     		if ("multiplayer" in $$props) multiplayer = $$props.multiplayer;
     		if ("warpType" in $$props) warpType = $$props.warpType;
@@ -7224,6 +7295,7 @@ var app = (function () {
     		currentUsername,
     		spinnerText,
     		loading,
+    		downloadGame,
     		pullGame,
     		screen,
     		gameData,
@@ -7248,11 +7320,11 @@ var app = (function () {
     		init(this, options, instance$a, create_fragment$a, safe_not_equal, {
     			gameName: 0,
     			currentUsername: 1,
-    			screen: 5,
-    			gameData: 6,
-    			currentTurn: 7,
-    			shortestWarp: 8,
-    			isUsersTurn: 9
+    			screen: 6,
+    			gameData: 7,
+    			currentTurn: 8,
+    			shortestWarp: 9,
+    			isUsersTurn: 10
     		});
 
     		dispatch_dev("SvelteRegisterComponent", {
@@ -7273,23 +7345,23 @@ var app = (function () {
     			console_1$2.warn("<ContinueGame> was created without expected prop 'currentUsername'");
     		}
 
-    		if (/*screen*/ ctx[5] === undefined && !("screen" in props)) {
+    		if (/*screen*/ ctx[6] === undefined && !("screen" in props)) {
     			console_1$2.warn("<ContinueGame> was created without expected prop 'screen'");
     		}
 
-    		if (/*gameData*/ ctx[6] === undefined && !("gameData" in props)) {
+    		if (/*gameData*/ ctx[7] === undefined && !("gameData" in props)) {
     			console_1$2.warn("<ContinueGame> was created without expected prop 'gameData'");
     		}
 
-    		if (/*currentTurn*/ ctx[7] === undefined && !("currentTurn" in props)) {
+    		if (/*currentTurn*/ ctx[8] === undefined && !("currentTurn" in props)) {
     			console_1$2.warn("<ContinueGame> was created without expected prop 'currentTurn'");
     		}
 
-    		if (/*shortestWarp*/ ctx[8] === undefined && !("shortestWarp" in props)) {
+    		if (/*shortestWarp*/ ctx[9] === undefined && !("shortestWarp" in props)) {
     			console_1$2.warn("<ContinueGame> was created without expected prop 'shortestWarp'");
     		}
 
-    		if (/*isUsersTurn*/ ctx[9] === undefined && !("isUsersTurn" in props)) {
+    		if (/*isUsersTurn*/ ctx[10] === undefined && !("isUsersTurn" in props)) {
     			console_1$2.warn("<ContinueGame> was created without expected prop 'isUsersTurn'");
     		}
     	}
