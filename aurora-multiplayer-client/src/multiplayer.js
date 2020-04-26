@@ -155,7 +155,10 @@ module.exports.isCurrentUsersTurn = function(config, username) {
 module.exports.pullGame = async function(gameName, username) {
   return new Promise(async (resolve, reject) => {
     let gameData = false
-    let config = await this.getConfig(gameName)
+    let config = await this.getConfig(gameName).catch(err => {
+      reject(err)
+      return
+    })
     let inGame = this.inGame(config, username)
     let currentTurn = this.isCurrentUsersTurn(config, username)
     if(!inGame) {
@@ -215,7 +218,10 @@ module.exports.currentTime = async function (gameName) {
 module.exports.downloadGame = async function(gameName) {
   return new Promise(async (resolve, reject) => {
     let gameData = false
-    let config = await this.getConfig(gameName)
+    let success = true
+    let config = await this.getConfig(gameName).catch(err => {
+      reject(err)
+    })
 
     let filePath = path.resolve(gamePath, "")
     //Write multiplayer.config to disk
@@ -227,6 +233,9 @@ module.exports.downloadGame = async function(gameName) {
     }
     let file = fs.createWriteStream(`${filePath}/AuroraDB.db`)
     s3.getObject(params).createReadStream().pipe(file)
-    file.on("close", () => {resolve(gameData)})
+    file.on("close", () => {
+      console.log(success)
+      if(success) resolve(gameData)
+    })
   })
 }
