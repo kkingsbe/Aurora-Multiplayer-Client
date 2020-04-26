@@ -26,6 +26,7 @@
   
   //Downloads the db and json file from S3 and makes sure that the user is in the game
 	async function pullGame() {
+		console.log("Pulling game")
 		let inGame = true
 		isUsersTurn = true
 		loading = true

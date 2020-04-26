@@ -19,10 +19,10 @@ const s3 = new AWS.S3({
 
 module.exports.uploadGame = async function(gameName, users) {
   return new Promise(async (resolve, reject) => {
-    let time = await this.currentTime(gameName)
+    //let time = await this.currentTime(gameName)
     let gameData = {
       gameName: gameName,
-      time: time,
+      //time: time,
       users: users,
       currentTurn: users[0],
       /*Warp types:
@@ -63,13 +63,15 @@ module.exports.uploadGame = async function(gameName, users) {
 module.exports.submitTurn = async function(gameName, userName, warpVote) {
   return new Promise(async (resolve, reject) => {
     let gameData = await this.getConfig(gameName)
-    let localGameTime = await this.currentTime(gameName)
+    //let localGameTime = await this.currentTime(gameName)
     
+    /*
     //If the user is not the game creator, they are not allowed to advance time
     if(userName != gameData.users[0] && localGameTime != gameData.time) {
       reject("Illegal time advancement")
       return
     }
+    */
 
     console.log(gameData)
     let alreadyVoted = false
