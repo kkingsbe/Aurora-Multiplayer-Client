@@ -24,6 +24,22 @@
 	let spinnerText = ""
   let loading = false
   
+  async function downloadGame() {
+		console.log("Pulling game")
+		let inGame = true
+		isUsersTurn = true
+		loading = true
+		spinnerText = "Downloading db..."
+		await multiplayer.downloadGame(gameName)
+		loading = false
+		dialog.showMessageBox(null, {
+			type: "info",
+			buttons: ["OK"],
+			title: "Download complete",
+			message: `Download of ${gameName} complete.`
+		})
+	}
+		
   //Downloads the db and json file from S3 and makes sure that the user is in the game
 	async function pullGame() {
 		console.log("Pulling game")
@@ -152,6 +168,7 @@
     </FormGroup>
     <div class="button-group-horizontal-center">
       <Button color="success" type="button" on:click={pullGame}>Continue</Button>
+      <Button color="warning" type="button" on:click={downloadGame}>Download Game</Button>
     </div>
   </Form>
 </main>
