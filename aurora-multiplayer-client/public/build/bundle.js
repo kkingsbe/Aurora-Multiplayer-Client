@@ -6536,7 +6536,7 @@ var app = (function () {
     const { console: console_1$2 } = globals;
     const file$9 = "src\\ContinueGame.svelte";
 
-    // (162:6) <Label>
+    // (187:6) <Label>
     function create_default_slot_6$1(ctx) {
     	let t;
 
@@ -6556,14 +6556,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_6$1.name,
     		type: "slot",
-    		source: "(162:6) <Label>",
+    		source: "(187:6) <Label>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (161:4) <FormGroup>
+    // (186:4) <FormGroup>
     function create_default_slot_5$1(ctx) {
     	let t;
     	let updating_value;
@@ -6642,14 +6642,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_5$1.name,
     		type: "slot",
-    		source: "(161:4) <FormGroup>",
+    		source: "(186:4) <FormGroup>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (166:6) <Label>
+    // (191:6) <Label>
     function create_default_slot_4$1(ctx) {
     	let t;
 
@@ -6669,14 +6669,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_4$1.name,
     		type: "slot",
-    		source: "(166:6) <Label>",
+    		source: "(191:6) <Label>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (165:4) <FormGroup>
+    // (190:4) <FormGroup>
     function create_default_slot_3$1(ctx) {
     	let t;
     	let updating_value;
@@ -6755,14 +6755,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_3$1.name,
     		type: "slot",
-    		source: "(165:4) <FormGroup>",
+    		source: "(190:4) <FormGroup>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (170:6) <Button color="success" type="button" on:click={pullGame}>
+    // (195:6) <Button color="success" type="button" on:click={pullGame}>
     function create_default_slot_2$1(ctx) {
     	let t;
 
@@ -6782,14 +6782,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_2$1.name,
     		type: "slot",
-    		source: "(170:6) <Button color=\\\"success\\\" type=\\\"button\\\" on:click={pullGame}>",
+    		source: "(195:6) <Button color=\\\"success\\\" type=\\\"button\\\" on:click={pullGame}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (171:6) <Button color="warning" type="button" on:click={downloadGame}>
+    // (196:6) <Button color="warning" type="button" on:click={downloadGame}>
     function create_default_slot_1$2(ctx) {
     	let t;
 
@@ -6809,14 +6809,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_1$2.name,
     		type: "slot",
-    		source: "(171:6) <Button color=\\\"warning\\\" type=\\\"button\\\" on:click={downloadGame}>",
+    		source: "(196:6) <Button color=\\\"warning\\\" type=\\\"button\\\" on:click={downloadGame}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (160:2) <Form>
+    // (185:2) <Form>
     function create_default_slot$2(ctx) {
     	let t0;
     	let t1;
@@ -6875,7 +6875,7 @@ var app = (function () {
     			t2 = space();
     			create_component(button1.$$.fragment);
     			attr_dev(div, "class", "button-group-horizontal-center svelte-1ziaqb");
-    			add_location(div, file$9, 168, 4, 4142);
+    			add_location(div, file$9, 193, 4, 4741);
     		},
     		m: function mount(target, anchor) {
     			mount_component(formgroup0, target, anchor);
@@ -6948,7 +6948,7 @@ var app = (function () {
     		block,
     		id: create_default_slot$2.name,
     		type: "slot",
-    		source: "(160:2) <Form>",
+    		source: "(185:2) <Form>",
     		ctx
     	});
 
@@ -6991,7 +6991,7 @@ var app = (function () {
     			t1 = space();
     			create_component(form.$$.fragment);
     			attr_dev(main, "class", "svelte-1ziaqb");
-    			add_location(main, file$9, 156, 0, 3805);
+    			add_location(main, file$9, 181, 0, 4404);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -7070,12 +7070,29 @@ var app = (function () {
     	let spinnerText = "";
     	let loading = false;
 
+    	//Downloads the game even if it is not the users turn. Db will be overwritten when they download the db for their turn
     	async function downloadGame() {
     		console.log("Pulling game");
+    		let error = false;
     		$$invalidate(10, isUsersTurn = true);
     		$$invalidate(3, loading = true);
     		$$invalidate(2, spinnerText = "Downloading db...");
-    		await multiplayer.downloadGame(gameName);
+
+    		await multiplayer.downloadGame(gameName).catch(err => {
+    			console.log(err);
+
+    			dialog.showMessageBox(null, {
+    				type: "error",
+    				buttons: ["OK"],
+    				title: "Error",
+    				message: "Game does not exist"
+    			});
+
+    			error = true;
+    			$$invalidate(3, loading = false);
+    		});
+
+    		if (error) return;
     		$$invalidate(3, loading = false);
 
     		dialog.showMessageBox(null, {
@@ -7093,7 +7110,20 @@ var app = (function () {
     		$$invalidate(10, isUsersTurn = true);
     		$$invalidate(3, loading = true);
     		$$invalidate(2, spinnerText = "Downloading db...");
-    		$$invalidate(7, gameData = await multiplayer.getConfig(gameName));
+
+    		$$invalidate(7, gameData = await multiplayer.getConfig(gameName).catch(err => {
+    			console.log(err);
+
+    			dialog.showMessageBox(null, {
+    				type: "error",
+    				buttons: ["OK"],
+    				title: "Error",
+    				message: "Game does not exist"
+    			});
+
+    			$$invalidate(3, loading = false);
+    			return;
+    		}));
 
     		await multiplayer.pullGame(gameName, currentUsername).catch(err => {
     			//We don't need to error out here if the user is in the game, but it is not their turn
