@@ -23,14 +23,28 @@
 	let warpLength
 	let spinnerText = ""
   let loading = false
-  
+	
+	//Downloads the game even if it is not the users turn. Db will be overwritten when they download the db for their turn
   async function downloadGame() {
 		console.log("Pulling game")
 		let inGame = true
+		let error = false
 		isUsersTurn = true
 		loading = true
 		spinnerText = "Downloading db..."
 		await multiplayer.downloadGame(gameName)
+		.catch(err => {
+			console.log(err)
+			dialog.showMessageBox(null, {
+				type: "error",
+				buttons: ["OK"],
+				title: "Error",
+				message: "Game does not exist"
+			})
+			error = true
+			loading = false
+		})
+		if(error) return
 		loading = false
 		dialog.showMessageBox(null, {
 			type: "info",
@@ -47,7 +61,18 @@
 		isUsersTurn = true
 		loading = true
 		spinnerText = "Downloading db..."
-    gameData = await multiplayer.getConfig(gameName)
+		gameData = await multiplayer.getConfig(gameName)
+		.catch(err => {
+			console.log(err)
+			dialog.showMessageBox(null, {
+				type: "error",
+				buttons: ["OK"],
+				title: "Error",
+				message: "Game does not exist"
+			})
+			loading = false
+			return
+		})
 		await multiplayer.pullGame(gameName, currentUsername)
 		.catch(err => {
 			//We don't need to error out here if the user is in the game, but it is not their turn
