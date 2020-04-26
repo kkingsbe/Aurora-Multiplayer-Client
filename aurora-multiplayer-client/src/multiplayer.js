@@ -1,12 +1,15 @@
+//Import the needed node modules
 const AWS = require('aws-sdk')
 const fs = require('fs')
 const isDev = require("electron-is-dev")
 var path = require('path')
 
+//Detect if running in dev or prod
 var gamePath = ""
 if(isDev) gamePath = "../"
 else gamePath = process.env.PORTABLE_EXECUTABLE_DIR + "/"
 
+//Set up the AWS module
 AWS.config.region = 'us-east-1'; // Region
 AWS.config.credentials = new AWS.CognitoIdentityCredentials({
     IdentityPoolId: 'us-east-1:c4733679-8bcb-4b4e-931d-6794a9e28293',
@@ -17,6 +20,7 @@ const s3 = new AWS.S3({
   params: {Bucket: BUCKET_NAME}
 })
 
+//Preforms the initial upload of the game to the AWS S3 bucket
 module.exports.uploadGame = async function(gameName, users) {
   return new Promise(async (resolve, reject) => {
     //let time = await this.currentTime(gameName)
@@ -60,6 +64,7 @@ module.exports.uploadGame = async function(gameName, users) {
   })
 }
 
+//Records the given users vote in multiplayer.config, and uploads that and AuroraDB.db to the AWS S3 bucket
 module.exports.submitTurn = async function(gameName, userName, warpVote) {
   return new Promise(async (resolve, reject) => {
     let gameData = await this.getConfig(gameName)
@@ -146,6 +151,7 @@ module.exports.isCurrentUsersTurn = function(config, username) {
   else return false
 }
 
+//Checks if the given user is in the given game, and that it is their turn, and then downloads AuroraDB.db and multiplayer.config
 module.exports.pullGame = async function(gameName, username) {
   return new Promise(async (resolve, reject) => {
     let gameData = false
@@ -204,6 +210,8 @@ module.exports.currentTime = async function (gameName) {
       resolve(time)
   })
 }
+
+//Downloads the given game reguardless of who the user is. Downloaded game gets overwriten when the user runs pullGame to take their turn
 module.exports.downloadGame = async function(gameName) {
   return new Promise(async (resolve, reject) => {
     let gameData = false

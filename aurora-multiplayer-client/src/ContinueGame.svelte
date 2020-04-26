@@ -1,16 +1,19 @@
 <script>
-  export let gameName
-  export let currentUsername
-  export let screen
-  export let gameData
-  export let currentTurn
-  export let shortestWarp
-  export let isUsersTurn
+	//Variables that this component accepts
+  export let gameName         //Stores the games name
+  export let currentUsername  //Stores the username of the currently logged in user
+  export let screen           //Stores the current screem
+  export let gameData         //Stores the parsed multiplayer.config file
+  export let currentTurn      //Stores the username of which players turn it currently is
+  export let shortestWarp     //Stores the string version of the shortest voted-for warp
+  export let isUsersTurn      //If it is the currently logged in users turn or not
 
+	//Import the needed node modules
 	var path = require('path')
 	var multiplayer = require(path.resolve(__dirname, "../src/multiplayer"))
 	const { dialog } = require('electron').remote
 
+	//Import the needed components
   import {Button, Form, FormGroup, Label, Input} from "sveltestrap"
 	import Header from "./header.svelte"
   import Loader from './Loader.svelte'
@@ -18,12 +21,13 @@
 	currentTurn = ""
 	shortestWarp = ""
 	isUsersTurn = false
-	let warpType
-	let warpTypeNum
+	let warpType 
+	let warpTypeNum      //An integer representing a warp length. See multiplayer.js for more info
 	let warpLength
-	let spinnerText = ""
-  let loading = false
-  
+	let spinnerText = "" //Stores the text to display under the spinner while loading
+  let loading = false  //Toggles the loading overlay
+	
+	//Downloads a game, reguardless of if it is the currently signed in users turn. When it is finally their turn and they run pullGame() to start their turn, the db will be overwritten
   async function downloadGame() {
 		console.log("Pulling game")
 		let inGame = true

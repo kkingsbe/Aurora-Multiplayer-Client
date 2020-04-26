@@ -1,19 +1,22 @@
 <script>
-  export let gameName
-  export let numNewGameUsers
-  export let newGameUsers
-  export let screen
+  //Variables that this component accepts
+  export let gameName         //Stores the games name
+  export let numNewGameUsers  //The number of users to be added to a new game (controls how many inputs are visible)
+  export let newGameUsers     //An array to store the usernames when creating a new game
+  export let screen           //This sets the current screen of the app. Value can be "home", "new game", "continue game", or "play turn"
 
+  //Import the needed node modules
   var path = require('path')
   var multiplayer = require(path.resolve(__dirname, "../src/multiplayer"))
 	const { dialog } = require('electron').remote
 
+	//Import the needed components
   import Header from "./header.svelte"
   import Loader from './Loader.svelte'
   import {Button, Form, FormGroup, Label, Input} from "sveltestrap"
 
-  let spinnerText = ""
-  let loading = false
+  let spinnerText = "" //Stores the text to display under the spinner while loading
+  let loading = false  //Toggles the loading overlay
 
   //Increments the number of users while creating a new game
 	function incrementUsers() {
