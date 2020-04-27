@@ -5658,7 +5658,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (53:6) <Label>
+    // (56:6) <Label>
     function create_default_slot_7(ctx) {
     	let t;
 
@@ -5678,14 +5678,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_7.name,
     		type: "slot",
-    		source: "(53:6) <Label>",
+    		source: "(56:6) <Label>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (52:4) <FormGroup>
+    // (55:4) <FormGroup>
     function create_default_slot_6(ctx) {
     	let t;
     	let updating_value;
@@ -5764,14 +5764,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_6.name,
     		type: "slot",
-    		source: "(52:4) <FormGroup>",
+    		source: "(55:4) <FormGroup>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (58:6) <Label>
+    // (61:6) <Label>
     function create_default_slot_5(ctx) {
     	let t;
 
@@ -5791,14 +5791,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_5.name,
     		type: "slot",
-    		source: "(58:6) <Label>",
+    		source: "(61:6) <Label>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (59:6) {#each Array(numNewGameUsers) as _, i}
+    // (62:6) {#each Array(numNewGameUsers) as _, i}
     function create_each_block(ctx) {
     	let updating_value;
     	let current;
@@ -5854,14 +5854,14 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(59:6) {#each Array(numNewGameUsers) as _, i}",
+    		source: "(62:6) {#each Array(numNewGameUsers) as _, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (57:4) <FormGroup>
+    // (60:4) <FormGroup>
     function create_default_slot_4(ctx) {
     	let t;
     	let each_1_anchor;
@@ -5978,14 +5978,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_4.name,
     		type: "slot",
-    		source: "(57:4) <FormGroup>",
+    		source: "(60:4) <FormGroup>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (64:6) <Button color="primary" type="button" id="addUserBtn" on:click={incrementUsers}>
+    // (67:6) <Button color="primary" type="button" id="addUserBtn" on:click={incrementUsers}>
     function create_default_slot_3(ctx) {
     	let t;
 
@@ -6005,14 +6005,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_3.name,
     		type: "slot",
-    		source: "(64:6) <Button color=\\\"primary\\\" type=\\\"button\\\" id=\\\"addUserBtn\\\" on:click={incrementUsers}>",
+    		source: "(67:6) <Button color=\\\"primary\\\" type=\\\"button\\\" id=\\\"addUserBtn\\\" on:click={incrementUsers}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (65:6) <Button color="danger" type="button" id="addUserBtn" on:click={decrementUsers}>
+    // (68:6) <Button color="danger" type="button" id="addUserBtn" on:click={decrementUsers}>
     function create_default_slot_2(ctx) {
     	let t;
 
@@ -6032,14 +6032,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_2.name,
     		type: "slot",
-    		source: "(65:6) <Button color=\\\"danger\\\" type=\\\"button\\\" id=\\\"addUserBtn\\\" on:click={decrementUsers}>",
+    		source: "(68:6) <Button color=\\\"danger\\\" type=\\\"button\\\" id=\\\"addUserBtn\\\" on:click={decrementUsers}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (68:6) <Button color="success" type="button" on:click={uploadGame}>
+    // (71:6) <Button color="success" type="button" on:click={uploadGame}>
     function create_default_slot_1$1(ctx) {
     	let t;
 
@@ -6059,14 +6059,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_1$1.name,
     		type: "slot",
-    		source: "(68:6) <Button color=\\\"success\\\" type=\\\"button\\\" on:click={uploadGame}>",
+    		source: "(71:6) <Button color=\\\"success\\\" type=\\\"button\\\" on:click={uploadGame}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (51:2) <Form>
+    // (54:2) <Form style="margin-top: 70px;">
     function create_default_slot$1(ctx) {
     	let t0;
     	let t1;
@@ -6144,9 +6144,9 @@ var app = (function () {
     			div1 = element("div");
     			create_component(button2.$$.fragment);
     			attr_dev(div0, "class", "button-group svelte-qjuoc6");
-    			add_location(div0, file$8, 62, 4, 1691);
+    			add_location(div0, file$8, 65, 4, 2222);
     			attr_dev(div1, "class", "button-group-horizontal-center svelte-qjuoc6");
-    			add_location(div1, file$8, 66, 4, 1947);
+    			add_location(div1, file$8, 69, 4, 2478);
     		},
     		m: function mount(target, anchor) {
     			mount_component(formgroup0, target, anchor);
@@ -6234,7 +6234,7 @@ var app = (function () {
     		block,
     		id: create_default_slot$1.name,
     		type: "slot",
-    		source: "(51:2) <Form>",
+    		source: "(54:2) <Form style=\\\"margin-top: 70px;\\\">",
     		ctx
     	});
 
@@ -6262,6 +6262,7 @@ var app = (function () {
 
     	const form = new Form({
     			props: {
+    				style: "margin-top: 70px;",
     				$$slots: { default: [create_default_slot$1] },
     				$$scope: { ctx }
     			},
@@ -6277,7 +6278,7 @@ var app = (function () {
     			t1 = space();
     			create_component(form.$$.fragment);
     			attr_dev(main, "class", "svelte-qjuoc6");
-    			add_location(main, file$8, 47, 0, 1229);
+    			add_location(main, file$8, 50, 0, 1734);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -6337,15 +6338,18 @@ var app = (function () {
     }
 
     function instance$9($$self, $$props, $$invalidate) {
-    	let { gameName } = $$props;
-    	let { numNewGameUsers } = $$props;
-    	let { newGameUsers } = $$props;
-    	let { screen } = $$props;
+    	let { gameName } = $$props; //Stores the games name
+    	let { numNewGameUsers } = $$props; //The number of users to be added to a new game (controls how many inputs are visible)
+    	let { newGameUsers } = $$props; //An array to store the usernames when creating a new game
+    	let { screen } = $$props; //This sets the current screen of the app. Value can be "home", "new game", "continue game", or "play turn"
+
+    	//Import the needed node modules
     	var path = require("path");
+
     	var multiplayer = require(path.resolve(__dirname, "../src/multiplayer"));
     	const { dialog } = require("electron").remote;
-    	let spinnerText = "";
-    	let loading = false;
+    	let spinnerText = ""; //Stores the text to display under the spinner while loading
+    	let loading = false; //Toggles the loading overlay
 
     	//Increments the number of users while creating a new game
     	function incrementUsers() {
@@ -6536,7 +6540,7 @@ var app = (function () {
     const { console: console_1$2 } = globals;
     const file$9 = "src\\ContinueGame.svelte";
 
-    // (187:6) <Label>
+    // (190:6) <Label>
     function create_default_slot_6$1(ctx) {
     	let t;
 
@@ -6556,14 +6560,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_6$1.name,
     		type: "slot",
-    		source: "(187:6) <Label>",
+    		source: "(190:6) <Label>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (186:4) <FormGroup>
+    // (189:4) <FormGroup>
     function create_default_slot_5$1(ctx) {
     	let t;
     	let updating_value;
@@ -6642,14 +6646,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_5$1.name,
     		type: "slot",
-    		source: "(186:4) <FormGroup>",
+    		source: "(189:4) <FormGroup>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (191:6) <Label>
+    // (194:6) <Label>
     function create_default_slot_4$1(ctx) {
     	let t;
 
@@ -6669,14 +6673,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_4$1.name,
     		type: "slot",
-    		source: "(191:6) <Label>",
+    		source: "(194:6) <Label>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (190:4) <FormGroup>
+    // (193:4) <FormGroup>
     function create_default_slot_3$1(ctx) {
     	let t;
     	let updating_value;
@@ -6755,14 +6759,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_3$1.name,
     		type: "slot",
-    		source: "(190:4) <FormGroup>",
+    		source: "(193:4) <FormGroup>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (195:6) <Button color="success" type="button" on:click={pullGame}>
+    // (198:6) <Button color="success" type="button" on:click={pullGame}>
     function create_default_slot_2$1(ctx) {
     	let t;
 
@@ -6782,14 +6786,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_2$1.name,
     		type: "slot",
-    		source: "(195:6) <Button color=\\\"success\\\" type=\\\"button\\\" on:click={pullGame}>",
+    		source: "(198:6) <Button color=\\\"success\\\" type=\\\"button\\\" on:click={pullGame}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (196:6) <Button color="warning" type="button" on:click={downloadGame}>
+    // (199:6) <Button color="warning" type="button" on:click={downloadGame}>
     function create_default_slot_1$2(ctx) {
     	let t;
 
@@ -6809,14 +6813,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_1$2.name,
     		type: "slot",
-    		source: "(196:6) <Button color=\\\"warning\\\" type=\\\"button\\\" on:click={downloadGame}>",
+    		source: "(199:6) <Button color=\\\"warning\\\" type=\\\"button\\\" on:click={downloadGame}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (185:2) <Form>
+    // (188:2) <Form>
     function create_default_slot$2(ctx) {
     	let t0;
     	let t1;
@@ -6875,7 +6879,7 @@ var app = (function () {
     			t2 = space();
     			create_component(button1.$$.fragment);
     			attr_dev(div, "class", "button-group-horizontal-center svelte-1ziaqb");
-    			add_location(div, file$9, 193, 4, 4741);
+    			add_location(div, file$9, 196, 4, 5449);
     		},
     		m: function mount(target, anchor) {
     			mount_component(formgroup0, target, anchor);
@@ -6948,7 +6952,7 @@ var app = (function () {
     		block,
     		id: create_default_slot$2.name,
     		type: "slot",
-    		source: "(185:2) <Form>",
+    		source: "(188:2) <Form>",
     		ctx
     	});
 
@@ -6991,7 +6995,7 @@ var app = (function () {
     			t1 = space();
     			create_component(form.$$.fragment);
     			attr_dev(main, "class", "svelte-1ziaqb");
-    			add_location(main, file$9, 181, 0, 4404);
+    			add_location(main, file$9, 184, 0, 5112);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -7051,26 +7055,29 @@ var app = (function () {
     }
 
     function instance$a($$self, $$props, $$invalidate) {
-    	let { gameName } = $$props;
-    	let { currentUsername } = $$props;
-    	let { screen } = $$props;
-    	let { gameData } = $$props;
-    	let { currentTurn } = $$props;
-    	let { shortestWarp } = $$props;
-    	let { isUsersTurn } = $$props;
+    	let { gameName } = $$props; //Stores the games name
+    	let { currentUsername } = $$props; //Stores the username of the currently logged in user
+    	let { screen } = $$props; //Stores the current screem
+    	let { gameData } = $$props; //Stores the parsed multiplayer.config file
+    	let { currentTurn } = $$props; //Stores the username of which players turn it currently is
+    	let { shortestWarp } = $$props; //Stores the string version of the shortest voted-for warp
+    	let { isUsersTurn } = $$props; //If it is the currently logged in users turn or not
+
+    	//Import the needed node modules
     	var path = require("path");
+
     	var multiplayer = require(path.resolve(__dirname, "../src/multiplayer"));
     	const { dialog } = require("electron").remote;
     	currentTurn = "";
     	shortestWarp = "";
     	isUsersTurn = false;
     	let warpType;
-    	let warpTypeNum;
+    	let warpTypeNum; //An integer representing a warp length. See multiplayer.js for more info
     	let warpLength;
-    	let spinnerText = "";
-    	let loading = false;
+    	let spinnerText = ""; //Stores the text to display under the spinner while loading
+    	let loading = false; //Toggles the loading overlay
 
-    	//Downloads the game even if it is not the users turn. Db will be overwritten when they download the db for their turn
+    	//Downloads a game, reguardless of if it is the currently signed in users turn. When it is finally their turn and they run pullGame() to start their turn, the db will be overwritten
     	async function downloadGame() {
     		console.log("Pulling game");
     		let error = false;
@@ -7458,7 +7465,7 @@ var app = (function () {
     const { console: console_1$3 } = globals;
     const file$a = "src\\PlayTurn.svelte";
 
-    // (79:2) <Label style="margin-bottom:2px;margin-top:20px;">
+    // (83:2) <Label style="margin-bottom:2px;margin-top:20px;">
     function create_default_slot_2$2(ctx) {
     	let t;
 
@@ -7478,14 +7485,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_2$2.name,
     		type: "slot",
-    		source: "(79:2) <Label style=\\\"margin-bottom:2px;margin-top:20px;\\\">",
+    		source: "(83:2) <Label style=\\\"margin-bottom:2px;margin-top:20px;\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (82:4) <Input type="select" bind:value={warpType}>
+    // (86:4) <Input type="select" bind:value={warpType}>
     function create_default_slot_1$3(ctx) {
     	let option0;
     	let t1;
@@ -7525,25 +7532,25 @@ var app = (function () {
     			option6.textContent = "Years";
     			option0.__value = "seconds";
     			option0.value = option0.__value;
-    			add_location(option0, file$a, 83, 6, 2384);
+    			add_location(option0, file$a, 87, 6, 3073);
     			option1.__value = "minutes";
     			option1.value = option1.__value;
-    			add_location(option1, file$a, 84, 6, 2432);
+    			add_location(option1, file$a, 88, 6, 3121);
     			option2.__value = "hours";
     			option2.value = option2.__value;
-    			add_location(option2, file$a, 85, 6, 2480);
+    			add_location(option2, file$a, 89, 6, 3169);
     			option3.__value = "days";
     			option3.value = option3.__value;
-    			add_location(option3, file$a, 86, 6, 2524);
+    			add_location(option3, file$a, 90, 6, 3213);
     			option4.__value = "weeks";
     			option4.value = option4.__value;
-    			add_location(option4, file$a, 87, 6, 2566);
+    			add_location(option4, file$a, 91, 6, 3255);
     			option5.__value = "months";
     			option5.value = option5.__value;
-    			add_location(option5, file$a, 88, 6, 2610);
+    			add_location(option5, file$a, 92, 6, 3299);
     			option6.__value = "years";
     			option6.value = option6.__value;
-    			add_location(option6, file$a, 89, 6, 2656);
+    			add_location(option6, file$a, 93, 6, 3345);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, option0, anchor);
@@ -7581,14 +7588,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_1$3.name,
     		type: "slot",
-    		source: "(82:4) <Input type=\\\"select\\\" bind:value={warpType}>",
+    		source: "(86:4) <Input type=\\\"select\\\" bind:value={warpType}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (94:4) <Button type="button" color="success" disabled={!isUsersTurn} on:click={submitTurn}>
+    // (98:4) <Button type="button" color="success" disabled={!isUsersTurn} on:click={submitTurn}>
     function create_default_slot$3(ctx) {
     	let t;
 
@@ -7608,7 +7615,7 @@ var app = (function () {
     		block,
     		id: create_default_slot$3.name,
     		type: "slot",
-    		source: "(94:4) <Button type=\\\"button\\\" color=\\\"success\\\" disabled={!isUsersTurn} on:click={submitTurn}>",
+    		source: "(98:4) <Button type=\\\"button\\\" color=\\\"success\\\" disabled={!isUsersTurn} on:click={submitTurn}>",
     		ctx
     	});
 
@@ -7749,31 +7756,31 @@ var app = (function () {
     			div10 = element("div");
     			create_component(button.$$.fragment);
     			attr_dev(div0, "class", "table-header-cell svelte-hs5ncg");
-    			add_location(div0, file$a, 68, 6, 1672);
+    			add_location(div0, file$a, 72, 6, 2361);
     			attr_dev(div1, "class", "table-header-cell svelte-hs5ncg");
-    			add_location(div1, file$a, 69, 6, 1726);
+    			add_location(div1, file$a, 73, 6, 2415);
     			attr_dev(div2, "class", "table-header-cell svelte-hs5ncg");
-    			add_location(div2, file$a, 70, 6, 1783);
+    			add_location(div2, file$a, 74, 6, 2472);
     			attr_dev(div3, "class", "horiz-table-header svelte-hs5ncg");
-    			add_location(div3, file$a, 67, 4, 1632);
+    			add_location(div3, file$a, 71, 4, 2321);
     			attr_dev(div4, "class", "table-cell svelte-hs5ncg");
-    			add_location(div4, file$a, 73, 6, 1891);
+    			add_location(div4, file$a, 77, 6, 2580);
     			attr_dev(div5, "class", "table-cell svelte-hs5ncg");
-    			add_location(div5, file$a, 74, 6, 1939);
+    			add_location(div5, file$a, 78, 6, 2628);
     			attr_dev(div6, "class", "table-cell svelte-hs5ncg");
-    			add_location(div6, file$a, 75, 6, 1990);
+    			add_location(div6, file$a, 79, 6, 2679);
     			attr_dev(div7, "class", "horiz-table-col svelte-hs5ncg");
-    			add_location(div7, file$a, 72, 4, 1854);
+    			add_location(div7, file$a, 76, 4, 2543);
     			attr_dev(div8, "class", "horiz-table svelte-hs5ncg");
-    			add_location(div8, file$a, 66, 2, 1601);
+    			add_location(div8, file$a, 70, 2, 2290);
     			attr_dev(div9, "class", "button-group-horizontal-center svelte-hs5ncg");
     			set_style(div9, "width", "300px");
     			set_style(div9, "margin-top", "0");
-    			add_location(div9, file$a, 79, 2, 2154);
+    			add_location(div9, file$a, 83, 2, 2843);
     			attr_dev(div10, "class", "button-group-horizontal-center svelte-hs5ncg");
-    			add_location(div10, file$a, 92, 2, 2720);
+    			add_location(div10, file$a, 96, 2, 3409);
     			attr_dev(main, "class", "svelte-hs5ncg");
-    			add_location(main, file$a, 63, 0, 1496);
+    			add_location(main, file$a, 67, 0, 2185);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -7901,21 +7908,25 @@ var app = (function () {
     }
 
     function instance$b($$self, $$props, $$invalidate) {
+    	let { screen } = $$props; //Stores the current screem
+    	let { gameName } = $$props; //Stores the games name
+    	let { currentTurn } = $$props; //Stores the username of which players turn it currently is
+    	let { currentUsername } = $$props; //Stores the username of the currently logged in user
+    	let { shortestWarp } = $$props; //Stores the string version of the shortest voted-for warp
+    	let { isUsersTurn } = $$props; //If it is the currently logged in users turn or not
+
+    	//Import the needed node modules
     	var path = require("path");
+
     	var multiplayer = require(path.resolve(__dirname, "../src/multiplayer"));
     	const { dialog } = require("electron").remote;
-    	let { screen } = $$props;
-    	let { gameName } = $$props;
-    	let { currentTurn } = $$props;
-    	let { currentUsername } = $$props;
-    	let { shortestWarp } = $$props;
-    	let { isUsersTurn } = $$props;
-    	let spinnerText = "";
-    	let loading = false;
-    	let warpTypeNum;
+    	let spinnerText = ""; //Stores the text to display under the spinner while loading
+    	let loading = false; //Toggles the loading overlay
+    	let warpTypeNum; //An integer representing a warp length. See multiplayer.js for more info
     	let warpType;
     	let warpLength;
 
+    	//Records the users vote to multiplayer.config, and uploads that and AuroraDB.db to the S3 bucket
     	async function submitTurn() {
     		console.log(currentUsername);
     		$$invalidate(5, loading = true);
@@ -8002,6 +8013,12 @@ var app = (function () {
     	};
 
     	$$self.$capture_state = () => ({
+    		screen,
+    		gameName,
+    		currentTurn,
+    		currentUsername,
+    		shortestWarp,
+    		isUsersTurn,
     		path,
     		multiplayer,
     		dialog,
@@ -8012,12 +8029,6 @@ var app = (function () {
     		Input,
     		Header,
     		Loader,
-    		screen,
-    		gameName,
-    		currentTurn,
-    		currentUsername,
-    		shortestWarp,
-    		isUsersTurn,
     		spinnerText,
     		loading,
     		warpTypeNum,
@@ -8027,14 +8038,14 @@ var app = (function () {
     	});
 
     	$$self.$inject_state = $$props => {
-    		if ("path" in $$props) path = $$props.path;
-    		if ("multiplayer" in $$props) multiplayer = $$props.multiplayer;
     		if ("screen" in $$props) $$invalidate(9, screen = $$props.screen);
     		if ("gameName" in $$props) $$invalidate(0, gameName = $$props.gameName);
     		if ("currentTurn" in $$props) $$invalidate(1, currentTurn = $$props.currentTurn);
     		if ("currentUsername" in $$props) $$invalidate(10, currentUsername = $$props.currentUsername);
     		if ("shortestWarp" in $$props) $$invalidate(2, shortestWarp = $$props.shortestWarp);
     		if ("isUsersTurn" in $$props) $$invalidate(3, isUsersTurn = $$props.isUsersTurn);
+    		if ("path" in $$props) path = $$props.path;
+    		if ("multiplayer" in $$props) multiplayer = $$props.multiplayer;
     		if ("spinnerText" in $$props) $$invalidate(4, spinnerText = $$props.spinnerText);
     		if ("loading" in $$props) $$invalidate(5, loading = $$props.loading);
     		if ("warpTypeNum" in $$props) warpTypeNum = $$props.warpTypeNum;
@@ -8166,7 +8177,7 @@ var app = (function () {
 
     /* src\App.svelte generated by Svelte v3.21.0 */
 
-    // (23:0) {#if screen == "home"}
+    // (20:0) {#if screen == "home"}
     function create_if_block_3$2(ctx) {
     	let updating_screen;
     	let current;
@@ -8221,14 +8232,14 @@ var app = (function () {
     		block,
     		id: create_if_block_3$2.name,
     		type: "if",
-    		source: "(23:0) {#if screen == \\\"home\\\"}",
+    		source: "(20:0) {#if screen == \\\"home\\\"}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (27:0) {#if screen == "new game"}
+    // (24:0) {#if screen == "new game"}
     function create_if_block_2$2(ctx) {
     	let updating_screen;
     	let current;
@@ -8288,14 +8299,14 @@ var app = (function () {
     		block,
     		id: create_if_block_2$2.name,
     		type: "if",
-    		source: "(27:0) {#if screen == \\\"new game\\\"}",
+    		source: "(24:0) {#if screen == \\\"new game\\\"}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (31:0) {#if screen == "continue game"}
+    // (28:0) {#if screen == "continue game"}
     function create_if_block_1$2(ctx) {
     	let updating_gameData;
     	let updating_gameName;
@@ -8450,14 +8461,14 @@ var app = (function () {
     		block,
     		id: create_if_block_1$2.name,
     		type: "if",
-    		source: "(31:0) {#if screen == \\\"continue game\\\"}",
+    		source: "(28:0) {#if screen == \\\"continue game\\\"}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (35:0) {#if screen == "play turn"}
+    // (32:0) {#if screen == "play turn"}
     function create_if_block$4(ctx) {
     	let updating_screen;
     	let updating_currentTurn;
@@ -8577,7 +8588,7 @@ var app = (function () {
     		block,
     		id: create_if_block$4.name,
     		type: "if",
-    		source: "(35:0) {#if screen == \\\"play turn\\\"}",
+    		source: "(32:0) {#if screen == \\\"play turn\\\"}",
     		ctx
     	});
 
@@ -8752,20 +8763,15 @@ var app = (function () {
     }
 
     function instance$c($$self, $$props, $$invalidate) {
-    	let screen = "home";
-    	let numNewGameUsers = 1;
-    	let newGameUsers = [];
-    	let gameName = "";
-    	let gameData;
-
-    	//The current username of the player using the MP client
-    	let currentUsername = "";
-
-    	//The current turn inside of the game
-    	let currentTurn = "";
-
-    	let shortestWarp = "";
-    	let isUsersTurn = false;
+    	let screen = "new game"; //This sets the current screen of the app. Value can be "home", "new game", "continue game", or "play turn"
+    	let numNewGameUsers = 1; //The number of users to be added to a new game (controls how many inputs are visible)
+    	let newGameUsers = []; //An array to store the usernames when creating a new game
+    	let gameName = ""; //Stores the game name
+    	let gameData; //Stores the parsed JSON data from the multiplayer.config file
+    	let currentUsername = ""; //The current username of the player using the MP client
+    	let currentTurn = ""; //The current turn inside of the game
+    	let shortestWarp = ""; //The text version of the shortest warp
+    	let isUsersTurn = false; //Stores if it is the currently signed in users turn. This is used to disable some elements
     	const writable_props = [];
 
     	Object.keys($$props).forEach(key => {

@@ -51,7 +51,7 @@
 <main>
   <Loader spinnerText={spinnerText} loading={loading}></Loader>
   <Header text="New Game"/>
-  <Form>
+  <Form style="margin-top: 70px;">
     <FormGroup>
       <Label>Game Name</Label>
       <Input id="gameNameInput" bind:value = {gameName}/>
