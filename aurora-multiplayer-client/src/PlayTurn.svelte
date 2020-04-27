@@ -1,25 +1,29 @@
 <script>
+	//Variables that this component accepts
+  export let screen           //Stores the current screem
+  export let gameName         //Stores the games name
+  export let currentTurn      //Stores the username of which players turn it currently is
+  export let currentUsername  //Stores the username of the currently logged in user
+  export let shortestWarp     //Stores the string version of the shortest voted-for warp
+	export let isUsersTurn      //If it is the currently logged in users turn or not
+	
+	//Import the needed node modules
   var path = require('path')
 	var multiplayer = require(path.resolve(__dirname, "../src/multiplayer"))
 	const { dialog } = require('electron').remote
 
+	//Import the needed components
 	import {Button, Form, FormGroup, Label, Input} from "sveltestrap"
 	import Header from "./header.svelte"
   import Loader from './Loader.svelte'
-  
-  export let screen
-  export let gameName
-  export let currentTurn
-  export let currentUsername
-  export let shortestWarp
-  export let isUsersTurn
-	
-	let spinnerText = ""
-	let loading = false
-	let warpTypeNum
+
+	let spinnerText = "" //Stores the text to display under the spinner while loading
+	let loading = false  //Toggles the loading overlay
+	let warpTypeNum      //An integer representing a warp length. See multiplayer.js for more info
 	let warpType
 	let warpLength
 
+	//Records the users vote to multiplayer.config, and uploads that and AuroraDB.db to the S3 bucket
   async function submitTurn() {
     console.log(currentUsername)
 		loading = true

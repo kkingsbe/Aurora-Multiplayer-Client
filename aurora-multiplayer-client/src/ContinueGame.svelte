@@ -1,16 +1,19 @@
 <script>
-  export let gameName
-  export let currentUsername
-  export let screen
-  export let gameData
-  export let currentTurn
-  export let shortestWarp
-  export let isUsersTurn
+	//Variables that this component accepts
+  export let gameName         //Stores the games name
+  export let currentUsername  //Stores the username of the currently logged in user
+  export let screen           //Stores the current screem
+  export let gameData         //Stores the parsed multiplayer.config file
+  export let currentTurn      //Stores the username of which players turn it currently is
+  export let shortestWarp     //Stores the string version of the shortest voted-for warp
+  export let isUsersTurn      //If it is the currently logged in users turn or not
 
+	//Import the needed node modules
 	var path = require('path')
 	var multiplayer = require(path.resolve(__dirname, "../src/multiplayer"))
 	const { dialog } = require('electron').remote
 
+	//Import the needed components
   import {Button, Form, FormGroup, Label, Input} from "sveltestrap"
 	import Header from "./header.svelte"
   import Loader from './Loader.svelte'
@@ -18,12 +21,42 @@
 	currentTurn = ""
 	shortestWarp = ""
 	isUsersTurn = false
-	let warpType
-	let warpTypeNum
+	let warpType 
+	let warpTypeNum      //An integer representing a warp length. See multiplayer.js for more info
 	let warpLength
-	let spinnerText = ""
-  let loading = false
-  
+	let spinnerText = "" //Stores the text to display under the spinner while loading
+  let loading = false  //Toggles the loading overlay
+	
+	//Downloads a game, reguardless of if it is the currently signed in users turn. When it is finally their turn and they run pullGame() to start their turn, the db will be overwritten
+  async function downloadGame() {
+		console.log("Pulling game")
+		let inGame = true
+		let error = false
+		isUsersTurn = true
+		loading = true
+		spinnerText = "Downloading db..."
+		await multiplayer.downloadGame(gameName)
+		.catch(err => {
+			console.log(err)
+			dialog.showMessageBox(null, {
+				type: "error",
+				buttons: ["OK"],
+				title: "Error",
+				message: "Game does not exist"
+			})
+			error = true
+			loading = false
+		})
+		if(error) return
+		loading = false
+		dialog.showMessageBox(null, {
+			type: "info",
+			buttons: ["OK"],
+			title: "Download complete",
+			message: `Download of ${gameName} complete.`
+		})
+	}
+		
   //Downloads the db and json file from S3 and makes sure that the user is in the game
 	async function pullGame() {
 		console.log("Pulling game")
@@ -31,7 +64,18 @@
 		isUsersTurn = true
 		loading = true
 		spinnerText = "Downloading db..."
-    gameData = await multiplayer.getConfig(gameName)
+		gameData = await multiplayer.getConfig(gameName)
+		.catch(err => {
+			console.log(err)
+			dialog.showMessageBox(null, {
+				type: "error",
+				buttons: ["OK"],
+				title: "Error",
+				message: "Game does not exist"
+			})
+			loading = false
+			return
+		})
 		await multiplayer.pullGame(gameName, currentUsername)
 		.catch(err => {
 			//We don't need to error out here if the user is in the game, but it is not their turn
@@ -152,6 +196,7 @@
     </FormGroup>
     <div class="button-group-horizontal-center">
       <Button color="success" type="button" on:click={pullGame}>Continue</Button>
+      <Button color="warning" type="button" on:click={downloadGame}>Download Game</Button>
     </div>
   </Form>
 </main>
