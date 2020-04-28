@@ -89,8 +89,24 @@
       <div class="table-cell">{shortestWarp}</div>
     </div>
   </div>
-  <h2>Players in this game</h2>
-  <div class="horiz-table">
+  <h2 style="margin-top: 20px;">Players in this game</h2>
+	<table>
+		<thead>
+			<tr>
+				<th>User</th>
+				<th>Has taken turn</th>
+			</tr>
+		</thead>
+		<tbody>
+			{#each gameData.users as user}
+			<tr>
+				<td>{user.name}</td>
+				<td>{user.hasPlayed ? '✓' : '✗'}</td>
+			</tr>
+			{/each}
+		</tbody>
+	</table>
+  <!--div class="horiz-table">
     <div class="horiz-table-col">
       <div class="table-cell">User</div>
       {#each gameData.users as user}
@@ -103,7 +119,7 @@
       <div class="table-cell">{user.hasPlayed ? '✓' : '✗'}</div>
       {/each}
     </div>
-  </div>
+  </div-->
   <Label style="margin-bottom:2px;margin-top:20px;">How long would you like to warp?</Label>
   <div class="button-group-horizontal-center" style="width:300px;margin-top:0;">
     <Input type="text" bind:value={warpLength}/>
@@ -202,6 +218,55 @@
 		border-bottom-right-radius: 10px;
 	}
 
+	table {
+		border-radius: 10px;
+		box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.6);
+		cursor: pointer;
+		background: none;
+	}
+
+	h1 {
+		font-weight: 100;
+		font-size: 5em;
+		margin: 10px;
+		color: white;
+	}
+
+	th {
+		min-width: 200px;
+		background: rgb(45, 43, 70);
+		color: white;
+		padding: 15px;
+		margin: 0;
+		font-size: 1.5em;
+	}
+	th:first-child {
+		border-top-left-radius: 10px;
+	}
+	th:last-child {
+		border-top-right-radius: 10px;
+	}
+
+	td {
+		text-align: center;
+		padding: 10px;
+		color: rgb(36, 36, 36);
+	}
+
+	tr {
+		background: rgb(235, 235, 235);
+	}
+	tr:nth-child(odd) {
+		background: whitesmoke;
+	}
+
+	tr:last-child td:first-child{
+		border-bottom-left-radius: 10px;
+	}
+
+	tr:last-child td:last-child{
+		border-bottom-right-radius: 10px;
+	}
 	@media (min-width: 640px) {
 		main {
 			max-width: none;

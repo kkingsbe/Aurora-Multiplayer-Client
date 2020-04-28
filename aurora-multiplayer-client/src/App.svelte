@@ -6,7 +6,7 @@
 	import PlayTurn from './PlayTurn.svelte'
 
 	//Declare the "global" variables used by this app
-	let screen = "home"       //This sets the current screen of the app. Value can be "home", "new game", "continue game", or "play turn"
+	let screen = "continue game"       //This sets the current screen of the app. Value can be "home", "new game", "continue game", or "play turn"
 	let numNewGameUsers = 1   //The number of users to be added to a new game (controls how many inputs are visible)
 	let newGameUsers = []     //An array to store the usernames when creating a new game
 	let gameName = ""         //Stores the game name
