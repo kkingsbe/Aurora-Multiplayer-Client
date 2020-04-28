@@ -12,7 +12,6 @@
 	let gameName = ""         //Stores the game name
 	let gameData              //Stores the parsed JSON data from the multiplayer.config file
 	let currentUsername = ""  //The current username of the player using the MP client
-	let currentTurn = ""      //The current turn inside of the game
 	let shortestWarp = ""     //The text version of the shortest warp
 	let hasPlayed = false     //If the currently logged in user has uploaded once this turn already. This is used to disable some elements
 </script>
@@ -26,9 +25,9 @@
 {/if}
 
 {#if screen == "continue game"}
-	<ContinueGame bind:gameData={gameData} bind:gameName={gameName} bind:currentUsername={currentUsername} bind:screen={screen} bind:currentTurn={currentTurn} bind:shortestWarp={shortestWarp} bind:hasPlayed={hasPlayed}></ContinueGame>
+	<ContinueGame bind:gameData={gameData} bind:gameName={gameName} bind:currentUsername={currentUsername} bind:screen={screen} bind:shortestWarp={shortestWarp} bind:hasPlayed={hasPlayed}></ContinueGame>
 {/if}
 
 {#if screen == "play turn"}
-	<PlayTurn bind:screen={screen} gameName={gameName} bind:gameData={gameData} bind:currentTurn={currentTurn} bind:currentUsername={currentUsername} bind:shortestWarp={shortestWarp} bind:hasPlayed={hasPlayed}></PlayTurn>
+	<PlayTurn bind:screen={screen} gameName={gameName} bind:gameData={gameData} bind:currentUsername={currentUsername} bind:shortestWarp={shortestWarp} bind:hasPlayed={hasPlayed}></PlayTurn>
 {/if}

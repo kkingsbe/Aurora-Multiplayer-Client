@@ -132,7 +132,6 @@ module.exports.submitTurn = async function(gameData, userName, warpVote) {
     await s3.upload(params, (err, data) => {
       if(err) reject(err)
       //console.log(`Successfully created game! ${data.Location}`)
-      //resolve(gameData.currentTurn)
     }).promise()
     resolve(newTurn)
   })
@@ -179,6 +178,14 @@ module.exports.turnStatus = function(config) {
   else return "turn in progress"
 }
 
+//Checks if user is present in this config
+module.exports.isUserInGame = function(config, username) {
+  for(let user of config.users) {
+    if(user.name === username) return true
+  }
+  return false
+}
+
 //Checks if the current user has already uploaded the DB once this increment
 module.exports.hasUserPlayed = function(config, username) {
   for(let user of config.users) {
@@ -187,37 +194,17 @@ module.exports.hasUserPlayed = function(config, username) {
   return false //should never be reached as long as the user is in the list
 }
 
-//Checks if the given user is in the given game, and that it is their turn, and then downloads AuroraDB.db and multiplayer.config
-module.exports.pullGame = async function(gameName, username) {
+//Downloads AuroraDB.db
+module.exports.pullGame = async function(gameName) {
   return new Promise(async (resolve, reject) => {
-    let gameData = false
-    let config = await this.getConfig(gameName).catch(err => {
-      reject(err)
-      return
-    })
-    let inGame = this.inGame(config, username)
-    let hasPlayed = this.hasUserPlayed(config, username)
-    if(!inGame) {
-      reject("User not in game")
-      return
-    }
-
     let filePath = path.resolve(gamePath, "")
-    //Write multiplayer.config to disk
-    fs.writeFileSync(`${filePath}/multiplayer.config`, JSON.stringify(config))
-
-    if(hasPlayed) {
-      reject("User has already played this turn")
-      return
-    }
-
     //Get AuroraDB.db file
     params = {
       Key: `${gameName}/AuroraDB.db`
     }
     let file = fs.createWriteStream(`${filePath}/AuroraDB.db`)
     s3.getObject(params).createReadStream().pipe(file)
-    file.on("close", () => {resolve(gameData)})
+    file.on("close", () => {resolve()})
   })
 }
 

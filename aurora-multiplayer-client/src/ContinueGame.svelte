@@ -4,7 +4,6 @@
   export let currentUsername  //Stores the username of the currently logged in user
   export let screen           //Stores the current screem
   export let gameData         //Stores the parsed multiplayer.config file
-  export let currentTurn      //Stores the username of which players turn it currently is
   export let shortestWarp     //Stores the string version of the shortest voted-for warp
 	export let hasPlayed        //If the currently logged in user has uploaded once this turn already
 
@@ -18,7 +17,6 @@
 	import Header from "./header.svelte"
   import Loader from './Loader.svelte'
 
-	currentTurn = ""
 	shortestWarp = ""
 	let warpType
 	let warpTypeNum      //An integer representing a warp length. See multiplayer.js for more info
@@ -35,8 +33,6 @@
     //is there a way to get an error back if a lock file is already present and you're trying to create one?
 
 		console.log("Pulling game")
-		let inGame = false
-    let hasPlayed = false //user has already played current turn
 		loading = true
 		spinnerText = "Fetching config..."
 		gameData = await multiplayer.getConfig(gameName)
@@ -51,9 +47,8 @@
 			loading = false
 			return
 		})
-    for(let user of gameData.users) {
-      if(user.name === currentUsername) inGame = true
-    }
+
+    let inGame = await multiplayer.isUserInGame(gameData, currentUsername)
     if(!inGame) { //TODO: immediately clear lock if user not in game
       loading = false
       dialog.showMessageBox(null, {
@@ -65,31 +60,23 @@
       return
     }
 
+    hasPlayed = await multiplayer.hasUserPlayed(gameData, currentUsername)
+
 		spinnerText = "Downloading db..."
-		await multiplayer.pullGame(gameName, currentUsername)
+		await multiplayer.pullGame(gameName)
 		.catch(err => {
-      if(err == "User has already played this turn") {
-        //We don't need to error out here if the user is in the game, but it is not their turn
-        inGame = true;
-        hasPlayed = true;
-      }
-			else {
-				dialog.showMessageBox(null, {
-					type: "error",
-					buttons: ["OK"],
-					title: "Error",
-					message: err
-				})
-				inGame = false
-        hasPlayed = true;
-			}
+			dialog.showMessageBox(null, {
+				type: "error",
+				buttons: ["OK"],
+				title: "Error",
+				message: err
+			})
 		})
 		loading = false
 
     if(!gameData || !inGame) return
     screen = "play turn"
-    console.log(screen)
-		gameName = gameData.gameName
+		//gameName = gameData.gameName
 
     let voteList = [] //make list of votes for comparison which is shortest
     for(let user of gameData.users) { //only count votes cast this turn
@@ -133,7 +120,6 @@
 			}
 
 			if(warpSeconds < shortestWarpSecs) {
-				console.log(warpSeconds)
 				shortestWarpSecs = warpSeconds
 				length = vote.length
 				shortestType = vote.type
@@ -168,14 +154,17 @@
 
 		//Check if this user can advance time
     let turnStatus = await multiplayer.turnStatus(gameData)
-		if(turnStatus === "ready for processing") { //hasPlayed flags are cleared on upload in this state
+    console.log("turnStatus: " + turnStatus)
+    console.log("hasPlayed: " + hasPlayed)
+		if(turnStatus === "ready for processing") { //user can advance time, play turn, upload. hasPlayed flags are cleared on upload in this state
 			dialog.showMessageBox(null, {
 				type: "info",
 				buttons: ["OK"],
 				title: "New round",
 				message: `All players have uploaded, please warp forwards ${length} ${warpType} before making your turn`
 			})
-		} else if(!hasPlayed && turnStatus === "last player") { //user can play turn, advance time, play another turn and then upload.
+      //if the player has already played they can update their turn, but time will not advance and hasPlayed flags not clear
+		} else if(!hasPlayed && turnStatus === "last player") { //user can play turn, advance time, play another turn and then upload. hasPlayed flags are cleared on upload in this state
       dialog.showMessageBox(null, {
         type: "info",
         buttons: ["OK"],

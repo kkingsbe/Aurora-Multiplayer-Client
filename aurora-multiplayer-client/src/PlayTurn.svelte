@@ -3,7 +3,6 @@
   export let screen           //Stores the current screem
   export let gameName         //Stores the games name
   export let gameData         //Stores the parsed multiplayer.config file
-  export let currentTurn      //Stores the username of which players turn it currently is
   export let currentUsername  //Stores the username of the currently logged in user
   export let shortestWarp     //Stores the string version of the shortest voted-for warp
 	export let hasPlayed        //If the currently logged in user has uploaded once this turn already
@@ -26,6 +25,18 @@
 
 	//Records the users vote to multiplayer.config, and uploads that and AuroraDB.db to the S3 bucket
   async function submitTurn() {
+
+    //abort if warp vote not filled out correctly
+    if(warpType === "default" || warpType.length === 0 || warpLength.length === 0) { //these variables are hella weird
+      dialog.showMessageBox(null, {
+        type: "warning",
+        buttons: ["OK"],
+        title: "Warp vote malformed",
+        message: "Please input how long you would like to advance time."
+      })
+      return
+    }
+
 		loading = true
 		spinnerText = "Uploading db..."
 		switch(warpType) {
@@ -53,7 +64,7 @@
     }
 		let newTurn = await multiplayer.submitTurn(gameData, currentUsername, {type: warpTypeNum, length: warpLength})
     let messageText = "Upload finished!"
-    if(newTurn) messageText += " You have played the first turn of the new incrment."
+    if(newTurn) messageText += " You have played the first turn of the new increment. If you didn't advance time, redownload and do so right now to update your turn."
 		loading = false
 		dialog.showMessageBox(null, {
 			type: "info",
@@ -97,7 +108,7 @@
   <div class="button-group-horizontal-center" style="width:300px;margin-top:0;">
     <Input type="text" bind:value={warpLength}/>
     <Input type="select" bind:value={warpType}>
-     <!--><option default>type</option><-->
+     <option value="default" default>Choose...</option>
       <option value="seconds">Seconds</option>
       <option value="minutes">Minutes</option>
       <option value="hours">Hours</option>
@@ -108,7 +119,8 @@
     </Input>
   </div>
   <div class="button-group-horizontal-center">
-    <Button type="button" color="success" disabled={hasPlayed} on:click={submitTurn}>Submit Turn</Button>
+    <Button type="button" color="success" on:click={submitTurn}>{hasPlayed ? "Update Turn" : "Submit Turn"}</Button>
+    <!--><Button type="button" color="success" disabled={hasPlayed} on:click={submitTurn}>Submit Turn</Button><-->
   </div>
 </main>
 
