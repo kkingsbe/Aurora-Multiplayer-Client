@@ -8,7 +8,7 @@
   h1 {
     position: absolute;
     top: 10px;
-		color: #3eb7db;
+		color: white;
 		text-transform: uppercase;
 		font-size: 3.5em;
 		font-weight: 100;

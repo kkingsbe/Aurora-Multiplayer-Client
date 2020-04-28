@@ -6,32 +6,44 @@
   export let gameData         //Stores the parsed multiplayer.config file
   export let shortestWarp     //Stores the string version of the shortest voted-for warp
 	export let hasPlayed        //If the currently logged in user has uploaded once this turn already
-
 	//Import the needed node modules
 	var path = require('path')
 	var multiplayer = require(path.resolve(__dirname, "../src/multiplayer"))
 	const { dialog } = require('electron').remote
-
 	//Import the needed components
   import {Button, Form, FormGroup, Label, Input} from "sveltestrap"
 	import Header from "./header.svelte"
   import Loader from './Loader.svelte'
-
 	shortestWarp = ""
 	let warpType
 	let warpTypeNum      //An integer representing a warp length. See multiplayer.js for more info
 	let warpLength
 	let spinnerText = "" //Stores the text to display under the spinner while loading
-  let loading = false  //Toggles the loading overlay
+	let loading = false  //Toggles the loading overlay
+	
+	//Downloads a game, reguardless of if it is the currently signed in users turn. When it is finally their turn and they run pullGame() to start their turn, the db will be overwritten
+  async function downloadGame() {
+		console.log("Pulling game")
+		let inGame = true
+		isUsersTurn = true
+		loading = true
+		spinnerText = "Downloading db..."
+		await multiplayer.downloadGame(gameName)
+		loading = false
+		dialog.showMessageBox(null, {
+			type: "info",
+			buttons: ["OK"],
+			title: "Download complete",
+			message: `Download of ${gameName} complete.`
+		})
+	}
 
   //Downloads the db and json file from S3 and makes sure that the user is in the game
 	async function pullGame() {
-
     //TODO: implement lock of db by uploading lock file with current user name to server before downloading config
     //check if lock file present and contains name other than self before downloading config, clear after upload.
     //There probably needs to be a way to manually delete it in case of error
     //is there a way to get an error back if a lock file is already present and you're trying to create one?
-
 		console.log("Pulling game")
 		loading = true
 		spinnerText = "Fetching config..."
@@ -47,7 +59,6 @@
 			loading = false
 			return
 		})
-
     let inGame = await multiplayer.isUserInGame(gameData, currentUsername)
     if(!inGame) { //TODO: immediately clear lock if user not in game
       loading = false
@@ -59,9 +70,7 @@
       })
       return
     }
-
     hasPlayed = await multiplayer.hasUserPlayed(gameData, currentUsername)
-
 		spinnerText = "Downloading db..."
 		await multiplayer.pullGame(gameName)
 		.catch(err => {
@@ -73,27 +82,22 @@
 			})
 		})
 		loading = false
-
     if(!gameData || !inGame) return
     screen = "play turn"
 		//gameName = gameData.gameName
-
     let voteList = [] //make list of votes for comparison which is shortest
     for(let user of gameData.users) { //only count votes cast this turn
       if(user.hasPlayed) {
         voteList.push(user.warpVote)
       }
     }
-
 		let shortestType = 10
 		//Gotta make sure that each vote is smaller than the starting value
 		let shortestWarpSecs = Number.MAX_VALUE
 		let warpType = ""
 		let length = 0
-
 		for(let vote of voteList) {
 			let warpSeconds = 0
-
 			//Convert the vote into seconds so it can be compared
 			switch(vote.type) {
 				case 1:
@@ -118,14 +122,12 @@
 					warpSeconds = vote.length * 31556926
 					break
 			}
-
 			if(warpSeconds < shortestWarpSecs) {
 				shortestWarpSecs = warpSeconds
 				length = vote.length
 				shortestType = vote.type
 			}
 		}
-
 		warpTypeNum = shortestType
 		switch(shortestType) {
 			case 1:
@@ -151,7 +153,6 @@
 				break
 		}
     shortestWarp = length + " " + warpType
-
 		//Check if this user can advance time
     let turnStatus = await multiplayer.turnStatus(gameData)
     console.log("turnStatus: " + turnStatus)
@@ -189,6 +190,7 @@
     </FormGroup>
     <div class="button-group-horizontal-center">
       <Button color="success" type="button" on:click={pullGame}>Continue</Button>
+      <Button color="warning" type="button" on:click={downloadGame}>Download Game</Button>
     </div>
   </Form>
 </main>
@@ -204,9 +206,8 @@
 		margin: 0 auto;
 		min-height: 100%;
 		color: white;
-		background: #203A43;
+		background: linear-gradient(45deg, #30cfd0, #330867);
 	}
-
 	.button-group-horizontal-center {
 		margin-top: 10px;
 		display: flex;
@@ -214,7 +215,6 @@
 		justify-content: center;
 		width: 100%;
 	}
-
 	@media (min-width: 640px) {
 		main {
 			max-width: none;

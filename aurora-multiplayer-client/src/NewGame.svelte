@@ -84,7 +84,7 @@
     margin: 0 auto;
     min-height: 100%;
     color: white;
-    background: #203A43;
+		background: linear-gradient(45deg, #30cfd0, #081667);
   }
 
   .button-group {
