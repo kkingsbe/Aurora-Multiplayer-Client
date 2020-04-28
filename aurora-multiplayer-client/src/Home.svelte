@@ -17,8 +17,8 @@
 <main>
   <Header text="Aurora Multiplayer"/>
   <div class="button-group">
-    <Button type="button" color="primary" on:click={newGamePage}>New Game</Button>
-    <Button type="button" color="secondary" on:click={continueGamePage}>Continue Existing Game</Button>
+    <Button type="button" color="info" on:click={newGamePage}>New Game</Button>
+    <Button type="button" color="warning" on:click={continueGamePage}>Continue Existing Game</Button>
   </div>
 </main>
 
