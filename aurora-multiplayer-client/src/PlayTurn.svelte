@@ -1,30 +1,44 @@
 <script>
+	//Variables that this component accepts
+  export let screen           //Stores the current screem
+  export let gameName         //Stores the games name
+  export let gameData         //Stores the parsed multiplayer.config file
+  export let currentUsername  //Stores the username of the currently logged in user
+  export let shortestWarp     //Stores the string version of the shortest voted-for warp
+	export let hasPlayed        //If the currently logged in user has uploaded once this turn already
+
+	//Import the needed node modules
   var path = require('path')
 	var multiplayer = require(path.resolve(__dirname, "../src/multiplayer"))
 	const { dialog } = require('electron').remote
 
+	//Import the needed components
 	import {Button, Form, FormGroup, Label, Input} from "sveltestrap"
 	import Header from "./header.svelte"
   import Loader from './Loader.svelte'
-  
-  export let screen
-  export let gameName
-  export let currentTurn
-  export let currentUsername
-  export let shortestWarp
-  export let isUsersTurn
-	
-	let spinnerText = ""
-	let loading = false
-	let warpTypeNum
+
+	let spinnerText = "" //Stores the text to display under the spinner while loading
+	let loading = false  //Toggles the loading overlay
+	let warpTypeNum      //An integer representing a warp length. See multiplayer.js for more info
 	let warpType
 	let warpLength
 
+	//Records the users vote to multiplayer.config, and uploads that and AuroraDB.db to the S3 bucket
   async function submitTurn() {
-    console.log(currentUsername)
+
+    //abort if warp vote not filled out correctly
+    if(warpType === "default" || warpType.length === 0 || warpLength.length === 0) { //these variables are hella weird
+      dialog.showMessageBox(null, {
+        type: "warning",
+        buttons: ["OK"],
+        title: "Warp vote malformed",
+        message: "Please input how long you would like to advance time."
+      })
+      return
+    }
+
 		loading = true
 		spinnerText = "Uploading db..."
-		console.log(warpType)
 		switch(warpType) {
 			case "seconds":
 				warpTypeNum = 1
@@ -48,14 +62,15 @@
 				warpTypeNum = 7
 				break
     }
-    console.log(currentUsername)
-		let nextPlayer = await multiplayer.submitTurn(gameName, currentUsername, {type: warpTypeNum, length: warpLength, madeBy: currentUsername})
+		let newTurn = await multiplayer.submitTurn(gameData, currentUsername, {type: warpTypeNum, length: warpLength})
+    let messageText = "Upload finished!"
+    if(newTurn) messageText += " You have played the first turn of the new increment. If you didn't advance time, redownload and do so right now to update your turn."
 		loading = false
 		dialog.showMessageBox(null, {
 			type: "info",
 			buttons: ["OK"],
 			title: "Turn Complete",
-			message: `Turn complete! It is now ${nextPlayer}'s turn.`
+			message: messageText
 		})
 		screen = "home"
 	}
@@ -67,20 +82,33 @@
   <div class="horiz-table">
     <div class="horiz-table-header">
       <div class="table-header-cell">Game Name</div>
-      <div class="table-header-cell">Current Turn</div>
       <div class="table-header-cell">Next Warp Length</div>
     </div>
     <div class="horiz-table-col">
       <div class="table-cell">{gameName}</div>
-      <div class="table-cell">{currentTurn}</div>
       <div class="table-cell">{shortestWarp}</div>
+    </div>
+  </div>
+  <h2>Players in this game</h2>
+  <div class="horiz-table">
+    <div class="horiz-table-col">
+      <div class="table-cell">User</div>
+      {#each gameData.users as user}
+      <div class="table-cell">{user.name}</div>
+      {/each}
+    </div>
+    <div class="horiz-table-col">
+      <div class="table-cell">Has taken turn</div>
+      {#each gameData.users as user}
+      <div class="table-cell">{user.hasPlayed ? '✓' : '✗'}</div>
+      {/each}
     </div>
   </div>
   <Label style="margin-bottom:2px;margin-top:20px;">How long would you like to warp?</Label>
   <div class="button-group-horizontal-center" style="width:300px;margin-top:0;">
     <Input type="text" bind:value={warpLength}/>
     <Input type="select" bind:value={warpType}>
-     <!--><option default>type</option><-->
+     <option value="default" default>Choose...</option>
       <option value="seconds">Seconds</option>
       <option value="minutes">Minutes</option>
       <option value="hours">Hours</option>
@@ -91,7 +119,8 @@
     </Input>
   </div>
   <div class="button-group-horizontal-center">
-    <Button type="button" color="success" disabled={!isUsersTurn} on:click={submitTurn}>Submit Turn</Button>
+    <Button type="button" color="success" on:click={submitTurn}>{hasPlayed ? "Update Turn" : "Submit Turn"}</Button>
+    <!--><Button type="button" color="success" disabled={hasPlayed} on:click={submitTurn}>Submit Turn</Button><-->
   </div>
 </main>
 
