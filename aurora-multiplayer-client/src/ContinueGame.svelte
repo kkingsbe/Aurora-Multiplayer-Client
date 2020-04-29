@@ -42,14 +42,56 @@
     //check if lock file present and contains name other than self before downloading config, clear after upload.
     //There probably needs to be a way to manually delete it in case of error
 		loading = true
+    spinnerText = "Checking if game exists..."
+    if(!(await multiplayer.gameExists(gameName))) {
+      dialog.showMessageBox(null, {
+        type: "error",
+        buttons: ["OK"],
+        title: "Game does not exist",
+        message: "No game by that name exists"
+      })
+      loading = false
+      return
+    }
     spinnerText = "Checking lock file..."
     let lock = await multiplayer.checkLock(gameName)
     .catch(err => {
-      console.log("Error retrieving lock file: " + err)
-      //if error not 404, actually error
+      if(err.toString().includes("NoSuchKey")) { //no lock! This is what we want.
+        return "" //no player has a lock on him, return empty string
+      } else { //if error not 404, actually error
+        dialog.showMessageBox(null, {
+  				type: "error",
+  				buttons: ["OK"],
+  				title: "Error",
+  				message: "Error reading lock file: " + err
+  			})
+  			loading = false
+  			return
+      }
+    })
+    console.log("lock: " + lock)
+    if(lock !== "" && lock !== currentUsername) { //if the lock is neither empty nor contains our username, then the game is locked
+      dialog.showMessageBox(null, {
+        type: "warning",
+        buttons: ["OK"],
+        title: "Game Locked",
+        message: "Game currently being played by " + lock
+      })
+      loading = false
+      return
     }
-
-
+    spinnerText = "Setting lock file..."
+    await multiplayer.createLock(gameName, currentUsername)
+    .catch(err => {
+      dialog.showMessageBox(null, {
+				type: "error",
+				buttons: ["OK"],
+				title: "Error",
+				message: "Error creating lock file: " + err
+			})
+			loading = false
+			return
+    })
 		spinnerText = "Fetching config..."
 		gameData = await multiplayer.getConfig(gameName)
 		.catch(err => {

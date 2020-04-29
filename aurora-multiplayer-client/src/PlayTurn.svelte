@@ -25,7 +25,6 @@
 
 	//Records the users vote to multiplayer.config, and uploads that and AuroraDB.db to the S3 bucket
   async function submitTurn() {
-
     //abort if warp vote not filled out correctly
     if(warpType === "default" || warpType.length === 0 || warpLength.length === 0) { //these variables are hella weird
       dialog.showMessageBox(null, {
@@ -36,7 +35,6 @@
       })
       return
     }
-
 		loading = true
 		spinnerText = "Uploading DB..."
 		switch(warpType) {
@@ -63,8 +61,22 @@
 				break
     }
 		let newTurn = await multiplayer.submitTurn(gameData, currentUsername, {type: warpTypeNum, length: warpLength})
+
+    spinnerText = "Deleting lock file..."
+    await multiplayer.deleteLock(gameName)
+    .catch(err => {
+  		dialog.showMessageBox(null, {
+  			type: "error",
+  			buttons: ["OK"],
+  			title: "Can't delete lock file",
+  			message: "Error deleting lock file: " + err + "\nCopy your AuroraDB.db file, download the turn again, overwrite the downloaded DB file with yours and try to upload again."
+  		})
+      loading = false
+      return
+    })
+
     let messageText = "Upload finished!"
-    if(newTurn) messageText += " You have played the first turn of the new increment. If you didn't advance time, redownload and do so right now to update your turn."
+    if(newTurn) messageText += "\nYou have played the first turn of the new increment. If you didn't advance time, redownload and do so right now to update your turn."
 		loading = false
 		dialog.showMessageBox(null, {
 			type: "info",

@@ -20,11 +20,18 @@ const s3 = new AWS.S3({
   params: {Bucket: BUCKET_NAME}
 })
 
-//Preforms the initial upload of the game to the AWS S3 bucket
+//Preforms the initial upload of the game to the AWS S3 bucket if no game with that name already exists
 module.exports.uploadGame = async function(gameName, users) {
   return new Promise(async (resolve, reject) => {
     //let time = await this.currentTime(gameName)
-
+    if(users.length <= 0) {
+      reject("User list empty")
+      return
+    }
+    if(await this.gameExists(gameName)) {
+      reject("Game already exists")
+      return
+    }
     //make user objects out of username string list
     function UserObject(name) {
       this.name = name
@@ -44,7 +51,6 @@ module.exports.uploadGame = async function(gameName, users) {
     for(let name of users) {
       userObjects.push(new UserObject(name))
     }
-
     let gameData = {
       gameName: gameName,
       //time: time,
@@ -70,7 +76,7 @@ module.exports.uploadGame = async function(gameName, users) {
       resolve(true)
     }).promise()
 
-    resolve(true)
+    resolve("Game uploaded")
   })
 }
 
@@ -167,15 +173,31 @@ module.exports.pullGame = async function(gameName) {
   })
 }
 
+//returns true if a game with the provided name exists, determined by a multiplayer.config file being present. Returns false on error or if not present.
+module.exports.gameExists = async function(gameName) {
+  return new Promise((resolve, reject) => {
+    const params = {
+      Key: `${gameName}/multiplayer.config`
+    }
+    s3.headObject(params, (err, data) => {
+      if (err) {
+        console.log("Err in gameExists: " + err)
+        resolve(false)
+        return
+      }
+      resolve(true)
+    })
+  })
+}
+
 //Gets lock file for game. Will either return no lock or user which the game is currently locked for or error
 module.exports.checkLock = async function(gameName) {
-  return new Promise((resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
     const params = {
       Key: `${gameName}/lock`
     }
     s3.getObject(params, (err, data) => {
       if (err) {
-        console.log("checkLock reports err:" + err)
         reject(err)
         return
       }
@@ -186,7 +208,7 @@ module.exports.checkLock = async function(gameName) {
 
 //Creates new lock file containing given username. Does not throw error if a lock is being overwritten! Use getLock first to determine if a game already has a lock file present.
 module.exports.createLock = async function(gameName, userName) {
-  return new Promise((resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
     params = {
       Key: `${gameName}/lock`,
       Body: userName
@@ -203,7 +225,7 @@ module.exports.createLock = async function(gameName, userName) {
 
 //Deletes lock file for game, to be used after a user has uploaded
 module.exports.deleteLock = async function(gameName) {
-  return new Promise((resolve, reject) => {
+  return new Promise(async (resolve, reject) => {
     const params = {
       Key: `${gameName}/lock`
      }
