@@ -51,7 +51,7 @@
 <main>
   <Loader spinnerText={spinnerText} loading={loading}></Loader>
   <Header text="New Game"/>
-  <Form>
+  <Form style="margin-top: 70px;">
     <FormGroup>
       <Label>Game Name</Label>
       <Input id="gameNameInput" bind:value = {gameName}/>
@@ -84,7 +84,7 @@
     margin: 0 auto;
     min-height: 100%;
     color: white;
-    background: #203A43;
+		background: linear-gradient(45deg, #30cfd0, #081667);
   }
 
   .button-group {
