@@ -38,7 +38,7 @@
     }
 
 		loading = true
-		spinnerText = "Uploading db..."
+		spinnerText = "Uploading DB..."
 		switch(warpType) {
 			case "seconds":
 				warpTypeNum = 1

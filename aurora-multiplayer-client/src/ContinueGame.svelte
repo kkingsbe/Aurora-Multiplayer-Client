@@ -20,15 +20,13 @@
 	let warpLength
 	let spinnerText = "" //Stores the text to display under the spinner while loading
 	let loading = false  //Toggles the loading overlay
-	
-	//Downloads a game, reguardless of if it is the currently signed in users turn. When it is finally their turn and they run pullGame() to start their turn, the db will be overwritten
-  async function downloadGame() {
-		console.log("Pulling game")
-		let inGame = true
-		isUsersTurn = true
+
+	//Downloads a game, reguardless of DB lock. They will not be able to reupload. They will later have to run pullGame() to start their turn, this db will be overwritten.
+  async function downloadDB() {
+		console.log("Downloading DB")
 		loading = true
-		spinnerText = "Downloading db..."
-		await multiplayer.downloadGame(gameName)
+		spinnerText = "Downloading DB..."
+		await multiplayer.pullGame(gameName)
 		loading = false
 		dialog.showMessageBox(null, {
 			type: "info",
@@ -43,9 +41,15 @@
     //TODO: implement lock of db by uploading lock file with current user name to server before downloading config
     //check if lock file present and contains name other than self before downloading config, clear after upload.
     //There probably needs to be a way to manually delete it in case of error
-    //is there a way to get an error back if a lock file is already present and you're trying to create one?
-		console.log("Pulling game")
 		loading = true
+    spinnerText = "Checking lock file..."
+    let lock = await multiplayer.checkLock(gameName)
+    .catch(err => {
+      console.log("Error retrieving lock file: " + err)
+      //if error not 404, actually error
+    }
+
+
 		spinnerText = "Fetching config..."
 		gameData = await multiplayer.getConfig(gameName)
 		.catch(err => {
@@ -71,7 +75,7 @@
       return
     }
     hasPlayed = await multiplayer.hasUserPlayed(gameData, currentUsername)
-		spinnerText = "Downloading db..."
+		spinnerText = "Downloading DB..."
 		await multiplayer.pullGame(gameName)
 		.catch(err => {
 			dialog.showMessageBox(null, {
@@ -189,8 +193,8 @@
       <Input bind:value={currentUsername}/>
     </FormGroup>
     <div class="button-group-horizontal-center">
-      <Button color="success" type="button" on:click={pullGame}>Continue</Button>
-      <Button color="warning" type="button" on:click={downloadGame}>Download Game</Button>
+      <Button color="success" type="button" on:click={pullGame}>Play Turn</Button>
+      <Button color="warning" type="button" on:click={downloadDB}>Download DB</Button>
     </div>
   </Form>
 </main>
