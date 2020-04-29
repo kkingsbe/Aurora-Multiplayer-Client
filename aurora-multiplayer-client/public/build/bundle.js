@@ -5658,7 +5658,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (56:6) <Label>
+    // (67:6) <Label>
     function create_default_slot_7(ctx) {
     	let t;
 
@@ -5678,14 +5678,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_7.name,
     		type: "slot",
-    		source: "(56:6) <Label>",
+    		source: "(67:6) <Label>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (55:4) <FormGroup>
+    // (66:4) <FormGroup>
     function create_default_slot_6(ctx) {
     	let t;
     	let updating_value;
@@ -5764,14 +5764,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_6.name,
     		type: "slot",
-    		source: "(55:4) <FormGroup>",
+    		source: "(66:4) <FormGroup>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (61:6) <Label>
+    // (72:6) <Label>
     function create_default_slot_5(ctx) {
     	let t;
 
@@ -5791,14 +5791,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_5.name,
     		type: "slot",
-    		source: "(61:6) <Label>",
+    		source: "(72:6) <Label>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (62:6) {#each Array(numNewGameUsers) as _, i}
+    // (73:6) {#each Array(numNewGameUsers) as _, i}
     function create_each_block(ctx) {
     	let updating_value;
     	let current;
@@ -5854,14 +5854,14 @@ var app = (function () {
     		block,
     		id: create_each_block.name,
     		type: "each",
-    		source: "(62:6) {#each Array(numNewGameUsers) as _, i}",
+    		source: "(73:6) {#each Array(numNewGameUsers) as _, i}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (60:4) <FormGroup>
+    // (71:4) <FormGroup>
     function create_default_slot_4(ctx) {
     	let t;
     	let each_1_anchor;
@@ -5978,14 +5978,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_4.name,
     		type: "slot",
-    		source: "(60:4) <FormGroup>",
+    		source: "(71:4) <FormGroup>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (67:6) <Button color="primary" type="button" id="addUserBtn" on:click={incrementUsers}>
+    // (78:6) <Button color="primary" type="button" id="addUserBtn" on:click={incrementUsers}>
     function create_default_slot_3(ctx) {
     	let t;
 
@@ -6005,14 +6005,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_3.name,
     		type: "slot",
-    		source: "(67:6) <Button color=\\\"primary\\\" type=\\\"button\\\" id=\\\"addUserBtn\\\" on:click={incrementUsers}>",
+    		source: "(78:6) <Button color=\\\"primary\\\" type=\\\"button\\\" id=\\\"addUserBtn\\\" on:click={incrementUsers}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (68:6) <Button color="danger" type="button" id="addUserBtn" on:click={decrementUsers}>
+    // (79:6) <Button color="danger" type="button" id="addUserBtn" on:click={decrementUsers}>
     function create_default_slot_2(ctx) {
     	let t;
 
@@ -6032,14 +6032,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_2.name,
     		type: "slot",
-    		source: "(68:6) <Button color=\\\"danger\\\" type=\\\"button\\\" id=\\\"addUserBtn\\\" on:click={decrementUsers}>",
+    		source: "(79:6) <Button color=\\\"danger\\\" type=\\\"button\\\" id=\\\"addUserBtn\\\" on:click={decrementUsers}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (71:6) <Button color="success" type="button" on:click={uploadGame}>
+    // (82:6) <Button color="success" type="button" on:click={uploadGame}>
     function create_default_slot_1$1(ctx) {
     	let t;
 
@@ -6059,14 +6059,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_1$1.name,
     		type: "slot",
-    		source: "(71:6) <Button color=\\\"success\\\" type=\\\"button\\\" on:click={uploadGame}>",
+    		source: "(82:6) <Button color=\\\"success\\\" type=\\\"button\\\" on:click={uploadGame}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (54:2) <Form style="margin-top: 70px;">
+    // (65:2) <Form style="margin-top: 70px;">
     function create_default_slot$1(ctx) {
     	let t0;
     	let t1;
@@ -6144,9 +6144,9 @@ var app = (function () {
     			div1 = element("div");
     			create_component(button2.$$.fragment);
     			attr_dev(div0, "class", "button-group svelte-1wacjmu");
-    			add_location(div0, file$8, 65, 4, 2222);
+    			add_location(div0, file$8, 76, 4, 2548);
     			attr_dev(div1, "class", "button-group-horizontal-center svelte-1wacjmu");
-    			add_location(div1, file$8, 69, 4, 2478);
+    			add_location(div1, file$8, 80, 4, 2804);
     		},
     		m: function mount(target, anchor) {
     			mount_component(formgroup0, target, anchor);
@@ -6234,7 +6234,7 @@ var app = (function () {
     		block,
     		id: create_default_slot$1.name,
     		type: "slot",
-    		source: "(54:2) <Form style=\\\"margin-top: 70px;\\\">",
+    		source: "(65:2) <Form style=\\\"margin-top: 70px;\\\">",
     		ctx
     	});
 
@@ -6278,7 +6278,7 @@ var app = (function () {
     			t1 = space();
     			create_component(form.$$.fragment);
     			attr_dev(main, "class", "svelte-1wacjmu");
-    			add_location(main, file$8, 50, 0, 1734);
+    			add_location(main, file$8, 61, 0, 2064);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -6366,12 +6366,14 @@ var app = (function () {
     		$$invalidate(4, loading = true);
     		$$invalidate(3, spinnerText = "Creating Game...");
     		console.log(`Users: ${newGameUsers}`);
-    		let success = await multiplayer.uploadGame(gameName, newGameUsers);
+
+    		let success = await multiplayer.uploadGame(gameName, newGameUsers).catch(err => {
+    			return err.toString();
+    		});
+
     		console.log(success);
 
-    		if (success) {
-    			$$invalidate(4, loading = false);
-
+    		if (success === "Game uploaded") {
     			dialog.showMessageBox(null, {
     				type: "info",
     				buttons: ["OK"],
@@ -6379,7 +6381,17 @@ var app = (function () {
     				message: `Successfully uploaded db file`
     			});
 
+    			$$invalidate(4, loading = false);
     			$$invalidate(8, screen = "home");
+    		} else if (success === "Game already exists") {
+    			dialog.showMessageBox(null, {
+    				type: "error",
+    				buttons: ["OK"],
+    				title: "Name taken",
+    				message: `Game with this name already exists`
+    			});
+
+    			$$invalidate(4, loading = false);
     		}
     	}
 
@@ -6540,7 +6552,7 @@ var app = (function () {
     const { console: console_1$2 } = globals;
     const file$9 = "src\\ContinueGame.svelte";
 
-    // (184:6) <Label>
+    // (230:6) <Label>
     function create_default_slot_6$1(ctx) {
     	let t;
 
@@ -6560,14 +6572,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_6$1.name,
     		type: "slot",
-    		source: "(184:6) <Label>",
+    		source: "(230:6) <Label>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (183:4) <FormGroup>
+    // (229:4) <FormGroup>
     function create_default_slot_5$1(ctx) {
     	let t;
     	let updating_value;
@@ -6646,14 +6658,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_5$1.name,
     		type: "slot",
-    		source: "(183:4) <FormGroup>",
+    		source: "(229:4) <FormGroup>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (188:6) <Label>
+    // (234:6) <Label>
     function create_default_slot_4$1(ctx) {
     	let t;
 
@@ -6673,14 +6685,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_4$1.name,
     		type: "slot",
-    		source: "(188:6) <Label>",
+    		source: "(234:6) <Label>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (187:4) <FormGroup>
+    // (233:4) <FormGroup>
     function create_default_slot_3$1(ctx) {
     	let t;
     	let updating_value;
@@ -6759,20 +6771,20 @@ var app = (function () {
     		block,
     		id: create_default_slot_3$1.name,
     		type: "slot",
-    		source: "(187:4) <FormGroup>",
+    		source: "(233:4) <FormGroup>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (192:6) <Button color="success" type="button" on:click={pullGame}>
+    // (238:6) <Button color="success" type="button" on:click={pullGame}>
     function create_default_slot_2$1(ctx) {
     	let t;
 
     	const block = {
     		c: function create() {
-    			t = text("Continue");
+    			t = text("Play Turn");
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, t, anchor);
@@ -6786,20 +6798,20 @@ var app = (function () {
     		block,
     		id: create_default_slot_2$1.name,
     		type: "slot",
-    		source: "(192:6) <Button color=\\\"success\\\" type=\\\"button\\\" on:click={pullGame}>",
+    		source: "(238:6) <Button color=\\\"success\\\" type=\\\"button\\\" on:click={pullGame}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (193:6) <Button color="warning" type="button" on:click={downloadGame}>
+    // (239:6) <Button color="warning" type="button" on:click={downloadDB}>
     function create_default_slot_1$2(ctx) {
     	let t;
 
     	const block = {
     		c: function create() {
-    			t = text("Download Game");
+    			t = text("Download DB");
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, t, anchor);
@@ -6813,14 +6825,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_1$2.name,
     		type: "slot",
-    		source: "(193:6) <Button color=\\\"warning\\\" type=\\\"button\\\" on:click={downloadGame}>",
+    		source: "(239:6) <Button color=\\\"warning\\\" type=\\\"button\\\" on:click={downloadDB}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (182:2) <Form>
+    // (228:2) <Form>
     function create_default_slot$2(ctx) {
     	let t0;
     	let t1;
@@ -6866,7 +6878,7 @@ var app = (function () {
     			$$inline: true
     		});
 
-    	button1.$on("click", /*downloadGame*/ ctx[4]);
+    	button1.$on("click", /*downloadDB*/ ctx[4]);
 
     	const block = {
     		c: function create() {
@@ -6879,7 +6891,7 @@ var app = (function () {
     			t2 = space();
     			create_component(button1.$$.fragment);
     			attr_dev(div, "class", "button-group-horizontal-center svelte-17pewia");
-    			add_location(div, file$9, 190, 4, 6596);
+    			add_location(div, file$9, 236, 4, 7982);
     		},
     		m: function mount(target, anchor) {
     			mount_component(formgroup0, target, anchor);
@@ -6952,7 +6964,7 @@ var app = (function () {
     		block,
     		id: create_default_slot$2.name,
     		type: "slot",
-    		source: "(182:2) <Form>",
+    		source: "(228:2) <Form>",
     		ctx
     	});
 
@@ -6995,7 +7007,7 @@ var app = (function () {
     			t1 = space();
     			create_component(form.$$.fragment);
     			attr_dev(main, "class", "svelte-17pewia");
-    			add_location(main, file$9, 178, 0, 6259);
+    			add_location(main, file$9, 224, 0, 7645);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -7074,13 +7086,12 @@ var app = (function () {
     	let spinnerText = ""; //Stores the text to display under the spinner while loading
     	let loading = false; //Toggles the loading overlay
 
-    	//Downloads a game, reguardless of if it is the currently signed in users turn. When it is finally their turn and they run pullGame() to start their turn, the db will be overwritten
-    	async function downloadGame() {
-    		console.log("Pulling game");
-    		isUsersTurn = true;
+    	//Downloads a game, reguardless of DB lock. They will not be able to reupload. They will later have to run pullGame() to start their turn, this db will be overwritten.
+    	async function downloadDB() {
+    		console.log("Downloading DB");
     		$$invalidate(3, loading = true);
-    		$$invalidate(2, spinnerText = "Downloading db...");
-    		await multiplayer.downloadGame(gameName);
+    		$$invalidate(2, spinnerText = "Downloading DB...");
+    		await multiplayer.pullGame(gameName);
     		$$invalidate(3, loading = false);
 
     		dialog.showMessageBox(null, {
@@ -7096,10 +7107,71 @@ var app = (function () {
     		//TODO: implement lock of db by uploading lock file with current user name to server before downloading config
     		//check if lock file present and contains name other than self before downloading config, clear after upload.
     		//There probably needs to be a way to manually delete it in case of error
-    		//is there a way to get an error back if a lock file is already present and you're trying to create one?
-    		console.log("Pulling game");
-
     		$$invalidate(3, loading = true);
+
+    		$$invalidate(2, spinnerText = "Checking if game exists...");
+
+    		if (!await multiplayer.gameExists(gameName)) {
+    			dialog.showMessageBox(null, {
+    				type: "error",
+    				buttons: ["OK"],
+    				title: "Game does not exist",
+    				message: "No game by that name exists"
+    			});
+
+    			$$invalidate(3, loading = false);
+    			return;
+    		}
+
+    		$$invalidate(2, spinnerText = "Checking lock file...");
+
+    		let lock = await multiplayer.checkLock(gameName).catch(err => {
+    			if (err.toString().includes("NoSuchKey")) {
+    				//no lock! This is what we want.
+    				return ""; //no player has a lock on him, return empty string
+    			} else {
+    				//if error not 404, actually error
+    				dialog.showMessageBox(null, {
+    					type: "error",
+    					buttons: ["OK"],
+    					title: "Error",
+    					message: "Error reading lock file: " + err
+    				});
+
+    				$$invalidate(3, loading = false);
+    				return;
+    			}
+    		});
+
+    		console.log("lock: " + lock);
+
+    		if (lock !== "" && lock !== currentUsername) {
+    			//if the lock is neither empty nor contains our username, then the game is locked
+    			dialog.showMessageBox(null, {
+    				type: "warning",
+    				buttons: ["OK"],
+    				title: "Game Locked",
+    				message: "Game currently being played by " + lock
+    			});
+
+    			$$invalidate(3, loading = false);
+    			return;
+    		}
+
+    		$$invalidate(2, spinnerText = "Setting lock file...");
+
+    		await multiplayer.createLock(gameName, currentUsername).catch(err => {
+    			dialog.showMessageBox(null, {
+    				type: "error",
+    				buttons: ["OK"],
+    				title: "Error",
+    				message: "Error creating lock file: " + err
+    			});
+
+    			$$invalidate(3, loading = false);
+    			return;
+    		});
+
     		$$invalidate(2, spinnerText = "Fetching config...");
 
     		$$invalidate(7, gameData = await multiplayer.getConfig(gameName).catch(err => {
@@ -7133,7 +7205,7 @@ var app = (function () {
     		}
 
     		$$invalidate(9, hasPlayed = await multiplayer.hasUserPlayed(gameData, currentUsername));
-    		$$invalidate(2, spinnerText = "Downloading db...");
+    		$$invalidate(2, spinnerText = "Downloading DB...");
 
     		await multiplayer.pullGame(gameName).catch(err => {
     			dialog.showMessageBox(null, {
@@ -7311,7 +7383,7 @@ var app = (function () {
     		warpLength,
     		spinnerText,
     		loading,
-    		downloadGame,
+    		downloadDB,
     		pullGame
     	});
 
@@ -7340,7 +7412,7 @@ var app = (function () {
     		currentUsername,
     		spinnerText,
     		loading,
-    		downloadGame,
+    		downloadDB,
     		pullGame,
     		screen,
     		gameData,
@@ -7463,7 +7535,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (101:3) {#each gameData.users as user}
+    // (113:3) {#each gameData.users as user}
     function create_each_block$1(ctx) {
     	let tr;
     	let td0;
@@ -7485,11 +7557,11 @@ var app = (function () {
     			t2 = text(t2_value);
     			t3 = space();
     			attr_dev(td0, "class", "svelte-p26ajs");
-    			add_location(td0, file$a, 102, 4, 3317);
+    			add_location(td0, file$a, 114, 4, 3775);
     			attr_dev(td1, "class", "svelte-p26ajs");
-    			add_location(td1, file$a, 103, 4, 3343);
+    			add_location(td1, file$a, 115, 4, 3801);
     			attr_dev(tr, "class", "svelte-p26ajs");
-    			add_location(tr, file$a, 101, 3, 3307);
+    			add_location(tr, file$a, 113, 3, 3765);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, tr, anchor);
@@ -7513,14 +7585,14 @@ var app = (function () {
     		block,
     		id: create_each_block$1.name,
     		type: "each",
-    		source: "(101:3) {#each gameData.users as user}",
+    		source: "(113:3) {#each gameData.users as user}",
     		ctx
     	});
 
     	return block;
     }
 
-    // (109:2) <Label style="margin-bottom:2px;margin-top:20px;">
+    // (121:2) <Label style="margin-bottom:2px;margin-top:20px;">
     function create_default_slot_2$2(ctx) {
     	let t;
 
@@ -7540,14 +7612,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_2$2.name,
     		type: "slot",
-    		source: "(109:2) <Label style=\\\"margin-bottom:2px;margin-top:20px;\\\">",
+    		source: "(121:2) <Label style=\\\"margin-bottom:2px;margin-top:20px;\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (112:4) <Input type="select" bind:value={warpType}>
+    // (124:4) <Input type="select" bind:value={warpType}>
     function create_default_slot_1$3(ctx) {
     	let option0;
     	let t1;
@@ -7593,28 +7665,28 @@ var app = (function () {
     			option0.__value = "default";
     			option0.value = option0.__value;
     			attr_dev(option0, "default", "");
-    			add_location(option0, file$a, 112, 5, 3707);
+    			add_location(option0, file$a, 124, 5, 4165);
     			option1.__value = "seconds";
     			option1.value = option1.__value;
-    			add_location(option1, file$a, 113, 6, 3765);
+    			add_location(option1, file$a, 125, 6, 4223);
     			option2.__value = "minutes";
     			option2.value = option2.__value;
-    			add_location(option2, file$a, 114, 6, 3813);
+    			add_location(option2, file$a, 126, 6, 4271);
     			option3.__value = "hours";
     			option3.value = option3.__value;
-    			add_location(option3, file$a, 115, 6, 3861);
+    			add_location(option3, file$a, 127, 6, 4319);
     			option4.__value = "days";
     			option4.value = option4.__value;
-    			add_location(option4, file$a, 116, 6, 3905);
+    			add_location(option4, file$a, 128, 6, 4363);
     			option5.__value = "weeks";
     			option5.value = option5.__value;
-    			add_location(option5, file$a, 117, 6, 3947);
+    			add_location(option5, file$a, 129, 6, 4405);
     			option6.__value = "months";
     			option6.value = option6.__value;
-    			add_location(option6, file$a, 118, 6, 3991);
+    			add_location(option6, file$a, 130, 6, 4449);
     			option7.__value = "years";
     			option7.value = option7.__value;
-    			add_location(option7, file$a, 119, 6, 4037);
+    			add_location(option7, file$a, 131, 6, 4495);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, option0, anchor);
@@ -7656,14 +7728,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_1$3.name,
     		type: "slot",
-    		source: "(112:4) <Input type=\\\"select\\\" bind:value={warpType}>",
+    		source: "(124:4) <Input type=\\\"select\\\" bind:value={warpType}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (124:4) <Button type="button" color="success" on:click={submitTurn}>
+    // (136:4) <Button type="button" color="success" on:click={submitTurn}>
     function create_default_slot$3(ctx) {
     	let t_value = (/*hasPlayed*/ ctx[3] ? "Update Turn" : "Submit Turn") + "";
     	let t;
@@ -7687,7 +7759,7 @@ var app = (function () {
     		block,
     		id: create_default_slot$3.name,
     		type: "slot",
-    		source: "(124:4) <Button type=\\\"button\\\" color=\\\"success\\\" on:click={submitTurn}>",
+    		source: "(136:4) <Button type=\\\"button\\\" color=\\\"success\\\" on:click={submitTurn}>",
     		ctx
     	});
 
@@ -7854,39 +7926,39 @@ var app = (function () {
     			div8 = element("div");
     			create_component(button.$$.fragment);
     			attr_dev(div0, "class", "table-header-cell svelte-p26ajs");
-    			add_location(div0, file$a, 83, 6, 2821);
+    			add_location(div0, file$a, 95, 6, 3279);
     			attr_dev(div1, "class", "table-header-cell svelte-p26ajs");
-    			add_location(div1, file$a, 84, 6, 2875);
+    			add_location(div1, file$a, 96, 6, 3333);
     			attr_dev(div2, "class", "horiz-table-header svelte-p26ajs");
-    			add_location(div2, file$a, 82, 4, 2781);
+    			add_location(div2, file$a, 94, 4, 3239);
     			attr_dev(div3, "class", "table-cell svelte-p26ajs");
-    			add_location(div3, file$a, 87, 6, 2983);
+    			add_location(div3, file$a, 99, 6, 3441);
     			attr_dev(div4, "class", "table-cell svelte-p26ajs");
-    			add_location(div4, file$a, 88, 6, 3031);
+    			add_location(div4, file$a, 100, 6, 3489);
     			attr_dev(div5, "class", "horiz-table-col svelte-p26ajs");
-    			add_location(div5, file$a, 86, 4, 2946);
+    			add_location(div5, file$a, 98, 4, 3404);
     			attr_dev(div6, "class", "horiz-table svelte-p26ajs");
-    			add_location(div6, file$a, 81, 2, 2750);
+    			add_location(div6, file$a, 93, 2, 3208);
     			set_style(h2, "margin-top", "20px");
-    			add_location(h2, file$a, 91, 2, 3101);
+    			add_location(h2, file$a, 103, 2, 3559);
     			attr_dev(th0, "class", "svelte-p26ajs");
-    			add_location(th0, file$a, 95, 4, 3192);
+    			add_location(th0, file$a, 107, 4, 3650);
     			attr_dev(th1, "class", "svelte-p26ajs");
-    			add_location(th1, file$a, 96, 4, 3211);
+    			add_location(th1, file$a, 108, 4, 3669);
     			attr_dev(tr, "class", "svelte-p26ajs");
-    			add_location(tr, file$a, 94, 3, 3182);
-    			add_location(thead, file$a, 93, 2, 3170);
-    			add_location(tbody, file$a, 99, 2, 3260);
+    			add_location(tr, file$a, 106, 3, 3640);
+    			add_location(thead, file$a, 105, 2, 3628);
+    			add_location(tbody, file$a, 111, 2, 3718);
     			attr_dev(table, "class", "svelte-p26ajs");
-    			add_location(table, file$a, 92, 1, 3159);
+    			add_location(table, file$a, 104, 1, 3617);
     			attr_dev(div7, "class", "button-group-horizontal-center svelte-p26ajs");
     			set_style(div7, "width", "300px");
     			set_style(div7, "margin-top", "0");
-    			add_location(div7, file$a, 109, 2, 3523);
+    			add_location(div7, file$a, 121, 2, 3981);
     			attr_dev(div8, "class", "button-group-horizontal-center svelte-p26ajs");
-    			add_location(div8, file$a, 122, 2, 4101);
+    			add_location(div8, file$a, 134, 2, 4559);
     			attr_dev(main, "class", "svelte-p26ajs");
-    			add_location(main, file$a, 78, 0, 2645);
+    			add_location(main, file$a, 90, 0, 3103);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -8083,7 +8155,7 @@ var app = (function () {
     		}
 
     		$$invalidate(5, loading = true);
-    		$$invalidate(4, spinnerText = "Uploading db...");
+    		$$invalidate(4, spinnerText = "Uploading DB...");
 
     		switch (warpType) {
     			case "seconds":
@@ -8110,8 +8182,22 @@ var app = (function () {
     		}
 
     		let newTurn = await multiplayer.submitTurn(gameData, currentUsername, { type: warpTypeNum, length: warpLength });
+    		$$invalidate(4, spinnerText = "Deleting lock file...");
+
+    		await multiplayer.deleteLock(gameName).catch(err => {
+    			dialog.showMessageBox(null, {
+    				type: "error",
+    				buttons: ["OK"],
+    				title: "Can't delete lock file",
+    				message: "Error deleting lock file: " + err + "\nCopy your AuroraDB.db file, download the turn again, overwrite the downloaded DB file with yours and try to upload again."
+    			});
+
+    			$$invalidate(5, loading = false);
+    			return;
+    		});
+
     		let messageText = "Upload finished!";
-    		if (newTurn) messageText += " You have played the first turn of the new increment. If you didn't advance time, redownload and do so right now to update your turn.";
+    		if (newTurn) messageText += "\nYou have played the first turn of the new increment. If you didn't advance time, redownload and do so right now to update your turn.";
     		$$invalidate(5, loading = false);
 
     		dialog.showMessageBox(null, {

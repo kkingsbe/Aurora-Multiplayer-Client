@@ -20,15 +20,13 @@
 	let warpLength
 	let spinnerText = "" //Stores the text to display under the spinner while loading
 	let loading = false  //Toggles the loading overlay
-	
-	//Downloads a game, reguardless of if it is the currently signed in users turn. When it is finally their turn and they run pullGame() to start their turn, the db will be overwritten
-  async function downloadGame() {
-		console.log("Pulling game")
-		let inGame = true
-		isUsersTurn = true
+
+	//Downloads a game, reguardless of DB lock. They will not be able to reupload. They will later have to run pullGame() to start their turn, this db will be overwritten.
+  async function downloadDB() {
+		console.log("Downloading DB")
 		loading = true
-		spinnerText = "Downloading db..."
-		await multiplayer.downloadGame(gameName)
+		spinnerText = "Downloading DB..."
+		await multiplayer.pullGame(gameName)
 		loading = false
 		dialog.showMessageBox(null, {
 			type: "info",
@@ -43,9 +41,57 @@
     //TODO: implement lock of db by uploading lock file with current user name to server before downloading config
     //check if lock file present and contains name other than self before downloading config, clear after upload.
     //There probably needs to be a way to manually delete it in case of error
-    //is there a way to get an error back if a lock file is already present and you're trying to create one?
-		console.log("Pulling game")
 		loading = true
+    spinnerText = "Checking if game exists..."
+    if(!(await multiplayer.gameExists(gameName))) {
+      dialog.showMessageBox(null, {
+        type: "error",
+        buttons: ["OK"],
+        title: "Game does not exist",
+        message: "No game by that name exists"
+      })
+      loading = false
+      return
+    }
+    spinnerText = "Checking lock file..."
+    let lock = await multiplayer.checkLock(gameName)
+    .catch(err => {
+      if(err.toString().includes("NoSuchKey")) { //no lock! This is what we want.
+        return "" //no player has a lock on him, return empty string
+      } else { //if error not 404, actually error
+        dialog.showMessageBox(null, {
+  				type: "error",
+  				buttons: ["OK"],
+  				title: "Error",
+  				message: "Error reading lock file: " + err
+  			})
+  			loading = false
+  			return
+      }
+    })
+    console.log("lock: " + lock)
+    if(lock !== "" && lock !== currentUsername) { //if the lock is neither empty nor contains our username, then the game is locked
+      dialog.showMessageBox(null, {
+        type: "warning",
+        buttons: ["OK"],
+        title: "Game Locked",
+        message: "Game currently being played by " + lock
+      })
+      loading = false
+      return
+    }
+    spinnerText = "Setting lock file..."
+    await multiplayer.createLock(gameName, currentUsername)
+    .catch(err => {
+      dialog.showMessageBox(null, {
+				type: "error",
+				buttons: ["OK"],
+				title: "Error",
+				message: "Error creating lock file: " + err
+			})
+			loading = false
+			return
+    })
 		spinnerText = "Fetching config..."
 		gameData = await multiplayer.getConfig(gameName)
 		.catch(err => {
@@ -71,7 +117,7 @@
       return
     }
     hasPlayed = await multiplayer.hasUserPlayed(gameData, currentUsername)
-		spinnerText = "Downloading db..."
+		spinnerText = "Downloading DB..."
 		await multiplayer.pullGame(gameName)
 		.catch(err => {
 			dialog.showMessageBox(null, {
@@ -189,8 +235,8 @@
       <Input bind:value={currentUsername}/>
     </FormGroup>
     <div class="button-group-horizontal-center">
-      <Button color="success" type="button" on:click={pullGame}>Continue</Button>
-      <Button color="warning" type="button" on:click={downloadGame}>Download Game</Button>
+      <Button color="success" type="button" on:click={pullGame}>Play Turn</Button>
+      <Button color="warning" type="button" on:click={downloadDB}>Download DB</Button>
     </div>
   </Form>
 </main>
