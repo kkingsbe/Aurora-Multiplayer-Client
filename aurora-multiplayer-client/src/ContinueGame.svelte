@@ -38,9 +38,6 @@
 
   //Downloads the db and json file from S3 and makes sure that the user is in the game
 	async function pullGame() {
-    //TODO: implement lock of db by uploading lock file with current user name to server before downloading config
-    //check if lock file present and contains name other than self before downloading config, clear after upload.
-    //There probably needs to be a way to manually delete it in case of error
 		loading = true
     spinnerText = "Checking if game exists..."
     if(!(await multiplayer.gameExists(gameName))) {
@@ -100,13 +97,24 @@
 				type: "error",
 				buttons: ["OK"],
 				title: "Error",
-				message: "Game does not exist"
+				message: "Can't find config for this game"
 			})
 			loading = false
 			return
 		})
     let inGame = await multiplayer.isUserInGame(gameData, currentUsername)
-    if(!inGame) { //TODO: immediately clear lock if user not in game
+    if(!inGame) {
+      spinnerText = "Deleting lock file..."
+      await multiplayer.deleteLock(gameName)
+      .catch(err => {
+    		dialog.showMessageBox(null, {
+    			type: "error",
+    			buttons: ["OK"],
+    			title: "Can't delete lock file",
+    			message: "Error deleting lock file: " + err
+        })
+        loading = false
+      })
       loading = false
       dialog.showMessageBox(null, {
         type: "error",
