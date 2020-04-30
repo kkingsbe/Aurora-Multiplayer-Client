@@ -6552,7 +6552,7 @@ var app = (function () {
     const { console: console_1$2 } = globals;
     const file$9 = "src\\ContinueGame.svelte";
 
-    // (230:6) <Label>
+    // (238:6) <Label>
     function create_default_slot_6$1(ctx) {
     	let t;
 
@@ -6572,14 +6572,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_6$1.name,
     		type: "slot",
-    		source: "(230:6) <Label>",
+    		source: "(238:6) <Label>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (229:4) <FormGroup>
+    // (237:4) <FormGroup>
     function create_default_slot_5$1(ctx) {
     	let t;
     	let updating_value;
@@ -6658,14 +6658,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_5$1.name,
     		type: "slot",
-    		source: "(229:4) <FormGroup>",
+    		source: "(237:4) <FormGroup>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (234:6) <Label>
+    // (242:6) <Label>
     function create_default_slot_4$1(ctx) {
     	let t;
 
@@ -6685,14 +6685,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_4$1.name,
     		type: "slot",
-    		source: "(234:6) <Label>",
+    		source: "(242:6) <Label>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (233:4) <FormGroup>
+    // (241:4) <FormGroup>
     function create_default_slot_3$1(ctx) {
     	let t;
     	let updating_value;
@@ -6771,14 +6771,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_3$1.name,
     		type: "slot",
-    		source: "(233:4) <FormGroup>",
+    		source: "(241:4) <FormGroup>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (238:6) <Button color="success" type="button" on:click={pullGame}>
+    // (246:6) <Button color="success" type="button" on:click={pullGame}>
     function create_default_slot_2$1(ctx) {
     	let t;
 
@@ -6798,14 +6798,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_2$1.name,
     		type: "slot",
-    		source: "(238:6) <Button color=\\\"success\\\" type=\\\"button\\\" on:click={pullGame}>",
+    		source: "(246:6) <Button color=\\\"success\\\" type=\\\"button\\\" on:click={pullGame}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (239:6) <Button color="warning" type="button" on:click={downloadDB}>
+    // (247:6) <Button color="warning" type="button" on:click={downloadDB}>
     function create_default_slot_1$2(ctx) {
     	let t;
 
@@ -6825,14 +6825,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_1$2.name,
     		type: "slot",
-    		source: "(239:6) <Button color=\\\"warning\\\" type=\\\"button\\\" on:click={downloadDB}>",
+    		source: "(247:6) <Button color=\\\"warning\\\" type=\\\"button\\\" on:click={downloadDB}>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (228:2) <Form>
+    // (236:2) <Form>
     function create_default_slot$2(ctx) {
     	let t0;
     	let t1;
@@ -6891,7 +6891,7 @@ var app = (function () {
     			t2 = space();
     			create_component(button1.$$.fragment);
     			attr_dev(div, "class", "button-group-horizontal-center svelte-17pewia");
-    			add_location(div, file$9, 236, 4, 7982);
+    			add_location(div, file$9, 244, 4, 7972);
     		},
     		m: function mount(target, anchor) {
     			mount_component(formgroup0, target, anchor);
@@ -6964,7 +6964,7 @@ var app = (function () {
     		block,
     		id: create_default_slot$2.name,
     		type: "slot",
-    		source: "(228:2) <Form>",
+    		source: "(236:2) <Form>",
     		ctx
     	});
 
@@ -7007,7 +7007,7 @@ var app = (function () {
     			t1 = space();
     			create_component(form.$$.fragment);
     			attr_dev(main, "class", "svelte-17pewia");
-    			add_location(main, file$9, 224, 0, 7645);
+    			add_location(main, file$9, 232, 0, 7635);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -7104,11 +7104,7 @@ var app = (function () {
 
     	//Downloads the db and json file from S3 and makes sure that the user is in the game
     	async function pullGame() {
-    		//TODO: implement lock of db by uploading lock file with current user name to server before downloading config
-    		//check if lock file present and contains name other than self before downloading config, clear after upload.
-    		//There probably needs to be a way to manually delete it in case of error
     		$$invalidate(3, loading = true);
-
     		$$invalidate(2, spinnerText = "Checking if game exists...");
 
     		if (!await multiplayer.gameExists(gameName)) {
@@ -7181,7 +7177,7 @@ var app = (function () {
     				type: "error",
     				buttons: ["OK"],
     				title: "Error",
-    				message: "Game does not exist"
+    				message: "Can't find config for this game"
     			});
 
     			$$invalidate(3, loading = false);
@@ -7191,7 +7187,19 @@ var app = (function () {
     		let inGame = await multiplayer.isUserInGame(gameData, currentUsername);
 
     		if (!inGame) {
-    			//TODO: immediately clear lock if user not in game
+    			$$invalidate(2, spinnerText = "Deleting lock file...");
+
+    			await multiplayer.deleteLock(gameName).catch(err => {
+    				dialog.showMessageBox(null, {
+    					type: "error",
+    					buttons: ["OK"],
+    					title: "Can't delete lock file",
+    					message: "Error deleting lock file: " + err
+    				});
+
+    				$$invalidate(3, loading = false);
+    			});
+
     			$$invalidate(3, loading = false);
 
     			dialog.showMessageBox(null, {
@@ -7557,11 +7565,11 @@ var app = (function () {
     			t2 = text(t2_value);
     			t3 = space();
     			attr_dev(td0, "class", "svelte-p26ajs");
-    			add_location(td0, file$a, 114, 4, 3775);
+    			add_location(td0, file$a, 114, 4, 3796);
     			attr_dev(td1, "class", "svelte-p26ajs");
-    			add_location(td1, file$a, 115, 4, 3801);
+    			add_location(td1, file$a, 115, 4, 3822);
     			attr_dev(tr, "class", "svelte-p26ajs");
-    			add_location(tr, file$a, 113, 3, 3765);
+    			add_location(tr, file$a, 113, 3, 3786);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, tr, anchor);
@@ -7665,28 +7673,28 @@ var app = (function () {
     			option0.__value = "default";
     			option0.value = option0.__value;
     			attr_dev(option0, "default", "");
-    			add_location(option0, file$a, 124, 5, 4165);
+    			add_location(option0, file$a, 124, 5, 4186);
     			option1.__value = "seconds";
     			option1.value = option1.__value;
-    			add_location(option1, file$a, 125, 6, 4223);
+    			add_location(option1, file$a, 125, 6, 4244);
     			option2.__value = "minutes";
     			option2.value = option2.__value;
-    			add_location(option2, file$a, 126, 6, 4271);
+    			add_location(option2, file$a, 126, 6, 4292);
     			option3.__value = "hours";
     			option3.value = option3.__value;
-    			add_location(option3, file$a, 127, 6, 4319);
+    			add_location(option3, file$a, 127, 6, 4340);
     			option4.__value = "days";
     			option4.value = option4.__value;
-    			add_location(option4, file$a, 128, 6, 4363);
+    			add_location(option4, file$a, 128, 6, 4384);
     			option5.__value = "weeks";
     			option5.value = option5.__value;
-    			add_location(option5, file$a, 129, 6, 4405);
+    			add_location(option5, file$a, 129, 6, 4426);
     			option6.__value = "months";
     			option6.value = option6.__value;
-    			add_location(option6, file$a, 130, 6, 4449);
+    			add_location(option6, file$a, 130, 6, 4470);
     			option7.__value = "years";
     			option7.value = option7.__value;
-    			add_location(option7, file$a, 131, 6, 4495);
+    			add_location(option7, file$a, 131, 6, 4516);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, option0, anchor);
@@ -7926,39 +7934,39 @@ var app = (function () {
     			div8 = element("div");
     			create_component(button.$$.fragment);
     			attr_dev(div0, "class", "table-header-cell svelte-p26ajs");
-    			add_location(div0, file$a, 95, 6, 3279);
+    			add_location(div0, file$a, 95, 6, 3300);
     			attr_dev(div1, "class", "table-header-cell svelte-p26ajs");
-    			add_location(div1, file$a, 96, 6, 3333);
+    			add_location(div1, file$a, 96, 6, 3354);
     			attr_dev(div2, "class", "horiz-table-header svelte-p26ajs");
-    			add_location(div2, file$a, 94, 4, 3239);
+    			add_location(div2, file$a, 94, 4, 3260);
     			attr_dev(div3, "class", "table-cell svelte-p26ajs");
-    			add_location(div3, file$a, 99, 6, 3441);
+    			add_location(div3, file$a, 99, 6, 3462);
     			attr_dev(div4, "class", "table-cell svelte-p26ajs");
-    			add_location(div4, file$a, 100, 6, 3489);
+    			add_location(div4, file$a, 100, 6, 3510);
     			attr_dev(div5, "class", "horiz-table-col svelte-p26ajs");
-    			add_location(div5, file$a, 98, 4, 3404);
+    			add_location(div5, file$a, 98, 4, 3425);
     			attr_dev(div6, "class", "horiz-table svelte-p26ajs");
-    			add_location(div6, file$a, 93, 2, 3208);
+    			add_location(div6, file$a, 93, 2, 3229);
     			set_style(h2, "margin-top", "20px");
-    			add_location(h2, file$a, 103, 2, 3559);
+    			add_location(h2, file$a, 103, 2, 3580);
     			attr_dev(th0, "class", "svelte-p26ajs");
-    			add_location(th0, file$a, 107, 4, 3650);
+    			add_location(th0, file$a, 107, 4, 3671);
     			attr_dev(th1, "class", "svelte-p26ajs");
-    			add_location(th1, file$a, 108, 4, 3669);
+    			add_location(th1, file$a, 108, 4, 3690);
     			attr_dev(tr, "class", "svelte-p26ajs");
-    			add_location(tr, file$a, 106, 3, 3640);
-    			add_location(thead, file$a, 105, 2, 3628);
-    			add_location(tbody, file$a, 111, 2, 3718);
+    			add_location(tr, file$a, 106, 3, 3661);
+    			add_location(thead, file$a, 105, 2, 3649);
+    			add_location(tbody, file$a, 111, 2, 3739);
     			attr_dev(table, "class", "svelte-p26ajs");
-    			add_location(table, file$a, 104, 1, 3617);
+    			add_location(table, file$a, 104, 1, 3638);
     			attr_dev(div7, "class", "button-group-horizontal-center svelte-p26ajs");
     			set_style(div7, "width", "300px");
     			set_style(div7, "margin-top", "0");
-    			add_location(div7, file$a, 121, 2, 3981);
+    			add_location(div7, file$a, 121, 2, 4002);
     			attr_dev(div8, "class", "button-group-horizontal-center svelte-p26ajs");
-    			add_location(div8, file$a, 134, 2, 4559);
+    			add_location(div8, file$a, 134, 2, 4580);
     			attr_dev(main, "class", "svelte-p26ajs");
-    			add_location(main, file$a, 90, 0, 3103);
+    			add_location(main, file$a, 90, 0, 3124);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -8142,7 +8150,7 @@ var app = (function () {
     	//Records the users vote to multiplayer.config, and uploads that and AuroraDB.db to the S3 bucket
     	async function submitTurn() {
     		//abort if warp vote not filled out correctly
-    		if (warpType === "default" || warpType.length === 0 || warpLength.length === 0) {
+    		if (warpType === "default" || isNaN(warpLength) || warpType.length === 0 || warpLength.length === 0) {
     			//these variables are hella weird
     			dialog.showMessageBox(null, {
     				type: "warning",

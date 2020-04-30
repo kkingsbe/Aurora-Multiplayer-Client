@@ -26,7 +26,7 @@
 	//Records the users vote to multiplayer.config, and uploads that and AuroraDB.db to the S3 bucket
   async function submitTurn() {
     //abort if warp vote not filled out correctly
-    if(warpType === "default" || warpType.length === 0 || warpLength.length === 0) { //these variables are hella weird
+    if(warpType === "default" || isNaN(warpLength) || warpType.length === 0 || warpLength.length === 0) { //these variables are hella weird
       dialog.showMessageBox(null, {
         type: "warning",
         buttons: ["OK"],

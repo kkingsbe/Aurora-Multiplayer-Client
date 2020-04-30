@@ -38,9 +38,6 @@
 
   //Downloads the db and json file from S3 and makes sure that the user is in the game
 	async function pullGame() {
-    //TODO: implement lock of db by uploading lock file with current user name to server before downloading config
-    //check if lock file present and contains name other than self before downloading config, clear after upload.
-    //There probably needs to be a way to manually delete it in case of error
 		loading = true
     spinnerText = "Checking if game exists..."
     if(!(await multiplayer.gameExists(gameName))) {
@@ -51,30 +48,6 @@
         message: "No game by that name exists"
       })
       loading = false
-      return
-		}
-		spinnerText = "Fetching config..."
-		gameData = await multiplayer.getConfig(gameName)
-		.catch(err => {
-			console.log(err)
-			dialog.showMessageBox(null, {
-				type: "error",
-				buttons: ["OK"],
-				title: "Error",
-				message: "Game does not exist"
-			})
-			loading = false
-			return
-		})
-    let inGame = await multiplayer.isUserInGame(gameData, currentUsername)
-    if(!inGame) { //TODO: immediately clear lock if user not in game
-      loading = false
-      dialog.showMessageBox(null, {
-        type: "error",
-        buttons: ["OK"],
-        title: "Error",
-        message: "You are not a player in this game"
-      })
       return
     }
     spinnerText = "Checking lock file..."
@@ -116,6 +89,41 @@
 			loading = false
 			return
     })
+		spinnerText = "Fetching config..."
+		gameData = await multiplayer.getConfig(gameName)
+		.catch(err => {
+			console.log(err)
+			dialog.showMessageBox(null, {
+				type: "error",
+				buttons: ["OK"],
+				title: "Error",
+				message: "Can't find config for this game"
+			})
+			loading = false
+			return
+		})
+    let inGame = await multiplayer.isUserInGame(gameData, currentUsername)
+    if(!inGame) {
+      spinnerText = "Deleting lock file..."
+      await multiplayer.deleteLock(gameName)
+      .catch(err => {
+    		dialog.showMessageBox(null, {
+    			type: "error",
+    			buttons: ["OK"],
+    			title: "Can't delete lock file",
+    			message: "Error deleting lock file: " + err
+        })
+        loading = false
+      })
+      loading = false
+      dialog.showMessageBox(null, {
+        type: "error",
+        buttons: ["OK"],
+        title: "Error",
+        message: "You are not a player in this game"
+      })
+      return
+    }
     hasPlayed = await multiplayer.hasUserPlayed(gameData, currentUsername)
 		spinnerText = "Downloading DB..."
 		await multiplayer.pullGame(gameName)
