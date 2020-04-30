@@ -52,6 +52,30 @@
       })
       loading = false
       return
+		}
+		spinnerText = "Fetching config..."
+		gameData = await multiplayer.getConfig(gameName)
+		.catch(err => {
+			console.log(err)
+			dialog.showMessageBox(null, {
+				type: "error",
+				buttons: ["OK"],
+				title: "Error",
+				message: "Game does not exist"
+			})
+			loading = false
+			return
+		})
+    let inGame = await multiplayer.isUserInGame(gameData, currentUsername)
+    if(!inGame) { //TODO: immediately clear lock if user not in game
+      loading = false
+      dialog.showMessageBox(null, {
+        type: "error",
+        buttons: ["OK"],
+        title: "Error",
+        message: "You are not a player in this game"
+      })
+      return
     }
     spinnerText = "Checking lock file..."
     let lock = await multiplayer.checkLock(gameName)
@@ -92,30 +116,6 @@
 			loading = false
 			return
     })
-		spinnerText = "Fetching config..."
-		gameData = await multiplayer.getConfig(gameName)
-		.catch(err => {
-			console.log(err)
-			dialog.showMessageBox(null, {
-				type: "error",
-				buttons: ["OK"],
-				title: "Error",
-				message: "Game does not exist"
-			})
-			loading = false
-			return
-		})
-    let inGame = await multiplayer.isUserInGame(gameData, currentUsername)
-    if(!inGame) { //TODO: immediately clear lock if user not in game
-      loading = false
-      dialog.showMessageBox(null, {
-        type: "error",
-        buttons: ["OK"],
-        title: "Error",
-        message: "You are not a player in this game"
-      })
-      return
-    }
     hasPlayed = await multiplayer.hasUserPlayed(gameData, currentUsername)
 		spinnerText = "Downloading DB..."
 		await multiplayer.pullGame(gameName)
