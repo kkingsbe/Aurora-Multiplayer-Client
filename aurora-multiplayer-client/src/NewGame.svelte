@@ -27,24 +27,35 @@
 	function decrementUsers() {
 		numNewGameUsers --
   }
-  
+
   //Uploads the db and game json file to S3
 	async function uploadGame() {
 		loading = true
 		spinnerText = "Creating Game..."
 		console.log(`Users: ${newGameUsers}`)
     let success = await multiplayer.uploadGame(gameName, newGameUsers)
+    .catch(err => {
+      return err.toString()
+    })
 		console.log(success)
-		if(success) {
-			loading = false
+		if(success === "Game uploaded") {
 			dialog.showMessageBox(null, {
         type: "info",
         buttons: ["OK"],
         title: "Success!",
         message: `Successfully uploaded db file`
 			})
+      loading = false
       screen = "home"
-		}
+		} else if(success === "Game already exists") {
+			dialog.showMessageBox(null, {
+        type: "error",
+        buttons: ["OK"],
+        title: "Name taken",
+        message: `Game with this name already exists`
+			})
+      loading = false
+    }
 	}
 </script>
 
@@ -56,7 +67,7 @@
       <Label>Game Name</Label>
       <Input id="gameNameInput" bind:value = {gameName}/>
     </FormGroup>
-    
+
     <FormGroup>
       <Label>Users to be added to game</Label>
       {#each Array(numNewGameUsers) as _, i}
@@ -84,7 +95,7 @@
     margin: 0 auto;
     min-height: 100%;
     color: white;
-    background: #203A43;
+		background: linear-gradient(45deg, #30cfd0, #081667);
   }
 
   .button-group {

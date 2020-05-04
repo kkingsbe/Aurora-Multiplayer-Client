@@ -20,11 +20,18 @@ const s3 = new AWS.S3({
   params: {Bucket: BUCKET_NAME}
 })
 
-//Preforms the initial upload of the game to the AWS S3 bucket
+//Preforms the initial upload of the game to the AWS S3 bucket if no game with that name already exists
 module.exports.uploadGame = async function(gameName, users) {
   return new Promise(async (resolve, reject) => {
     //let time = await this.currentTime(gameName)
-
+    if(users.length <= 0) {
+      reject("User list empty")
+      return
+    }
+    if(await this.gameExists(gameName)) {
+      reject("Game already exists")
+      return
+    }
     //make user objects out of username string list
     function UserObject(name) {
       this.name = name
@@ -44,7 +51,6 @@ module.exports.uploadGame = async function(gameName, users) {
     for(let name of users) {
       userObjects.push(new UserObject(name))
     }
-
     let gameData = {
       gameName: gameName,
       //time: time,
@@ -70,7 +76,7 @@ module.exports.uploadGame = async function(gameName, users) {
       resolve(true)
     }).promise()
 
-    resolve(true)
+    resolve("Game uploaded")
   })
 }
 
@@ -153,6 +159,86 @@ module.exports.getConfig = async function(gameName) {
   })
 }
 
+//Downloads AuroraDB.db
+module.exports.pullGame = async function(gameName) {
+  return new Promise(async (resolve, reject) => {
+    let filePath = path.resolve(gamePath, "")
+    //Get AuroraDB.db file
+    params = {
+      Key: `${gameName}/AuroraDB.db`
+    }
+    let file = fs.createWriteStream(`${filePath}/AuroraDB.db`)
+    s3.getObject(params).createReadStream().pipe(file)
+    file.on("close", () => {resolve()})
+  })
+}
+
+//returns true if a game with the provided name exists, determined by a multiplayer.config file being present. Returns false on error or if not present.
+module.exports.gameExists = async function(gameName) {
+  return new Promise((resolve, reject) => {
+    const params = {
+      Key: `${gameName}/multiplayer.config`
+    }
+    s3.headObject(params, (err, data) => {
+      if (err) {
+        console.log("Err in gameExists: " + err)
+        resolve(false)
+        return
+      }
+      resolve(true)
+    })
+  })
+}
+
+//Gets lock file for game. Will either return no lock or user which the game is currently locked for or error
+module.exports.checkLock = async function(gameName) {
+  return new Promise(async (resolve, reject) => {
+    const params = {
+      Key: `${gameName}/lock`
+    }
+    s3.getObject(params, (err, data) => {
+      if (err) {
+        reject(err)
+        return
+      }
+      resolve(data.Body.toString())
+    })
+  })
+}
+
+//Creates new lock file containing given username. Does not throw error if a lock is being overwritten! Use getLock first to determine if a game already has a lock file present.
+module.exports.createLock = async function(gameName, userName) {
+  return new Promise(async (resolve, reject) => {
+    params = {
+      Key: `${gameName}/lock`,
+      Body: userName
+    }
+    await s3.upload(params, (err, data) => {
+      if(err) {
+        reject(err)
+        return
+      }
+      resolve()
+    })
+  })
+}
+
+//Deletes lock file for game, to be used after a user has uploaded
+module.exports.deleteLock = async function(gameName) {
+  return new Promise(async (resolve, reject) => {
+    const params = {
+      Key: `${gameName}/lock`
+     }
+     s3.deleteObject(params, (err, data) => {
+       if (err) {
+         reject(err)
+         return
+       }
+       resolve()
+     })
+  })
+}
+
 //Checks if the given user is in the given config file
 module.exports.inGame = function(config, username) {
   let users = config.users
@@ -194,20 +280,6 @@ module.exports.hasUserPlayed = function(config, username) {
   return false //should never be reached as long as the user is in the list
 }
 
-//Downloads AuroraDB.db
-module.exports.pullGame = async function(gameName) {
-  return new Promise(async (resolve, reject) => {
-    let filePath = path.resolve(gamePath, "")
-    //Get AuroraDB.db file
-    params = {
-      Key: `${gameName}/AuroraDB.db`
-    }
-    let file = fs.createWriteStream(`${filePath}/AuroraDB.db`)
-    s3.getObject(params).createReadStream().pipe(file)
-    file.on("close", () => {resolve()})
-  })
-}
-
 //Checks in the database if GameTime is the same as provided argument
 module.exports.currentlyIsTime = async function (gameName, expectedTime) {
   return new Promise(async (resolve, reject) => {
@@ -234,31 +306,5 @@ module.exports.currentTime = async function (gameName) {
       console.log(time)
       db.close();
       resolve(time)
-  })
-}
-
-//Downloads the given game regardless of who the user is. Downloaded game gets overwriten when the user runs pullGame to take their turn
-module.exports.downloadGame = async function(gameName) {
-  return new Promise(async (resolve, reject) => {
-    let gameData = false
-    let success = true
-    let config = await this.getConfig(gameName).catch(err => {
-      reject(err)
-    })
-
-    let filePath = path.resolve(gamePath, "")
-    //Write multiplayer.config to disk
-    fs.writeFileSync(`${filePath}/multiplayer.config`, JSON.stringify(config))
-
-    //Get AuroraDB.db file
-    params = {
-      Key: `${gameName}/AuroraDB.db`
-    }
-    let file = fs.createWriteStream(`${filePath}/AuroraDB.db`)
-    s3.getObject(params).createReadStream().pipe(file)
-    file.on("close", () => {
-      console.log(success)
-      if(success) resolve(gameData)
-    })
   })
 }
