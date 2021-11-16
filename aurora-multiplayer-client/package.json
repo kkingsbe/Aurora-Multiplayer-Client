@@ -69,7 +69,7 @@
     }
   },
   "dependencies": {
-    "aws-sdk": "^2.660.0",
+    "aws-sdk": "^2.814.0",
     "bootstrap": "^4.4.1",
     "concurrently": "^5.1.0",
     "electron-is-dev": "^1.2.0",
